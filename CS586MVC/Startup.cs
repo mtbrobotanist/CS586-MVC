@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AspNetAngular1
+namespace CS586MVC
 {
     public class Startup
     {
