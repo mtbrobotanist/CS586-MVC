@@ -28,9 +28,7 @@ namespace CS586MVC
                 try
                 {
                     var context = services.GetRequiredService<PropertyMismanagementContext>();
-                    
-                    
-                    //DbInitializer.Initialize(context);
+                    DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
                 {

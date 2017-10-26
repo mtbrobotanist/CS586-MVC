@@ -13,7 +13,7 @@ namespace CS586MVC.Models
         public int Id { get; set; }
         public int BedRooms { get; set; }
         public int Bathrooms { get; set; }
-        public int SquareFootage { get; set; }
+        public int? Area { get; set; }
 
         public ICollection<ComplexUnit> ComplexUnit { get; set; }
     }

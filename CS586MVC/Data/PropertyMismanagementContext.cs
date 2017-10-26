@@ -2,7 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace CS586MVC.Models
+using CS586MVC.Models;
+
+namespace CS586MVC.Data
 {
     public partial class PropertyMismanagementContext : DbContext
     {
@@ -13,14 +15,15 @@ namespace CS586MVC.Models
         public virtual DbSet<Unit> Unit { get; set; }
 
         public PropertyMismanagementContext(DbContextOptions<PropertyMismanagementContext> options) : base(options)
-        { }
+        {
+        }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                //optionsBuilder.UseSqlServer(@"Server=localhost;Database=PropertyMismanagement;User Id=sa;Password=PlzOpen4Me;MultipleActiveResultSets=true;");
+//                optionsBuilder.UseSqlServer(@"Server=localhost;Database=PropertyMismanagement;User Id=sa;Password=PlzOpen4Me;MultipleActiveResultSets=true;");
             }
         }
 
@@ -28,28 +31,31 @@ namespace CS586MVC.Models
         {
             modelBuilder.Entity<Complex>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.HasIndex(e => e.Id)
+                    .HasName("Complex_ID_uindex")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Address)
-                    .IsRequired()
                     .HasMaxLength(256)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<ComplexUnit>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.HasIndex(e => e.Id)
+                    .HasName("ComplexUnit_ID_uindex")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.ComplexId).HasColumnName("ComplexID");
 
                 entity.Property(e => e.UnitId).HasColumnName("UnitID");
 
                 entity.HasOne(d => d.Complex)
-                    .WithMany(p => p.ComplexUnits)
+                    .WithMany(p => p.ComplexUnit)
                     .HasForeignKey(d => d.ComplexId)
                     .HasConstraintName("ComplexUnit_Complex_ID_fk");
 
@@ -61,9 +67,11 @@ namespace CS586MVC.Models
 
             modelBuilder.Entity<Lease>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.HasIndex(e => e.Id)
+                    .HasName("Lease_ID_uindex")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.ComplexUnitId).HasColumnName("ComplexUnitID");
 
@@ -74,19 +82,23 @@ namespace CS586MVC.Models
                 entity.HasOne(d => d.ComplexUnit)
                     .WithMany(p => p.Lease)
                     .HasForeignKey(d => d.ComplexUnitId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Lease_ComplexUnit_ID_fk");
 
                 entity.HasOne(d => d.Person)
                     .WithMany(p => p.Lease)
                     .HasForeignKey(d => d.PersonId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Lease_Person_ID_fk");
             });
 
             modelBuilder.Entity<Person>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.HasIndex(e => e.Id)
+                    .HasName("Person_ID_uindex")
+                    .IsUnique();
+
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Email)
                     .IsRequired()
@@ -111,9 +123,7 @@ namespace CS586MVC.Models
 
             modelBuilder.Entity<Unit>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
             });
         }
     }
