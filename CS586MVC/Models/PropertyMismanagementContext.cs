@@ -12,12 +12,15 @@ namespace CS586MVC.Models
         public virtual DbSet<Person> Person { get; set; }
         public virtual DbSet<Unit> Unit { get; set; }
 
+        public PropertyMismanagementContext(DbContextOptions<PropertyMismanagementContext> options) : base(options)
+        { }
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Server=localhost;Database=PropertyMismanagement;User Id=sa;Password=PlzOpen4Me;MultipleActiveResultSets=true;");
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                //optionsBuilder.UseSqlServer(@"Server=localhost;Database=PropertyMismanagement;User Id=sa;Password=PlzOpen4Me;MultipleActiveResultSets=true;");
             }
         }
 
