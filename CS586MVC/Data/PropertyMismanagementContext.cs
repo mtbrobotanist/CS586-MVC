@@ -54,6 +54,8 @@ namespace CS586MVC.Data
 
                 entity.Property(e => e.UnitId).HasColumnName("UnitID");
 
+                entity.Property(e => e.UnitNumber).HasColumnName("UnitNumber");
+                
                 entity.HasOne(d => d.Complex)
                     .WithMany(p => p.ComplexUnit)
                     .HasForeignKey(d => d.ComplexId)

@@ -51,19 +51,19 @@ namespace CS586MVC.Data
             //add the apartment units that each complex has
             var complexUnits = new ComplexUnit[]
             {
-                new ComplexUnit{UnitId = 1, ComplexId = 1},
-                new ComplexUnit{UnitId = 2, ComplexId = 1},
-                new ComplexUnit{UnitId = 3, ComplexId = 1},
-                new ComplexUnit{UnitId = 4, ComplexId = 1},
-                new ComplexUnit{UnitId = 5, ComplexId = 1},
-                new ComplexUnit{UnitId = 6, ComplexId = 1},
+                new ComplexUnit{UnitId = 1, ComplexId = 1, UnitNumber = 100},
+                new ComplexUnit{UnitId = 2, ComplexId = 1, UnitNumber = 101},
+                new ComplexUnit{UnitId = 3, ComplexId = 1, UnitNumber = 102},
+                new ComplexUnit{UnitId = 4, ComplexId = 1, UnitNumber = 200},
+                new ComplexUnit{UnitId = 5, ComplexId = 1, UnitNumber = 201},
+                new ComplexUnit{UnitId = 6, ComplexId = 1, UnitNumber = 203},
                 
-                new ComplexUnit{UnitId = 1, ComplexId = 2},
-                new ComplexUnit{UnitId = 2, ComplexId = 2},
-                new ComplexUnit{UnitId = 3, ComplexId = 2},
-                new ComplexUnit{UnitId = 4, ComplexId = 2},
-                new ComplexUnit{UnitId = 5, ComplexId = 2},
-                new ComplexUnit{UnitId = 6, ComplexId = 2}
+                new ComplexUnit{UnitId = 1, ComplexId = 2, UnitNumber = 100},
+                new ComplexUnit{UnitId = 2, ComplexId = 2, UnitNumber = 101},
+                new ComplexUnit{UnitId = 3, ComplexId = 2, UnitNumber = 102},
+                new ComplexUnit{UnitId = 4, ComplexId = 2, UnitNumber = 200},
+                new ComplexUnit{UnitId = 5, ComplexId = 2, UnitNumber = 201},
+                new ComplexUnit{UnitId = 6, ComplexId = 2, UnitNumber = 202}
             };
             foreach(ComplexUnit cu in complexUnits)
             {

@@ -13,6 +13,7 @@ namespace CS586MVC.Models
         public int Id { get; set; }
         public int? UnitId { get; set; }
         public int? ComplexId { get; set; }
+        public int UnitNumber { get; set; }
 
         public Complex Complex { get; set; }
         public Unit Unit { get; set; }
