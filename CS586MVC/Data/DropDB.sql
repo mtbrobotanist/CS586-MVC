@@ -1,0 +1,9 @@
+ALTER TABLE PropertyMismanagement.dbo.Lease DROP CONSTRAINT Lease_Person_ID_fk
+ALTER TABLE PropertyMismanagement.dbo.Lease DROP CONSTRAINT Lease_ComplexUnit_ID_fk
+ALTER TABLE PropertyMismanagement.dbo.ComplexUnit DROP CONSTRAINT ComplexUnit_Unit_ID_fk
+ALTER TABLE PropertyMismanagement.dbo.ComplexUnit DROP CONSTRAINT ComplexUnit_Complex_ID_fk
+DROP TABLE PropertyMismanagement.dbo.Lease
+DROP TABLE PropertyMismanagement.dbo.ComplexUnit
+DROP TABLE PropertyMismanagement.dbo.Unit
+DROP TABLE PropertyMismanagement.dbo.Person
+DROP TABLE PropertyMismanagement.dbo.Complex
