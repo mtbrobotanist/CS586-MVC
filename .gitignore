@@ -238,3 +238,8 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+
+# ignore compiles typescript files from angular
+*/ClientApp/**/*.js
+*/ClientApp/**/*.js.map
