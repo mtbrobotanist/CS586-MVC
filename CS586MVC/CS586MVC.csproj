@@ -47,4 +47,91 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\properties\properties.component.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\properties\properties.component.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\properties\properties.component.spec.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\properties\properties.component.spec.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\app.module.browser.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\app.module.browser.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\app.module.server.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\app.module.server.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\app.module.shared.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\app.module.shared.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\boot.browser.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\boot.browser.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\boot.server.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\boot.server.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\dist\89889688147bd7575d6327160d64e760.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\dist\main-client.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\dist\main-client.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\fetchdata\fetchdata.component.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\fetchdata\fetchdata.component.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\home\home.component.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\home\home.component.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\navmenu\navmenu.component.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\navmenu\navmenu.component.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\counter\counter.component.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\counter\counter.component.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\counter\counter.component.spec.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\counter\counter.component.spec.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\app\app.component.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\app\app.component.js.map" />
+  </ItemGroup>
 </Project>
