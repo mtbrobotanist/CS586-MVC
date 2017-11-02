@@ -188,6 +188,7 @@ orleans.codegen.cs
 
 */node_modules/
 
+
 /yarn.lock
 
 # RIA/Silverlight projects
@@ -241,5 +242,5 @@ _Pvt_Extensions
 
 
 # ignore compiles typescript files from angular
-*/ClientApp/**/*.js
-*/ClientApp/**/*.js.map
+**/*.js
+**/*.js.map
