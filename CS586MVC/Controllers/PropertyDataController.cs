@@ -1,65 +1,50 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+
 using CS586MVC.Data;
 using CS586MVC.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace CS586MVC.Controllers
 {
-    public class PropertyDataController : Controller
+    public partial class PropertyDataController : Controller
     {
-        private readonly PropertyMismanagementContext _context;
-        
-        public PropertyDataController(PropertyMismanagementContext context)
-        {
-            _context = context;
+       public PropertyDataController(PropertyMismanagementContext context)
+        {    
+            DbHelper.Context = context;
         }
         
         // GET
         public async Task<IEnumerable<Person>> Tenants(int? id)
         {
-            if (!id.HasValue)
-            {
-                return await _context.Person.ToListAsync();
-            }
-
-            return await _context.Person.Where(m => m.Id == id).ToListAsync();
+            return id.HasValue ? 
+                new List<Person> { await DbHelper.Person((int)id) } : 
+                await DbHelper.AllPersons();
         }
         
         // GET
-        public async Task<IEnumerable<Complex>> Properties(int? id)
+        public async Task<IEnumerable<AptComplex>> Properties(int? id)
         {
-            if (!id.HasValue)
-            {
-                return await _context.Complex.ToListAsync();
-            }
-
-            return await _context.Complex.Where(m => m.Id == id).ToListAsync();
+            return id.HasValue ?
+                new List<AptComplex> { await DbHelper.AptComplex((int)id) } :
+                await DbHelper.AllAptComplexes();
         }
         
         
         // GET
-        public async Task<IEnumerable<ComplexUnit>> AllUnits(int? id)
+        public async Task<IEnumerable<AptComplexUnit>> AllUnits(int? id)
         {
-            if (!id.HasValue)
-            {
-                return await _context.ComplexUnit.ToListAsync();
-            }
-
-            return await _context.ComplexUnit.Where(m => m.Id == id).ToListAsync();
+            return id.HasValue ?
+                new List<AptComplexUnit> { await DbHelper.AptComplexUnit((int)id) } :
+                await DbHelper.AllAptComplexUnits();
         }
         
         // GET
         public async Task<IEnumerable<Lease>> Leases(int? id)
         {
-            if (!id.HasValue)
-            {
-                return await _context.Lease.ToListAsync();
-            }
-
-            return await _context.Lease.Where(m => m.Id == id).ToListAsync();
+            return id.HasValue ? 
+                new List<Lease> { await DbHelper.Lease((int) id) } : 
+                await DbHelper.AllLeases();
         }
         
     }

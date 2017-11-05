@@ -3,20 +3,20 @@ using System.Collections.Generic;
 
 namespace CS586MVC.Models
 {
-    public partial class ComplexUnit
+    public partial class AptComplexUnit
     {
-        public ComplexUnit()
+        public AptComplexUnit()
         {
             Lease = new HashSet<Lease>();
         }
 
         public int Id { get; set; }
-        public int? UnitId { get; set; }
-        public int? ComplexId { get; set; }
+        public int? AptUnitId { get; set; }
+        public int? AptComplexId { get; set; }
         public int UnitNumber { get; set; }
 
-        public Complex Complex { get; set; }
-        public Unit Unit { get; set; }
+        public AptComplex AptComplex { get; set; }
+        public AptUnit AptUnit { get; set; }
         public ICollection<Lease> Lease { get; set; }
     }
 }

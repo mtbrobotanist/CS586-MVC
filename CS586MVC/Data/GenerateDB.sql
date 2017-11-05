@@ -1,6 +1,7 @@
 CREATE TABLE [Complex] (
     [ID] int NOT NULL IDENTITY,
     [Address] varchar(256) NULL,
+    [Size] int NOT NULL,
     CONSTRAINT [PK_Complex] PRIMARY KEY ([ID])
 );
 

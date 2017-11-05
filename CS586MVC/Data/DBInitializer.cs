@@ -18,56 +18,56 @@ namespace CS586MVC.Data
             
             Console.WriteLine("*****Seeding Unit");
             //add the generic aprartment units
-            var units = new Unit[]
+            var units = new AptUnit[]
             {
                 //new Student{FirstMidName="Carson",LastName="Alexander",EnrollmentDate=DateTime.Parse("2005-09-01")},
-                new Unit{BedRooms = 0, Bathrooms = 0, Area = 200},
-                new Unit{BedRooms = 0, Bathrooms = 1, Area = 230},
-                new Unit{BedRooms = 1, Bathrooms = 1, Area = 350},
-                new Unit{BedRooms = 2, Bathrooms = 0, Area = 400},
-                new Unit{BedRooms = 2, Bathrooms = 2, Area = 600},
-                new Unit{BedRooms = 3, Bathrooms = 2, Area = 900}
+                new AptUnit{BedRooms = 0, Bathrooms = 0, Area = 200},
+                new AptUnit{BedRooms = 0, Bathrooms = 1, Area = 230},
+                new AptUnit{BedRooms = 1, Bathrooms = 1, Area = 350},
+                new AptUnit{BedRooms = 2, Bathrooms = 0, Area = 400},
+                new AptUnit{BedRooms = 2, Bathrooms = 2, Area = 600},
+                new AptUnit{BedRooms = 3, Bathrooms = 2, Area = 900}
             };
-            foreach (Unit u in units)
+            foreach (AptUnit u in units)
             {
-                context.Unit.Add(u);
+                context.AptUnit.Add(u);
             }
             context.SaveChanges();
             
             Console.WriteLine("*****Seeding Complex");
             //add the apartment complex locations
-            var complexes = new Complex[]
+            var complexes = new AptComplex[]
             {
-                new Complex{Address="12345 Fake Street, Somewhere, CA, 91302"},
-                new Complex{Address="420 High Blvd, Somewhere, CA, 91302"},
+                new AptComplex{Address="12345 Fake Street, Somewhere, CA, 91302", Size = 30},
+                new AptComplex{Address="420 High Blvd, Somewhere, CA, 91302", Size = 420},
             };
-            foreach(Complex c in complexes)
+            foreach(AptComplex c in complexes)
             {
-                context.Complex.Add(c);
+                context.AptComplex.Add(c);
             }
             context.SaveChanges();
             
             Console.WriteLine("*****Seeding ComplexUnit");
             //add the apartment units that each complex has
-            var complexUnits = new ComplexUnit[]
+            var complexUnits = new AptComplexUnit[]
             {
-                new ComplexUnit{UnitId = 1, ComplexId = 1, UnitNumber = 100},
-                new ComplexUnit{UnitId = 2, ComplexId = 1, UnitNumber = 101},
-                new ComplexUnit{UnitId = 3, ComplexId = 1, UnitNumber = 102},
-                new ComplexUnit{UnitId = 4, ComplexId = 1, UnitNumber = 200},
-                new ComplexUnit{UnitId = 5, ComplexId = 1, UnitNumber = 201},
-                new ComplexUnit{UnitId = 6, ComplexId = 1, UnitNumber = 203},
+                new AptComplexUnit{AptUnitId = 1, AptComplexId = 1, UnitNumber = 100},
+                new AptComplexUnit{AptUnitId = 2, AptComplexId = 1, UnitNumber = 101},
+                new AptComplexUnit{AptUnitId = 3, AptComplexId = 1, UnitNumber = 102},
+                new AptComplexUnit{AptUnitId = 4, AptComplexId = 1, UnitNumber = 200},
+                new AptComplexUnit{AptUnitId = 5, AptComplexId = 1, UnitNumber = 201},
+                new AptComplexUnit{AptUnitId = 6, AptComplexId = 1, UnitNumber = 203},
                 
-                new ComplexUnit{UnitId = 1, ComplexId = 2, UnitNumber = 100},
-                new ComplexUnit{UnitId = 2, ComplexId = 2, UnitNumber = 101},
-                new ComplexUnit{UnitId = 3, ComplexId = 2, UnitNumber = 102},
-                new ComplexUnit{UnitId = 4, ComplexId = 2, UnitNumber = 200},
-                new ComplexUnit{UnitId = 5, ComplexId = 2, UnitNumber = 201},
-                new ComplexUnit{UnitId = 6, ComplexId = 2, UnitNumber = 202}
+                new AptComplexUnit{AptUnitId = 1, AptComplexId = 2, UnitNumber = 100},
+                new AptComplexUnit{AptUnitId = 2, AptComplexId = 2, UnitNumber = 101},
+                new AptComplexUnit{AptUnitId = 3, AptComplexId = 2, UnitNumber = 102},
+                new AptComplexUnit{AptUnitId = 4, AptComplexId = 2, UnitNumber = 200},
+                new AptComplexUnit{AptUnitId = 5, AptComplexId = 2, UnitNumber = 201},
+                new AptComplexUnit{AptUnitId = 6, AptComplexId = 2, UnitNumber = 202}
             };
-            foreach(ComplexUnit cu in complexUnits)
+            foreach(AptComplexUnit cu in complexUnits)
             {
-                context.ComplexUnit.Add(cu);
+                context.AptComplexUnit.Add(cu);
             }
             context.SaveChanges();
             
@@ -93,12 +93,12 @@ namespace CS586MVC.Data
             //finally, add the leases
             var leases = new Lease[]
             {
-                new Lease {PersonId = 1, ComplexUnitId = 1, StartDate=DateTime.Now, DurationMonths = 12, RentMonthly = 1000},
-                new Lease {PersonId = 2, ComplexUnitId = 2, StartDate=DateTime.Now, DurationMonths = 6, RentMonthly = 1300},
-                new Lease {PersonId = 3, ComplexUnitId = 3, StartDate=DateTime.Now, DurationMonths = 12, RentMonthly = 900},
-                new Lease {PersonId = 4, ComplexUnitId = 7, StartDate=DateTime.Now, DurationMonths = 6, RentMonthly = 1700},
-                new Lease {PersonId = 5, ComplexUnitId = 8, StartDate=DateTime.Now, DurationMonths = 12, RentMonthly = 1100},
-                new Lease {PersonId = 6, ComplexUnitId = 9, StartDate=DateTime.Now, DurationMonths = 6, RentMonthly = 1000}
+                new Lease {PersonId = 1, AptComplexUnitId = 1, StartDate=DateTime.Now, DurationMonths = 12, RentMonthly = 1000},
+                new Lease {PersonId = 2, AptComplexUnitId = 2, StartDate=DateTime.Now, DurationMonths = 6, RentMonthly = 1300},
+                new Lease {PersonId = 3, AptComplexUnitId = 3, StartDate=DateTime.Now, DurationMonths = 12, RentMonthly = 900},
+                new Lease {PersonId = 4, AptComplexUnitId = 7, StartDate=DateTime.Now, DurationMonths = 6, RentMonthly = 1700},
+                new Lease {PersonId = 5, AptComplexUnitId = 8, StartDate=DateTime.Now, DurationMonths = 12, RentMonthly = 1100},
+                new Lease {PersonId = 6, AptComplexUnitId = 9, StartDate=DateTime.Now, DurationMonths = 6, RentMonthly = 1000}
 
             };
             foreach (Lease l in leases)
