@@ -31,6 +31,8 @@ import { TenantsComponent } from './components/tenants/tenants.component';
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
+            { path: 'properties', component: PropertiesComponent },
+            { path: 'tenants', component: TenantsComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

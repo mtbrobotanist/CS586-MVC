@@ -6,6 +6,8 @@
                 <span class='icon-bar'></span>
                 <span class='icon-bar'></span>
                 <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
             </button>
             <a class='navbar-brand' [routerLink]="['/home']">Property Mismanagement</a>
         </div>
@@ -25,6 +27,16 @@
                 <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/fetch-data']">
                         <span class='glyphicon glyphicon-th-list'></span> Fetch data
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/properties']">
+                        <span class='glyphicon glyphicon-th-list'></span> Properties
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/tenants']">
+                        <span class='glyphicon glyphicon-th-list'></span> Tenants
                     </a>
                 </li>
             </ul>
