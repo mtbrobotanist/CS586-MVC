@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Http } from "@angular/http";
 import { Tenant } from "../tenants/tenants.component";
-import { AptComplexUnit} from "../properties/properties.component";
+import { AptComplex } from "../properties/properties.component";
 
 @Component({
   selector: 'app-leases',
@@ -28,4 +28,24 @@ interface Lease {
     active:boolean;
     tenant:Tenant;
     unit:AptComplexUnit;
+}
+
+interface AptUnit
+{
+    id:number;
+    bedRooms:number;
+    bathRooms:number;
+    area:number;
+}
+
+export interface AptComplexUnit
+{
+    id:number;
+    aptUnitId:number;
+    aptComplexId:number;
+    unitNumber:number;
+    address:string;
+
+    aptUnit:AptUnit;
+    aptComplex:AptComplex;
 }

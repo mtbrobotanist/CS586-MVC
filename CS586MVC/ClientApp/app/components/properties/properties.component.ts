@@ -17,30 +17,12 @@ export class PropertiesComponent {
 
 }
 
-interface AptUnit
-{
-    id:number;
-    bedRooms:number;
-    bathRooms:number;
-    area:number;
-}
-
-export interface AptComplexUnit
-{
-    id:number;
-    aptUnitId:number;
-    aptComplexId:number;
-    unitNumber:number;
-    address:string;
-    
-    aptUnit:AptUnit;
-}
-
-interface AptComplex
+export interface AptComplex
 {
     id:number;
     address:string;
     size:number;
     occupiedCount:number;
+    vacancyCount:number;
 }
 
