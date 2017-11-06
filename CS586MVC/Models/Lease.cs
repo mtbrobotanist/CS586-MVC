@@ -12,6 +12,8 @@ namespace CS586MVC.Models
         public int DurationMonths { get; set; }
         public int RentMonthly { get; set; }
 
+        public bool Active => StartDate.AddMonths(DurationMonths) > DateTime.Now;
+        
         public AptComplexUnit AptComplexUnit { get; set; }
         public Person Person { get; set; }
     }

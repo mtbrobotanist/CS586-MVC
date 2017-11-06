@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CS586MVC.Models
 {
@@ -15,8 +16,13 @@ namespace CS586MVC.Models
         public int? AptComplexId { get; set; }
         public int UnitNumber { get; set; }
 
+        public bool Occupied => Lease.Any(l => l.Active);
+        public Lease CurrentLease => Lease.FirstOrDefault(l => l.Active);
+        public Person CurrentOccupant => CurrentLease?.Person;
+
         public AptComplex AptComplex { get; set; }
         public AptUnit AptUnit { get; set; }
         public ICollection<Lease> Lease { get; set; }
     }
+    
 }

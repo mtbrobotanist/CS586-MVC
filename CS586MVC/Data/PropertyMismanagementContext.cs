@@ -5,11 +5,11 @@ namespace CS586MVC.Data
 {
     public partial class PropertyMismanagementContext : DbContext
     {
-        public virtual DbSet<AptComplex> AptComplex { get; set; }
-        public virtual DbSet<AptComplexUnit> AptComplexUnit { get; set; }
-        public virtual DbSet<Lease> Lease { get; set; }
-        public virtual DbSet<Person> Person { get; set; }
-        public virtual DbSet<AptUnit> AptUnit { get; set; }
+        public virtual DbSet<AptComplex> AptComplexes { get; set; }
+        public virtual DbSet<AptComplexUnit> AptComplexUnits { get; set; }
+        public virtual DbSet<Lease> Leases { get; set; }
+        public virtual DbSet<Person> Persons { get; set; }
+        public virtual DbSet<AptUnit> AptUnits { get; set; }
 
         public PropertyMismanagementContext(DbContextOptions<PropertyMismanagementContext> options) : base(options) { }
 
@@ -52,7 +52,7 @@ namespace CS586MVC.Data
                 entity.Property(e => e.UnitNumber).HasColumnName("UnitNumber");
 
                 entity.HasOne(d => d.AptComplex)
-                    .WithMany(p => p.OccupiedUnits)
+                    .WithMany(p => p.Units)
                     .HasForeignKey(d => d.AptComplexId)
                     .HasConstraintName("AptComplexUnit_AptComplex_ID_fk");
 
@@ -83,7 +83,7 @@ namespace CS586MVC.Data
                     .HasConstraintName("Lease_AptComplexUnit_ID_fk");
 
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.Lease)
+                    .WithMany(p => p.Leases)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Lease_Person_ID_fk");

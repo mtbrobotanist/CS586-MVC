@@ -11,7 +11,7 @@ namespace CS586MVC.Data
             context.Database.EnsureCreated();
                 
             // Look for any leases.
-            if (context.Lease.Any())
+            if (context.Leases.Any())
             {
                 return;   // DB has been seeded
             }
@@ -30,7 +30,7 @@ namespace CS586MVC.Data
             };
             foreach (AptUnit u in units)
             {
-                context.AptUnit.Add(u);
+                context.AptUnits.Add(u);
             }
             context.SaveChanges();
             
@@ -43,7 +43,7 @@ namespace CS586MVC.Data
             };
             foreach(AptComplex c in complexes)
             {
-                context.AptComplex.Add(c);
+                context.AptComplexes.Add(c);
             }
             context.SaveChanges();
             
@@ -67,7 +67,7 @@ namespace CS586MVC.Data
             };
             foreach(AptComplexUnit cu in complexUnits)
             {
-                context.AptComplexUnit.Add(cu);
+                context.AptComplexUnits.Add(cu);
             }
             context.SaveChanges();
             
@@ -84,7 +84,7 @@ namespace CS586MVC.Data
             };
             foreach (Person p in persons)
             {
-                context.Person.Add(p);
+                context.Persons.Add(p);
             }
             context.SaveChanges();
             
@@ -103,7 +103,7 @@ namespace CS586MVC.Data
             };
             foreach (Lease l in leases)
             {
-                context.Lease.Add(l);
+                context.Leases.Add(l);
             }
             context.SaveChanges();
         }

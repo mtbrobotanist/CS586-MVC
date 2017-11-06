@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CS586MVC.Models
 {
@@ -7,7 +8,7 @@ namespace CS586MVC.Models
     {
         public Person()
         {
-            Lease = new HashSet<Lease>();
+            Leases = new HashSet<Lease>();
         }
 
         public int Id { get; set; }
@@ -16,6 +17,9 @@ namespace CS586MVC.Models
         public string Phone { get; set; }
         public string Email { get; set; }
 
-        public ICollection<Lease> Lease { get; set; }
+        public bool Current => Leases.Any(l => l.Active);
+        public Lease CurrentLease => Leases.FirstOrDefault(l => l.Active);
+        
+        public ICollection<Lease> Leases { get; set; }
     }
 }
