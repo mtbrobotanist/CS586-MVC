@@ -1,4 +1,4 @@
-<h2>Mismanaged Tenants</h2>
+<h2>Mismanaged Leases</h2>
 
 <p *ngIf="!leases"><em>Loading...</em></p>
 
@@ -8,8 +8,9 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>StartDate</th>
-            <th>Duration (Months)</th>
-            <th>Rent (Monthly)</th>
+            <th>Duration</th>
+            <th>End Date</th>
+            <th>Rent</th>
             <th>Address</th>
         </tr>
     </thead>
@@ -18,8 +19,9 @@
             <td>{{ lease.tenant.firstName }}</td>
             <td>{{ lease.tenant.lastName }}</td>
             <td>{{ lease.startDate }}</td>
-            <td>{{ lease.durationMonths }}</td>
-            <td>{{ lease.rentMonthly }}</td>
+            <td>{{ lease.durationMonths }} months</td>
+            <td>{{ lease.endDate }}</td>
+            <td>${{ lease.rentMonthly }}</td>
             <td>{{ lease.unit.address }}</td>
         </tr>
     </tbody>
