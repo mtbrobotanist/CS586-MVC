@@ -79,7 +79,6 @@ namespace CS586MVC.Controllers
                          .ThenInclude(apt => apt.Unit)
                              .ThenInclude(unit => unit.AptComplex)
                      .FirstOrDefaultAsync();
-
              }
 
              return await Context.Persons.FirstOrDefaultAsync();
