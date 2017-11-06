@@ -35,6 +35,7 @@ import { LeasesComponent } from './components/leases/leases.component';
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'properties', component: PropertiesComponent },
             { path: 'tenants', component: TenantsComponent },
+            { path: 'leases', component: LeasesComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

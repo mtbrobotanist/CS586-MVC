@@ -21,7 +21,7 @@
                 <td>{{ tenant.email }}</td>
                 <td>{{ tenant.current }}</td>
                 <td *ngIf="tenant.current">
-                    <a [routerLink]="['/leases', tenant.id]">view lease</a>
+                    <a [routerLink]="['/leases', tenant.currentLeaseId]">view lease</a>
                 </td>
             </tr>
     </tbody>

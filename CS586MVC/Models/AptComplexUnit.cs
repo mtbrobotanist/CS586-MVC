@@ -17,9 +17,9 @@ namespace CS586MVC.Models
         public int UnitNumber { get; set; }
 
         public bool Occupied => Lease.Any(l => l.Active);
-        public Lease CurrentLease => Lease.FirstOrDefault(l => l.Active);
-        public Person CurrentOccupant => CurrentLease?.Person;
 
+        public string Address => $"#{UnitNumber}, {AptComplex.Address}";
+        
         public AptComplex AptComplex { get; set; }
         public AptUnit AptUnit { get; set; }
         public ICollection<Lease> Lease { get; set; }

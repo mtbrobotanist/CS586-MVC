@@ -19,6 +19,7 @@ namespace CS586MVC.Models
 
         public bool Current => Leases.Any(l => l.Active);
         public Lease CurrentLease => Leases.FirstOrDefault(l => l.Active);
+        public int CurrentLeaseId => CurrentLease.Id;
         
         public ICollection<Lease> Leases { get; set; }
     }

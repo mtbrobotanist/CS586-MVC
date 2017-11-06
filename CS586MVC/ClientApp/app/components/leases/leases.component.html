@@ -1,3 +1,26 @@
-<p>
-  leases works!
-</p>
+<h2>Mismanaged Tenants</h2>
+
+<p *ngIf="!leases"><em>Loading...</em></p>
+
+<table class='table' *ngIf="leases">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>StartDate</th>
+            <th>Duration (Months)</th>
+            <th>Rent (Monthly)</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let lease of leases">
+            <td>{{ lease.tenant.firstName }}</td>
+            <td>{{ lease.tenant.lastName }}</td>
+            <td>{{ lease.startDate }}</td>
+            <td>{{ lease.durationMonths }}</td>
+            <td>{{ lease.rentMonthly }}</td>
+            <td>{{ lease.unit.address }}</td>
+        </tr>
+    </tbody>
+</table>

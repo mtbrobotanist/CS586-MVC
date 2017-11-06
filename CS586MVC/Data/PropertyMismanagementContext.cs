@@ -76,13 +76,13 @@ namespace CS586MVC.Data
 
                 entity.Property(e => e.StartDate).HasColumnType("date");
 
-                entity.HasOne(d => d.AptComplexUnit)
+                entity.HasOne(d => d.Unit)
                     .WithMany(p => p.Lease)
                     .HasForeignKey(d => d.AptComplexUnitId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Lease_AptComplexUnit_ID_fk");
 
-                entity.HasOne(d => d.Person)
+                entity.HasOne(d => d.Tenant)
                     .WithMany(p => p.Leases)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)

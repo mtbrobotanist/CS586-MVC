@@ -25,12 +25,13 @@ interface AptUnit
     area:number;
 }
 
-interface AptComplexUnit
+export interface AptComplexUnit
 {
     id:number;
     aptUnitId:number;
     aptComplexId:number;
     unitNumber:number;
+    address:string;
     
     aptUnit:AptUnit;
 }

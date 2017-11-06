@@ -44,16 +44,30 @@ namespace CS586MVC.Controllers
          
          public static async Task<Lease> Lease(int id, bool include = true)
          {
-             return include ?
-                 await Context.Leases.Include(a => a.AptComplexUnit).Include(p => p.Person).FirstOrDefaultAsync() :
-                 await Context.Leases.FirstOrDefaultAsync(e => e.Id == id);
+             if (include)
+             {
+                 return await Context.Leases
+                     .Include(p => p.Tenant)
+                     .Include(a => a.Unit)
+                         .ThenInclude(a => a.AptComplex)
+                     .FirstOrDefaultAsync();
+             }
+
+             return await Context.Leases.FirstOrDefaultAsync(e => e.Id == id);
          }
          
          public static async Task<IEnumerable<Lease>> AllLeases(bool include = true)
-         {
-             return include ?
-                 await Context.Leases.Include(a => a.AptComplexUnit).Include(p => p.Person).ToListAsync() :      
-                 await Context.Leases.ToListAsync();
+         {            
+             if(include)
+             {
+                 return await Context.Leases
+                     .Include(p => p.Tenant)
+                     .Include(a => a.Unit)
+                         .ThenInclude(e => e.AptComplex)
+                     .ToListAsync();
+             }
+             
+             return await Context.Leases.ToListAsync();
          }
          
          public static async Task<Person> Person(int id, bool include = true)
@@ -68,7 +82,7 @@ namespace CS586MVC.Controllers
              //return include ? 
              if (include)
              {
-                 return await Context.Persons.Include(a => a.Leases).ThenInclude(a => a.AptComplexUnit).ToListAsync();
+                 return await Context.Persons.Include(a => a.Leases).ToListAsync();
              }
               
              return await Context.Persons.ToListAsync();

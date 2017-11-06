@@ -18,7 +18,7 @@ export class TenantsComponent {
 
 }
 
-interface Tenant
+export interface Tenant
 {
     id:number;
     firstName:string;
@@ -26,5 +26,5 @@ interface Tenant
     phone:string;
     email:string;
     current:boolean;
-    address:string;
+    currentLeaseId:number;
 }
