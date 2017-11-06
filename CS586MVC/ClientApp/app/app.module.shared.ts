@@ -11,6 +11,7 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { PropertiesComponent } from './components/properties/properties.component';
 import { TenantsComponent } from './components/tenants/tenants.component';
+import { LeasesComponent } from './components/leases/leases.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { TenantsComponent } from './components/tenants/tenants.component';
         FetchDataComponent,
         HomeComponent,
         PropertiesComponent,
-        TenantsComponent
+        TenantsComponent,
+        LeasesComponent
     ],
     imports: [
         CommonModule,
