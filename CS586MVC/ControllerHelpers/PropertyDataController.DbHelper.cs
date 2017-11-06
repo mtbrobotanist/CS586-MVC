@@ -72,17 +72,28 @@ namespace CS586MVC.Controllers
          
          public static async Task<Person> Person(int id, bool include = true)
          {
-             return include ?
-                 await Context.Persons.Include(p => p.Leases).FirstOrDefaultAsync(e => e.Id == id) :
-                 await Context.Persons.FirstOrDefaultAsync(e => e.Id == id);
+             if (include)
+             {
+                 return await Context.Persons
+                     .Include(p => p.Leases)
+                         .ThenInclude(apt => apt.Unit)
+                             .ThenInclude(unit => unit.AptComplex)
+                     .FirstOrDefaultAsync();
+
+             }
+
+             return await Context.Persons.FirstOrDefaultAsync();
          }
          
          public static async Task<IEnumerable<Person>> AllPersons(bool include = true)
          {
-             //return include ? 
              if (include)
              {
-                 return await Context.Persons.Include(a => a.Leases).ToListAsync();
+                 return await Context.Persons
+                     .Include(p => p.Leases)
+                         .ThenInclude(apt => apt.Unit)
+                             .ThenInclude(unit => unit.AptComplex)
+                     .ToListAsync();
              }
               
              return await Context.Persons.ToListAsync();
