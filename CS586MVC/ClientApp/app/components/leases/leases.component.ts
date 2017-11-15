@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Http } from "@angular/http";
-import { Tenant } from "../tenants/tenants.component";
-import { AptComplex } from "../properties/properties.component";
+import {Lease} from "./leases.component.interfaces";
 
 @Component({
   selector: 'app-leases',
@@ -18,34 +17,4 @@ export class LeasesComponent {
         }, error => console.error(error));
     }
   
-}
-
-interface Lease {
-    id:number;
-    startDate:string;
-    durationMonths:number;
-    rentMonthly:number;
-    active:boolean;
-    tenant:Tenant;
-    unit:AptComplexUnit;
-}
-
-interface AptUnit
-{
-    id:number;
-    bedRooms:number;
-    bathRooms:number;
-    area:number;
-}
-
-export interface AptComplexUnit
-{
-    id:number;
-    aptUnitId:number;
-    aptComplexId:number;
-    unitNumber:number;
-    address:string;
-
-    aptUnit:AptUnit;
-    aptComplex:AptComplex;
 }

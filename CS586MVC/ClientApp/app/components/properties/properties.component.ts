@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import {Http } from "@angular/http";
+import { Http } from "@angular/http";
+import { AptComplex} from "./properties.component.interfaces";
 
 @Component({
   selector: 'app-properties',
@@ -15,14 +16,5 @@ export class PropertiesComponent {
         }, error => console.error(error));
     }
 
-}
-
-export interface AptComplex
-{
-    id:number;
-    address:string;
-    size:number;
-    occupiedCount:number;
-    vacancyCount:number;
 }
 

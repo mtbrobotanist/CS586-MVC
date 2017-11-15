@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Http } from "@angular/http";
+import { Tenant } from "./tenants.component.interfaces";
 
 @Component({
   selector: 'app-tenants',
@@ -16,15 +17,4 @@ export class TenantsComponent {
         }, error => console.error(error));
     }
 
-}
-
-export interface Tenant
-{
-    id:number;
-    firstName:string;
-    lastName:string;
-    phone:string;
-    email:string;
-    current:boolean;
-    currentLeaseId:number;
 }
