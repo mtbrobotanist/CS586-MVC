@@ -1,0 +1,24 @@
+<p *ngIf="!leases"><em>Loading...</em></p>
+
+<h2>Lease Detail - {{leases[0].tenant.firstName}} {{ leases[0].tenant.lastName }}</h2>
+
+<table class='table' *ngIf="leases">
+    <thead>
+    <tr>
+        <th>Start Date</th>
+        <th>Duration</th>
+        <th>End Date</th>
+        <th>Rent</th>
+        <th>Address</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let lease of leases">
+        <td>{{ lease.startDate }}</td>
+        <td>{{ lease.durationMonths }} months</td>
+        <td>{{ lease.endDate }}</td>
+        <td>${{ lease.rentMonthly }}</td>
+        <td>{{ lease.unit.address }}</td>
+    </tr>
+    </tbody>
+</table>

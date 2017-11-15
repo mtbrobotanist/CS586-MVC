@@ -12,6 +12,7 @@ import { CounterComponent } from './components/counter/counter.component';
 import { PropertiesComponent } from './components/properties/properties.component';
 import { TenantsComponent } from './components/tenants/tenants.component';
 import { LeasesComponent } from './components/leases/leases.component';
+import { LeaseDetailComponent } from './components/lease-detail/lease-detail.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { LeasesComponent } from './components/leases/leases.component';
         HomeComponent,
         PropertiesComponent,
         TenantsComponent,
-        LeasesComponent
+        LeasesComponent,
+        LeaseDetailComponent
     ],
     imports: [
         CommonModule,
@@ -36,6 +38,7 @@ import { LeasesComponent } from './components/leases/leases.component';
             { path: 'properties', component: PropertiesComponent },
             { path: 'tenants', component: TenantsComponent },
             { path: 'leases', component: LeasesComponent },
+            { path: 'lease-detail/:id', component: LeaseDetailComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
