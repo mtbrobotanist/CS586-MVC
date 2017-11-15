@@ -49,25 +49,25 @@ namespace CS586MVC.Controllers
         }
         
         //PUT
-        [HttpPut]
+        [HttpPut] [HttpPost]
         public async Task CreateTenant([Bind("FirstName,LastName,Phone,Email")] Person p)
         {
             await DbHelper.InsertPerson(p);
         }
 
-        [HttpPut]
+        [HttpPut] [HttpPost]
         public async Task CreateLease([Bind("PersonId,AptComplexUnitId,StartDate,DurationMonths,RentMonthly")] Lease l)
         {
             Console.WriteLine($"Received new Lease: {l}");
         }
         
-        [HttpPut]
+        [HttpPut] [HttpPost]
         public async Task CreateApartmentUnit([Bind("AptUnitId,AptComplexId,UnitNumber")] AptComplexUnit acu)
         {
             Console.WriteLine($"Received new AptComplexUnit:{acu}");
         }
         
-        [HttpPut]
+        [HttpPut] [HttpPost]
         public async Task CreateProperty([Bind("Address,Size")] AptComplex ac)
         {
             Console.WriteLine($"Received new  AptComplex:{ac}");
