@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
 using CS586MVC.Data;
 using CS586MVC.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CS586MVC.Controllers
  {
@@ -96,6 +98,12 @@ namespace CS586MVC.Controllers
              }
               
              return await Context.Persons.ToListAsync();
+         }
+
+         public static async Task InsertPerson(Person p)
+         {
+             Context.Persons.Add(p);
+             await Context.SaveChangesAsync();
          }
      } 
      }
