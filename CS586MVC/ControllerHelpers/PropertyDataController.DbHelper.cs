@@ -105,6 +105,12 @@ namespace CS586MVC.Controllers
              Context.Persons.Add(p);
              await Context.SaveChangesAsync();
          }
+         
+         public static async Task InsertAptComplex(AptComplex ac)
+         {
+             Context.AptComplexes.Add(ac);
+             await Context.SaveChangesAsync();
+         }
      } 
      }
  }
