@@ -244,3 +244,5 @@ _Pvt_Extensions
 # ignore compiles typescript files from angular
 **/*.js
 **/*.js.map
+
+CS586MVC/\.vscode/
