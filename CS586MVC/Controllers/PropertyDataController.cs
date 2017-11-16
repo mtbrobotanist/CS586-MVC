@@ -10,20 +10,12 @@ namespace CS586MVC.Controllers
 {
     public partial class PropertyDataController : Controller
     {
-       public PropertyDataController(PropertyMismanagementContext context)
+        public PropertyDataController(PropertyMismanagementContext context)
         {    
             DbHelper.Context = context;
         }
         
-        // GET
-        public async Task<IEnumerable<Person>> Tenants(int? id)
-        {
-            return id.HasValue ? 
-                new List<Person> { await DbHelper.Person((int)id) } : 
-                await DbHelper.AllPersons();
-        }
-        
-        // GET
+        [HttpGet]
         public async Task<IEnumerable<AptComplex>> Properties(int? id)
         {
             return id.HasValue ?
@@ -31,16 +23,44 @@ namespace CS586MVC.Controllers
                 await DbHelper.AllAptComplexes();
         }
         
+        [HttpPost]
+        public async Task Properties(AptComplex ac)
+        {
+            Console.WriteLine($"Received new AptComplex:{ac.Address}, {ac.Size}");
+            await DbHelper.InsertAptComplex(ac);
+        }
         
-        // GET
-        public async Task<IEnumerable<AptComplexUnit>> AllUnits(int? id)
+        [HttpGet]
+        public async Task<IEnumerable<AptComplexUnit>> PropertyUnits(int? id)
         {
             return id.HasValue ?
                 new List<AptComplexUnit> { await DbHelper.AptComplexUnit((int)id) } :
                 await DbHelper.AllAptComplexUnits();
         }
         
-        // GET
+        [HttpPost]
+        public async Task PropertyUnits([FromBody] AptComplexUnit acu)
+        {
+            Console.WriteLine($"Received new AptComplexUnit:{acu}");
+            await DbHelper.InsertAptComplexUnit(acu);
+        }
+        
+        [HttpGet]
+        public async Task<IEnumerable<Person>> Tenants(int? id)
+        {
+            return id.HasValue ? 
+                new List<Person> { await DbHelper.Person((int)id) } : 
+                await DbHelper.AllPersons();
+        }
+        
+        [HttpPost]
+        public async Task Tenants([FromBody]Person p)
+        {
+            Console.WriteLine($"Received new Person: {p.FirstName} {p.LastName}");
+            await DbHelper.InsertPerson(p);
+        }
+        
+        [HttpGet]
         public async Task<IEnumerable<Lease>> Leases(int? id)
         {
             return id.HasValue ? 
@@ -49,37 +69,10 @@ namespace CS586MVC.Controllers
         }
         
         [HttpPost]
-        public async Task CreateTenant([FromBody]Person p)
-        {
-            Console.WriteLine($"Received new Person: {p.FirstName} {p.LastName}");
-            await DbHelper.InsertPerson(p);
-        }
-
-        [HttpPost]
-        public void CreateLease(Lease l)
+        public async Task Leases(Lease l)
         {
             Console.WriteLine($"Received new Lease: {l}");
-        }
-        
-        [HttpPost]
-        public async Task CreateAptUnit(AptUnit unit)
-        {
-            string area = unit.Area.HasValue ? unit.Area.Value.ToString() : "";
-            Console.WriteLine($"Received new AptUnit: {unit.BedRooms}, {unit.Bathrooms}, {area}");
-            await DbHelper.InsertAptUnit(unit);
-        }
-
-        [HttpPost]
-        public void CreateAptComplexUnit(AptComplexUnit acu)
-        {
-            Console.WriteLine($"Received new AptComplexUnit:{acu}");
-        }
-
-        [HttpPost]
-        public async Task CreateProperty(AptComplex ac)
-        {
-            Console.WriteLine($"Received new AptComplex:{ac.Address}, {ac.Size}");
-            await DbHelper.InsertAptComplex(ac);
+            await DbHelper.InsertLease(l);
         }
         
     }

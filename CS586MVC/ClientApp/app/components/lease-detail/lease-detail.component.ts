@@ -12,7 +12,7 @@ export class LeaseDetailComponent implements OnInit, OnDestroy {
 
     private leases:Lease[];
     private sub: any;
-    id:number;
+    private id:number;
     
   constructor(private http: Http, @Inject('BASE_URL') private baseUrl: string, private route: ActivatedRoute) {
       
@@ -21,7 +21,7 @@ export class LeaseDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
       this.sub = this.route.params.subscribe(params => {
           this.id = +params['id'];
-
+          
           this.http.get(this.baseUrl + 'propertydata/leases/' + this.id.toString()).subscribe(result => {
               this.leases = result.json() as Lease[];
           }, error => console.error(error));

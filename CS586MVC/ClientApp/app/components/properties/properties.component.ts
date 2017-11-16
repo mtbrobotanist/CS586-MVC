@@ -11,7 +11,7 @@ export class PropertiesComponent {
     public complexes: AptComplex[];       
 
     constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
-        http.get(baseUrl + 'PropertyData/properties').subscribe(result => {
+        http.get(baseUrl + 'propertydata/properties').subscribe(result => {
             this.complexes = result.json() as AptComplex[];
         }, error => console.error(error));
     }

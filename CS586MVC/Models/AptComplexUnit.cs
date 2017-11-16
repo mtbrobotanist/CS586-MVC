@@ -18,7 +18,7 @@ namespace CS586MVC.Models
 
         public bool Occupied => Lease.Any(l => l.Active);
 
-        public string Address => $"#{UnitNumber}, {AptComplex.Address}";
+        public string Address => $"#{UnitNumber}, {AptComplex?.Address}";
         
         public AptComplex AptComplex { get; set; }
         public AptUnit AptUnit { get; set; }
