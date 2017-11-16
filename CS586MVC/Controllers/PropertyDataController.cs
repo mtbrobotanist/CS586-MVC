@@ -48,27 +48,34 @@ namespace CS586MVC.Controllers
                 await DbHelper.AllLeases();
         }
         
-        //PUT
-        [HttpPut] [HttpPost]
-        public async Task CreateTenant(Person p)
+        [HttpPost]
+        public async Task CreateTenant([FromBody]Person p)
         {
-            Console.WriteLine($"Received new Person: {p.FirstName}, {p.LastName}");
+            Console.WriteLine($"Received new Person: {p.FirstName} {p.LastName}");
             await DbHelper.InsertPerson(p);
         }
 
-        [HttpPut] [HttpPost]
-        public async Task CreateLease(Lease l)
+        [HttpPost]
+        public void CreateLease(Lease l)
         {
             Console.WriteLine($"Received new Lease: {l}");
         }
         
-        [HttpPut] [HttpPost]
-        public async Task CreateApartmentUnit(AptComplexUnit acu)
+        [HttpPost]
+        public async Task CreateAptUnit(AptUnit unit)
+        {
+            string area = unit.Area.HasValue ? unit.Area.Value.ToString() : "";
+            Console.WriteLine($"Received new AptUnit: {unit.BedRooms}, {unit.Bathrooms}, {area}");
+            await DbHelper.InsertAptUnit(unit);
+        }
+
+        [HttpPost]
+        public void CreateAptComplexUnit(AptComplexUnit acu)
         {
             Console.WriteLine($"Received new AptComplexUnit:{acu}");
         }
-        
-        [HttpPut] [HttpPost]
+
+        [HttpPost]
         public async Task CreateProperty(AptComplex ac)
         {
             Console.WriteLine($"Received new AptComplex:{ac.Address}, {ac.Size}");
