@@ -8,19 +8,19 @@ namespace CS586MVC.Models
     {
         public AptComplex()
         {
-            Units = new HashSet<AptComplexUnit>();
+            AptComplexUnits = new HashSet<AptComplexUnit>();
         }
 
         public int Id { get; set; }
         public string Address { get; set; }
         public int Size { get; set; }
 
-        public int VacancyCount => Size - Units.Count(unit => unit.Occupied);
+        public int VacancyCount => Size - AptComplexUnits.Count(unit => unit.Occupied);
         public int OccupiedCount => Size - VacancyCount;
 
-        public IEnumerable<AptComplexUnit> VacantUnits => Units.Where(unit => !unit.Occupied).ToList();
-        public IEnumerable<AptComplexUnit> OccupiedUnits => Units.Where(unit => unit.Occupied).ToList();
+        public IEnumerable<AptComplexUnit> VacantUnits => AptComplexUnits.Where(unit => !unit.Occupied).ToList();
+        public IEnumerable<AptComplexUnit> OccupiedUnits => AptComplexUnits.Where(unit => unit.Occupied).ToList();
 
-        public ICollection<AptComplexUnit> Units { get; set; }
+        public ICollection<AptComplexUnit> AptComplexUnits { get; set; }
     }
 }
