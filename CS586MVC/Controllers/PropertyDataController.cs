@@ -58,7 +58,19 @@ namespace CS586MVC.Controllers
             Console.WriteLine($"Received new AptComplexUnit:{acu}");
             await DbHelper.InsertAptComplexUnit(acu);
         }
+
+        [HttpPut]
+        public async Task PropertyUnits(int id, [FromBody] AptComplexUnit acu)
+        {
+            //todo
+        }
         
+        [HttpDelete]
+        public async Task PropertyUnits(int id)
+        {
+            //todo
+        }
+
         [HttpGet]
         public async Task<IEnumerable<Person>> Tenants(int? id)
         {
@@ -74,6 +86,18 @@ namespace CS586MVC.Controllers
             await DbHelper.InsertPerson(p);
         }
         
+        [HttpPut]
+        public async Task Tenants(int id, [FromBody]Person p)
+        {
+            //todo
+        }
+
+        [HttpDelete]
+        public async Task Tenants(int id)
+        {
+            //todo
+        }
+
         [HttpGet]
         public async Task<IEnumerable<Lease>> Leases(int? id)
         {
@@ -87,6 +111,18 @@ namespace CS586MVC.Controllers
         {
             Console.WriteLine($"Received new Lease: {l}");
             await DbHelper.InsertLease(l);
+        }
+
+        [HttpPut]
+        public async Task Lease(int id, Lease l)
+        {
+            //todo
+        }
+
+        [HttpDelete]
+        public async Task Lease(int id)
+        {
+            //todo
         }
         
     }
