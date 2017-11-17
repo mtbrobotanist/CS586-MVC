@@ -30,6 +30,13 @@ namespace CS586MVC.Controllers
             await DbHelper.InsertAptComplex(ac);
         }
         
+        [HttpPut]
+        public async Task Properties(int id, [FromBody] AptComplex ac)
+        {
+            Console.WriteLine($"Updating Existing AptComplex: {ac.Address}, {ac.Size}");
+            await DbHelper.UpdateAptComplex(id, ac);
+        }
+
         [HttpGet]
         public async Task<IEnumerable<AptComplexUnit>> PropertyUnits(int? id)
         {

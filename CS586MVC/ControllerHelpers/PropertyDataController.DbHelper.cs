@@ -166,6 +166,14 @@ namespace CS586MVC.Controllers
             await Context.SaveChangesAsync();
         }
         
+        public static async Task UpdateAptComplex([FromBody] int id, [FromBody] AptComplex ac)
+        {
+            AptComplex target = await Context.AptComplexes.FirstAsync(a => a.Id == id);
+            target.Address = ac.Address;
+            target.Size = ac.Size;
+            await Context.SaveChangesAsync();
+        }
+
         public static async Task<int> InsertAptComplex(AptComplex ac)
         {
             EntityEntry<AptComplex> entry = Context.AptComplexes.Add(ac);
