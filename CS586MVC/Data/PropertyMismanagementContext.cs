@@ -52,14 +52,16 @@ namespace CS586MVC.Data
                 entity.Property(e => e.UnitNumber).HasColumnName("UnitNumber");
 
                 entity.HasOne(d => d.AptComplex)
-                    .WithMany(p => p.Units)
+                    .WithMany(p => p.AptComplexUnits)
                     .HasForeignKey(d => d.AptComplexId)
-                    .HasConstraintName("AptComplexUnit_AptComplex_ID_fk");
+                    .HasConstraintName("AptComplexUnit_AptComplex_ID_fk")
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(d => d.AptUnit)
                     .WithMany(p => p.AptComplexUnit)
                     .HasForeignKey(d => d.AptUnitId)
-                    .HasConstraintName("AptComplexUnit_AptUnit_ID_fk");
+                    .HasConstraintName("AptComplexUnit_AptUnit_ID_fk")
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Lease>(entity =>
@@ -77,15 +79,17 @@ namespace CS586MVC.Data
                 entity.Property(e => e.StartDate).HasColumnType("date");
 
                 entity.HasOne(d => d.Unit)
-                    .WithMany(p => p.Lease)
+                    .WithMany(p => p.Leases)
                     .HasForeignKey(d => d.AptComplexUnitId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .IsRequired()
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("Lease_AptComplexUnit_ID_fk");
 
                 entity.HasOne(d => d.Tenant)
                     .WithMany(p => p.Leases)
                     .HasForeignKey(d => d.PersonId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .IsRequired()
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("Lease_Person_ID_fk");
             });
 
