@@ -37,6 +37,13 @@ namespace CS586MVC.Controllers
             await DbHelper.UpdateAptComplex(id, ac);
         }
 
+        [HttpDelete]
+        public async Task Properties(int id)
+        {
+            Console.WriteLine($"Deleting AptComplex with ID:{id}");
+            await DbHelper.RemoveAptComplex(id);
+        }
+
         [HttpGet]
         public async Task<IEnumerable<AptComplexUnit>> PropertyUnits(int? id)
         {

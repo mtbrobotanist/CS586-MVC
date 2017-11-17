@@ -17,32 +17,6 @@ namespace CS586MVC.Controllers
     {      
         public static PropertyMismanagementContext Context { set; private get; }
 
-        public static async Task<AptComplex> AptComplex(int id, bool include = true)
-        {
-            if (include)
-            {
-                return await Context.AptComplexes
-                    .Include(e => e.Units)
-                        .ThenInclude(e => e.Lease)
-                    .FirstOrDefaultAsync(e => e.Id == id);
-            }
-            
-            return await Context.AptComplexes.FirstOrDefaultAsync();
-        }
-        
-        public static async Task<IEnumerable<AptComplex>> AllAptComplexes(bool include = true)
-        {
-            if (include)
-            {
-                return await Context.AptComplexes
-                    .Include(e => e.Units)
-                        .ThenInclude(e => e.Lease)
-                    .ToListAsync();
-            }
-                        
-            return await Context.AptComplexes.ToListAsync();
-        }
-
         public static async Task <AptComplexUnit> AptComplexUnit(int id, bool include = true)
         {
             if (include)
@@ -165,14 +139,6 @@ namespace CS586MVC.Controllers
             Context.Persons.Add(p);
             await Context.SaveChangesAsync();
         }
-        
-        public static async Task UpdateAptComplex([FromBody] int id, [FromBody] AptComplex ac)
-        {
-            AptComplex target = await Context.AptComplexes.FirstAsync(a => a.Id == id);
-            target.Address = ac.Address;
-            target.Size = ac.Size;
-            await Context.SaveChangesAsync();
-        }
 
         public static async Task<int> InsertAptComplex(AptComplex ac)
         {
@@ -181,6 +147,46 @@ namespace CS586MVC.Controllers
             return entry.Entity.Id;
         }
 
+public static async Task<AptComplex> AptComplex(int id, bool include = true)
+        {
+            if (include)
+            {
+                return await Context.AptComplexes
+                    .Include(e => e.Units)
+                        .ThenInclude(e => e.Lease)
+                    .FirstOrDefaultAsync(e => e.Id == id);
+            }
+            
+            return await Context.AptComplexes.FirstOrDefaultAsync();
+        }
+        
+        public static async Task<IEnumerable<AptComplex>> AllAptComplexes(bool include = true)
+        {
+            if (include)
+            {
+                return await Context.AptComplexes
+                    .Include(e => e.Units)
+                        .ThenInclude(e => e.Lease)
+                    .ToListAsync();
+            }
+                        
+            return await Context.AptComplexes.ToListAsync();
+        }
+
+        public static async Task UpdateAptComplex(int id, AptComplex ac)
+        {
+            AptComplex target = await Context.AptComplexes.FirstAsync(a => a.Id == id);
+            target.Address = ac.Address;
+            target.Size = ac.Size;
+            await Context.SaveChangesAsync();
+        }
+
+        public static async Task RemoveAptComplex(int id)
+        {
+            AptComplex target = await Context.AptComplexes.FirstAsync(a => a.Id == id);
+            Context.AptComplexes.Remove(target);
+            await Context.SaveChangesAsync();
+        }
         public static async Task InsertLease(Lease l)
         {
             Context.Leases.Add(l);
