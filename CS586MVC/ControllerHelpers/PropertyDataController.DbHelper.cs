@@ -152,8 +152,8 @@ public static async Task<AptComplex> AptComplex(int id, bool include = true)
             if (include)
             {
                 return await Context.AptComplexes
-                    .Include(e => e.Units)
-                        .ThenInclude(e => e.Lease)
+                    .Include(e => e.AptComplexUnits)
+                        .ThenInclude(e => e.Leases)
                     .FirstOrDefaultAsync(e => e.Id == id);
             }
             
@@ -165,8 +165,8 @@ public static async Task<AptComplex> AptComplex(int id, bool include = true)
             if (include)
             {
                 return await Context.AptComplexes
-                    .Include(e => e.Units)
-                        .ThenInclude(e => e.Lease)
+                    .Include(e => e.AptComplexUnits)
+                        .ThenInclude(e => e.Leases)
                     .ToListAsync();
             }
                         
@@ -181,10 +181,34 @@ public static async Task<AptComplex> AptComplex(int id, bool include = true)
             await Context.SaveChangesAsync();
         }
 
-        public static async Task RemoveAptComplex(int id)
+        public static async Task RemoveAptComplexAndDependents(int id)
         {
-            AptComplex target = await Context.AptComplexes.FirstAsync(a => a.Id == id);
-            Context.AptComplexes.Remove(target);
+            //shameful
+            AptComplex target = await Context.AptComplexes
+                .Include(e => e.AptComplexUnits)
+                    .ThenInclude(e => e.Leases)
+                        .ThenInclude(e => e.Tenant)
+                .FirstOrDefaultAsync(a => a.Id == id);
+
+            /*
+                When an AptComplex is deleted, ALL associated data needs to go:
+                    AptComplexUnits,
+                    Leases,
+                    People
+             */
+
+            // For some reason this needs to be done manually
+            foreach(AptComplexUnit unit in target.AptComplexUnits)
+            {
+                foreach(Lease lease in unit.Leases)
+                {
+                    Context.Entry(lease.Tenant).State = EntityState.Deleted;
+                    Context.Entry(lease).State = EntityState.Deleted;
+                }
+                Context.Entry(unit).State = EntityState.Deleted;
+            }
+            
+            Context.Entry(target).State = EntityState.Deleted;
             await Context.SaveChangesAsync();
         }
         public static async Task InsertLease(Lease l)
