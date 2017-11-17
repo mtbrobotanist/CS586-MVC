@@ -190,6 +190,11 @@ public static async Task<AptComplex> AptComplex(int id, bool include = true)
                         .ThenInclude(e => e.Tenant)
                 .FirstOrDefaultAsync(a => a.Id == id);
 
+            if(target == null)
+            {
+                return;
+            }
+
             /*
                 When an AptComplex is deleted, ALL associated data needs to go:
                     AptComplexUnits,
