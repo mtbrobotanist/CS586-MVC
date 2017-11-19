@@ -96,7 +96,7 @@ namespace CS586MVC.Controllers
         [HttpDelete]
         public async Task Tenants(int id)
         {
-            //todo
+            await DbHelper.RemovePerson(id);
         }
 
         [HttpGet]
@@ -115,15 +115,15 @@ namespace CS586MVC.Controllers
         }
 
         [HttpPut]
-        public async Task Lease(int id, Lease l)
+        public async Task Leases(int id, Lease l)
         {
-            //todo
+            
         }
 
         [HttpDelete]
-        public async Task Lease(int id)
+        public async Task Leases(int id)
         {
-            //todo
+            await DbHelper.RemoveLease(id);
         }
         
     }

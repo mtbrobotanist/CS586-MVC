@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CS586MVC.Data;
 using CS586MVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Newtonsoft.Json.Serialization;
 
@@ -195,12 +196,21 @@ namespace CS586MVC.Controllers
                     .Include(p => p.Leases)
                         .ThenInclude(apt => apt.Unit)
                             .ThenInclude(unit => unit.AptComplex)
+                    .OrderBy(p => p.Current)
+                        //.ThenBy(p => p.LastName)
                     .ToListAsync();
             }
             
-            return await Context.Persons.ToListAsync();
+            return await Context.Persons.OrderBy(p => p.LastName).ToListAsync();
         }
-        
+
+        public static async Task RemovePerson(int id)
+        {
+            Person target = new Person() { Id = id };
+            Context.Entry(target).State = EntityState.Deleted;
+            await Context.SaveChangesAsync();
+        }
+
         public static async Task InsertLease(Lease l)
         {
             Context.Leases.Add(l);
@@ -229,10 +239,18 @@ namespace CS586MVC.Controllers
                     .Include(p => p.Tenant)
                     .Include(a => a.Unit)
                         .ThenInclude(e => e.AptComplex)
+                    .OrderBy(l => l.Tenant.LastName)
                     .ToListAsync();
             }
             
             return await Context.Leases.ToListAsync();
+        }
+
+        public static async Task RemoveLease(int id)
+        {
+            Lease target = new Lease() { Id = id };
+            Context.Entry(target).State = EntityState.Deleted;
+            await Context.SaveChangesAsync();
         }
         
     } 
