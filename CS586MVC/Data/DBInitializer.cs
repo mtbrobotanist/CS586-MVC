@@ -30,7 +30,7 @@ namespace CS586MVC.Data
             };
             foreach (ApartmentUnit u in units)
             {
-                context.AptUnits.Add(u);
+                context.ApartmentUnits.Add(u);
             }
             context.SaveChanges();
             
@@ -43,7 +43,7 @@ namespace CS586MVC.Data
             };
             foreach(ApartmentComplex c in complexes)
             {
-                context.AptComplexes.Add(c);
+                context.ApartmentComplexes.Add(c);
             }
             context.SaveChanges();
             
@@ -67,7 +67,7 @@ namespace CS586MVC.Data
             };
             foreach(ApartmentComplexUnit cu in complexUnits)
             {
-                context.AptComplexUnits.Add(cu);
+                context.ApartmentComplexUnits.Add(cu);
             }
             context.SaveChanges();
             
@@ -84,7 +84,7 @@ namespace CS586MVC.Data
             };
             foreach (Person p in persons)
             {
-                context.Persons.Add(p);
+                context.People.Add(p);
             }
             context.SaveChanges();
             

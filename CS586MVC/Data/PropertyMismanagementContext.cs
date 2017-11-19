@@ -5,11 +5,11 @@ namespace CS586MVC.Data
 {
     public partial class PropertyMismanagementContext : DbContext
     {
-        public virtual DbSet<ApartmentComplex> AptComplexes { get; set; }
-        public virtual DbSet<ApartmentComplexUnit> AptComplexUnits { get; set; }
+        public virtual DbSet<ApartmentComplex> ApartmentComplexes { get; set; }
+        public virtual DbSet<ApartmentComplexUnit> ApartmentComplexUnits { get; set; }
         public virtual DbSet<Lease> Leases { get; set; }
-        public virtual DbSet<Person> Persons { get; set; }
-        public virtual DbSet<ApartmentUnit> AptUnits { get; set; }
+        public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<ApartmentUnit> ApartmentUnits { get; set; }
 
         public PropertyMismanagementContext(DbContextOptions<PropertyMismanagementContext> options) : base(options) { }
 

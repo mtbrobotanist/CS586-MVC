@@ -22,7 +22,7 @@ namespace CS586MVC.Services
 
         public  async Task<int> InsertApartmentComplex(ApartmentComplex ac)
         {
-            EntityEntry<ApartmentComplex> entry = _context.AptComplexes.Add(ac);
+            EntityEntry<ApartmentComplex> entry = _context.ApartmentComplexes.Add(ac);
             await _context.SaveChangesAsync();
             return entry.Entity.Id;
         }
@@ -31,31 +31,31 @@ namespace CS586MVC.Services
         {
             if (include)
             {
-                return await _context.AptComplexes
+                return await _context.ApartmentComplexes
                     .Include(e => e.AptComplexUnits)
                         .ThenInclude(e => e.Leases)
                     .FirstOrDefaultAsync(e => e.Id == id);
             }
             
-            return await _context.AptComplexes.FirstOrDefaultAsync();
+            return await _context.ApartmentComplexes.FirstOrDefaultAsync();
         }
         
         public  async Task<IEnumerable<ApartmentComplex>> AllApartmentComplexes(bool include = true)
         {
             if (include)
             {
-                return await _context.AptComplexes
+                return await _context.ApartmentComplexes
                     .Include(e => e.AptComplexUnits)
                         .ThenInclude(e => e.Leases)
                     .ToListAsync();
             }
                         
-            return await _context.AptComplexes.ToListAsync();
+            return await _context.ApartmentComplexes.ToListAsync();
         }
 
         public  async Task UpdateApartmentComplex(int id, ApartmentComplex ac)
         {
-            ApartmentComplex target = await _context.AptComplexes.FirstAsync(a => a.Id == id);
+            ApartmentComplex target = await _context.ApartmentComplexes.FirstAsync(a => a.Id == id);
             target.Address = ac.Address;
             target.Size = ac.Size;
             await _context.SaveChangesAsync();
@@ -64,7 +64,7 @@ namespace CS586MVC.Services
         public  async Task RemoveApartmentComplex(int id)
         {
             //shameful
-            ApartmentComplex target = await _context.AptComplexes
+            ApartmentComplex target = await _context.ApartmentComplexes
                 .Include(e => e.AptComplexUnits)
                     .ThenInclude(e => e.Leases)
                         .ThenInclude(e => e.Tenant)
@@ -127,7 +127,7 @@ namespace CS586MVC.Services
                 acu.AptUnitId = id;
             }
             
-            _context.AptComplexUnits.Add(acu);
+            _context.ApartmentComplexUnits.Add(acu);
             await _context.SaveChangesAsync();
         }
         
@@ -135,26 +135,26 @@ namespace CS586MVC.Services
         {
             if (include)
             {
-                return await _context.AptComplexUnits
+                return await _context.ApartmentComplexUnits
                     .Include(e => e.ApartmentComplex)
                     .Include(e => e.ApartmentUnit)
                     .FirstOrDefaultAsync(e => e.Id == id);
             }
             
-            return await _context.AptComplexUnits.FirstOrDefaultAsync(e => e.Id == id);
+            return await _context.ApartmentComplexUnits.FirstOrDefaultAsync(e => e.Id == id);
         }
         
         public  async Task<IEnumerable<ApartmentComplexUnit>> AllApartmentComplexUnits(bool include = true)
         {
             return include ? 
-                await _context.AptComplexUnits.Include(e => e.ApartmentComplex).ToListAsync() :    
-                await _context.AptComplexUnits.ToListAsync();
+                await _context.ApartmentComplexUnits.Include(e => e.ApartmentComplex).ToListAsync() :    
+                await _context.ApartmentComplexUnits.ToListAsync();
         }
 
         public  async Task UpdateApartmentComplexUnit(int id, ApartmentComplexUnit acu)
         {
             //FirstAsync
-            
+            _context.ApartmentComplexes;
         }
 
         public Task RemoveApartmentComplexUnit(int id)
@@ -164,14 +164,14 @@ namespace CS586MVC.Services
 
         public  async Task<int> InsertApartmentUnit(ApartmentUnit unit)
         {
-            EntityEntry<ApartmentUnit> entry = _context.AptUnits.Add(unit);
+            EntityEntry<ApartmentUnit> entry = _context.ApartmentUnits.Add(unit);
             await _context.SaveChangesAsync();
             return entry.Entity.Id;
         }
     
         public  async Task InsertPerson(Person p)
         {
-            _context.Persons.Add(p);
+            _context.People.Add(p);
             await _context.SaveChangesAsync();
         }
 
@@ -179,19 +179,19 @@ namespace CS586MVC.Services
         {
             if (include)
             {
-                return await _context.Persons
+                return await _context.People
                     .Include(p => p.Leases)
                         .ThenInclude(apt => apt.Unit)
                             .ThenInclude(unit => unit.ApartmentComplex)
                     .FirstOrDefaultAsync(p => p.Id == id);
             }
 
-            return await _context.Persons.FirstOrDefaultAsync(p => p.Id == id);
+            return await _context.People.FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public  async Task UpdatePerson(int id, Person p)
         {
-            Person target = await _context.Persons.FindAsync(id);
+            Person target = await _context.People.FindAsync(id);
             target.FirstName = p.FirstName;
             target.LastName = p.LastName;
             target.Phone = p.Phone;
@@ -204,7 +204,7 @@ namespace CS586MVC.Services
         {
             if (include)
             {
-                return await _context.Persons
+                return await _context.People
                     .Include(p => p.Leases)
                         .ThenInclude(apt => apt.Unit)
                             .ThenInclude(unit => unit.ApartmentComplex)
@@ -213,7 +213,7 @@ namespace CS586MVC.Services
                     .ToListAsync();
             }
             
-            return await _context.Persons.OrderBy(p => p.LastName).ToListAsync();
+            return await _context.People.OrderBy(p => p.LastName).ToListAsync();
         }
 
         public  async Task RemovePerson(int id)
