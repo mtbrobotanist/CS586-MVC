@@ -1,4 +1,3 @@
-using CS586MVC.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
@@ -6,6 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+
+using CS586MVC.Services;
+using CS586MVC.Data;
 
 namespace CS586MVC
 {
@@ -29,6 +31,13 @@ namespace CS586MVC
             services.AddDbContext<PropertyMismanagementContext>(options =>
                 //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
                 options.UseInMemoryDatabase("PropertyMismanagement"));
+
+
+            var serviceProvider = services.BuildServiceProvider();
+
+            PropertyMismanagementContext dbContext = serviceProvider.GetService<PropertyMismanagementContext>();
+            
+            services.AddTransient<IDatabaseService, PropertyMismanagementDatabaseService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,11 +5,11 @@ namespace CS586MVC.Data
 {
     public partial class PropertyMismanagementContext : DbContext
     {
-        public virtual DbSet<AptComplex> AptComplexes { get; set; }
-        public virtual DbSet<AptComplexUnit> AptComplexUnits { get; set; }
+        public virtual DbSet<ApartmentComplex> AptComplexes { get; set; }
+        public virtual DbSet<ApartmentComplexUnit> AptComplexUnits { get; set; }
         public virtual DbSet<Lease> Leases { get; set; }
         public virtual DbSet<Person> Persons { get; set; }
-        public virtual DbSet<AptUnit> AptUnits { get; set; }
+        public virtual DbSet<ApartmentUnit> AptUnits { get; set; }
 
         public PropertyMismanagementContext(DbContextOptions<PropertyMismanagementContext> options) : base(options) { }
 
@@ -17,7 +17,7 @@ namespace CS586MVC.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AptComplex>(entity =>
+            modelBuilder.Entity<ApartmentComplex>(entity =>
             {
                 entity.HasIndex(e => e.Id)
                     .HasName("AptComplex_ID_uindex")
@@ -32,12 +32,12 @@ namespace CS586MVC.Data
                 entity.Property(e => e.Size).HasColumnName("Size");
             });
 
-            modelBuilder.Entity<AptUnit>(entity =>
+            modelBuilder.Entity<ApartmentUnit>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
             });
             
-            modelBuilder.Entity<AptComplexUnit>(entity =>
+            modelBuilder.Entity<ApartmentComplexUnit>(entity =>
             {
                 entity.HasIndex(e => e.Id)
                     .HasName("AptComplexUnit_ID_uindex")
@@ -51,13 +51,13 @@ namespace CS586MVC.Data
 
                 entity.Property(e => e.UnitNumber).HasColumnName("UnitNumber");
 
-                entity.HasOne(d => d.AptComplex)
+                entity.HasOne(d => d.ApartmentComplex)
                     .WithMany(p => p.AptComplexUnits)
                     .HasForeignKey(d => d.AptComplexId)
                     .HasConstraintName("AptComplexUnit_AptComplex_ID_fk")
                     .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasOne(d => d.AptUnit)
+                entity.HasOne(d => d.ApartmentUnit)
                     .WithMany(p => p.AptComplexUnit)
                     .HasForeignKey(d => d.AptUnitId)
                     .HasConstraintName("AptComplexUnit_AptUnit_ID_fk")

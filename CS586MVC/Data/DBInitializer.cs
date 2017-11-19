@@ -18,17 +18,17 @@ namespace CS586MVC.Data
             
             Console.WriteLine("*****Seeding Unit");
             //add the generic aprartment units
-            var units = new AptUnit[]
+            var units = new ApartmentUnit[]
             {
                 //new Student{FirstMidName="Carson",LastName="Alexander",EnrollmentDate=DateTime.Parse("2005-09-01")},
-                new AptUnit{BedRooms = 0, Bathrooms = 0, Area = 200},
-                new AptUnit{BedRooms = 0, Bathrooms = 1, Area = 230},
-                new AptUnit{BedRooms = 1, Bathrooms = 1, Area = 350},
-                new AptUnit{BedRooms = 2, Bathrooms = 0, Area = 400},
-                new AptUnit{BedRooms = 2, Bathrooms = 2, Area = 600},
-                new AptUnit{BedRooms = 3, Bathrooms = 2, Area = 900}
+                new ApartmentUnit{BedRooms = 0, Bathrooms = 0, Area = 200},
+                new ApartmentUnit{BedRooms = 0, Bathrooms = 1, Area = 230},
+                new ApartmentUnit{BedRooms = 1, Bathrooms = 1, Area = 350},
+                new ApartmentUnit{BedRooms = 2, Bathrooms = 0, Area = 400},
+                new ApartmentUnit{BedRooms = 2, Bathrooms = 2, Area = 600},
+                new ApartmentUnit{BedRooms = 3, Bathrooms = 2, Area = 900}
             };
-            foreach (AptUnit u in units)
+            foreach (ApartmentUnit u in units)
             {
                 context.AptUnits.Add(u);
             }
@@ -36,12 +36,12 @@ namespace CS586MVC.Data
             
             Console.WriteLine("*****Seeding Complex");
             //add the apartment complex locations
-            var complexes = new AptComplex[]
+            var complexes = new ApartmentComplex[]
             {
-                new AptComplex{Address="12345 Fake Street, Somewhere, CA, 91302", Size = 30},
-                new AptComplex{Address="420 High Blvd, Somewhere, CA, 91302", Size = 420},
+                new ApartmentComplex{Address="12345 Fake Street, Somewhere, CA, 91302", Size = 30},
+                new ApartmentComplex{Address="420 High Blvd, Somewhere, CA, 91302", Size = 420},
             };
-            foreach(AptComplex c in complexes)
+            foreach(ApartmentComplex c in complexes)
             {
                 context.AptComplexes.Add(c);
             }
@@ -49,23 +49,23 @@ namespace CS586MVC.Data
             
             Console.WriteLine("*****Seeding ComplexUnit");
             //add the apartment units that each complex has
-            var complexUnits = new AptComplexUnit[]
+            var complexUnits = new ApartmentComplexUnit[]
             {
-                new AptComplexUnit{AptUnitId = 1, AptComplexId = 1, UnitNumber = 100},
-                new AptComplexUnit{AptUnitId = 2, AptComplexId = 1, UnitNumber = 101},
-                new AptComplexUnit{AptUnitId = 3, AptComplexId = 1, UnitNumber = 102},
-                new AptComplexUnit{AptUnitId = 4, AptComplexId = 1, UnitNumber = 200},
-                new AptComplexUnit{AptUnitId = 5, AptComplexId = 1, UnitNumber = 201},
-                new AptComplexUnit{AptUnitId = 6, AptComplexId = 1, UnitNumber = 203},
+                new ApartmentComplexUnit{AptUnitId = 1, AptComplexId = 1, UnitNumber = 100},
+                new ApartmentComplexUnit{AptUnitId = 2, AptComplexId = 1, UnitNumber = 101},
+                new ApartmentComplexUnit{AptUnitId = 3, AptComplexId = 1, UnitNumber = 102},
+                new ApartmentComplexUnit{AptUnitId = 4, AptComplexId = 1, UnitNumber = 200},
+                new ApartmentComplexUnit{AptUnitId = 5, AptComplexId = 1, UnitNumber = 201},
+                new ApartmentComplexUnit{AptUnitId = 6, AptComplexId = 1, UnitNumber = 203},
                 
-                new AptComplexUnit{AptUnitId = 1, AptComplexId = 2, UnitNumber = 100},
-                new AptComplexUnit{AptUnitId = 2, AptComplexId = 2, UnitNumber = 101},
-                new AptComplexUnit{AptUnitId = 3, AptComplexId = 2, UnitNumber = 102},
-                new AptComplexUnit{AptUnitId = 4, AptComplexId = 2, UnitNumber = 200},
-                new AptComplexUnit{AptUnitId = 5, AptComplexId = 2, UnitNumber = 201},
-                new AptComplexUnit{AptUnitId = 6, AptComplexId = 2, UnitNumber = 202}
+                new ApartmentComplexUnit{AptUnitId = 1, AptComplexId = 2, UnitNumber = 100},
+                new ApartmentComplexUnit{AptUnitId = 2, AptComplexId = 2, UnitNumber = 101},
+                new ApartmentComplexUnit{AptUnitId = 3, AptComplexId = 2, UnitNumber = 102},
+                new ApartmentComplexUnit{AptUnitId = 4, AptComplexId = 2, UnitNumber = 200},
+                new ApartmentComplexUnit{AptUnitId = 5, AptComplexId = 2, UnitNumber = 201},
+                new ApartmentComplexUnit{AptUnitId = 6, AptComplexId = 2, UnitNumber = 202}
             };
-            foreach(AptComplexUnit cu in complexUnits)
+            foreach(ApartmentComplexUnit cu in complexUnits)
             {
                 context.AptComplexUnits.Add(cu);
             }

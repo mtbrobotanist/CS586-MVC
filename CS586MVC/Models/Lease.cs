@@ -27,7 +27,7 @@ namespace CS586MVC.Models
         [JsonProperty("endDate")]
         public string End => EndDate.ToShortDateString();
         
-        public AptComplexUnit Unit { get; set; }
+        public ApartmentComplexUnit Unit { get; set; }
         public Person Tenant { get; set; }
     }
 }

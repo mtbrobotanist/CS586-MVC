@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace CS586MVC.Models
 {
-    public partial class AptUnit
+    public partial class ApartmentUnit
     {
-        public AptUnit()
+        public ApartmentUnit()
         {
-            AptComplexUnit = new HashSet<AptComplexUnit>();
+            AptComplexUnit = new HashSet<ApartmentComplexUnit>();
         }
 
         public int Id { get; set; }
@@ -15,6 +15,6 @@ namespace CS586MVC.Models
         public int Bathrooms { get; set; }
         public int? Area { get; set; }
 
-        public ICollection<AptComplexUnit> AptComplexUnit { get; set; }
+        public ICollection<ApartmentComplexUnit> AptComplexUnit { get; set; }
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace CS586MVC.Models
 {
-    public partial class AptComplexUnit
+    public partial class ApartmentComplexUnit
     {
-        public AptComplexUnit()
+        public ApartmentComplexUnit()
         {
             Leases = new HashSet<Lease>();
         }
@@ -18,10 +18,10 @@ namespace CS586MVC.Models
 
         public bool Occupied => Leases.Any(l => l.Active);
 
-        public string Address => $"#{UnitNumber}, {AptComplex?.Address}";
+        public string Address => $"#{UnitNumber}, {ApartmentComplex?.Address}";
         
-        public AptComplex AptComplex { get; set; }
-        public AptUnit AptUnit { get; set; }
+        public ApartmentComplex ApartmentComplex { get; set; }
+        public ApartmentUnit ApartmentUnit { get; set; }
         public ICollection<Lease> Leases { get; set; }
     }
     
