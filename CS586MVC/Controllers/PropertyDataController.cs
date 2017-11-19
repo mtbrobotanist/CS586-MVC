@@ -41,7 +41,7 @@ namespace CS586MVC.Controllers
         public async Task Properties(int id)
         {
             Console.WriteLine($"Deleting AptComplex with ID:{id}");
-            await DbHelper.RemoveAptComplexAndDependents(id);
+            await DbHelper.RemoveAptComplex(id);
         }
 
         [HttpGet]
