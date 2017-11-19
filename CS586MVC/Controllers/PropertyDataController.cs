@@ -89,7 +89,8 @@ namespace CS586MVC.Controllers
         [HttpPut]
         public async Task Tenants(int id, [FromBody]Person p)
         {
-            //todo
+            Console.WriteLine($"Updating existing person with id:{id}");
+            await DbHelper.UpdatePerson(id, p);
         }
 
         [HttpDelete]

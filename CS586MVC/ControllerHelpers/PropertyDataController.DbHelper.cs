@@ -8,6 +8,7 @@ using CS586MVC.Data;
 using CS586MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Newtonsoft.Json.Serialization;
 
 namespace CS586MVC.Controllers
 {
@@ -174,6 +175,17 @@ namespace CS586MVC.Controllers
 
             return await Context.Persons.FirstOrDefaultAsync(p => p.Id == id);
         }
+
+        public static async Task UpdatePerson(int id, Person p)
+        {
+            Person target = await Context.Persons.FindAsync(id);
+            target.FirstName = p.FirstName;
+            target.LastName = p.LastName;
+            target.Phone = p.Phone;
+            target.Email = p.Email;
+
+            await Context.SaveChangesAsync();
+        }
         
         public static async Task<IEnumerable<Person>> AllPersons(bool include = true)
         {
@@ -194,6 +206,7 @@ namespace CS586MVC.Controllers
             Context.Leases.Add(l);
             await Context.SaveChangesAsync();
         }
+        
         public static async Task<Lease> Lease(int id, bool include = true)
         {
             if (include)
