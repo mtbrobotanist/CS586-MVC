@@ -64,13 +64,13 @@ namespace CS586MVC.Controllers
         [HttpPut]
         public async Task PropertyUnits(int id, [FromBody] ApartmentComplexUnit acu)
         {
-            
+            await _dbService.UpdateApartmentComplexUnit(id, acu);
         }
         
         [HttpDelete]
         public async Task PropertyUnits(int id)
         {
-            //todo
+            await _dbService.RemoveApartmentComplexUnit(id);
         }
 
         [HttpGet]
