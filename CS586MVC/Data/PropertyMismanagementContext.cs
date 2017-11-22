@@ -9,7 +9,7 @@ namespace CS586MVC.Data
         public virtual DbSet<ApartmentComplexUnit> ApartmentComplexUnits { get; set; }
         public virtual DbSet<Lease> Leases { get; set; }
         public virtual DbSet<Person> People { get; set; }
-        public virtual DbSet<ApartmentUnit> ApartmentUnits { get; set; }
+        //public virtual DbSet<ApartmentUnit> ApartmentUnits { get; set; }
 
         public PropertyMismanagementContext(DbContextOptions<PropertyMismanagementContext> options) : base(options) { }
 

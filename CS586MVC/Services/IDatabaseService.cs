@@ -18,8 +18,8 @@ namespace CS586MVC.Services
         Task UpdateApartmentComplexUnit(int id, ApartmentComplexUnit acu);
         Task RemoveApartmentComplexUnit(int id);
             
-        Task<int> InsertApartmentUnit(ApartmentUnit unit);
-        //todo maybe need to add read, update, delete on AptUnit?
+//        Task<int> InsertApartmentUnit(ApartmentUnit unit);
+//        //todo maybe need to add read, update, delete on AptUnit?
         
         Task InsertPerson(Person p);
         Task<Person> Person(int id, bool include = true);

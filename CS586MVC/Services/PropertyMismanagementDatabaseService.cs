@@ -207,12 +207,12 @@ namespace CS586MVC.Services
             throw new NotImplementedException();
         }
 
-        public  async Task<int> InsertApartmentUnit(ApartmentUnit unit)
-        {
-            EntityEntry<ApartmentUnit> entry = _context.ApartmentUnits.Add(unit);
-            await _context.SaveChangesAsync();
-            return entry.Entity.Id;
-        }
+//        public  async Task<int> InsertApartmentUnit(ApartmentUnit unit)
+//        {
+//            EntityEntry<ApartmentUnit> entry = _context.ApartmentUnits.Add(unit);
+//            await _context.SaveChangesAsync();
+//            return entry.Entity.Id;
+//        }
     
         public  async Task InsertPerson(Person p)
         {
