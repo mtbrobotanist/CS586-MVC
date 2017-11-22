@@ -24,6 +24,29 @@ namespace CS586MVC.Models
         
         public ApartmentComplex ApartmentComplex { get; set; }
         public ICollection<Lease> Leases { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is ApartmentComplexUnit other)
+            {
+                if (other.Id != 0)
+                {
+                    return Id == other.Id;
+                }
+
+                bool aptComplexIdSame = ApartmentComplexId.HasValue
+                                        && other.ApartmentComplexId.HasValue
+                                        && ApartmentComplexId.Value == other.ApartmentComplexId.Value;
+                
+                return aptComplexIdSame 
+                       && BedRooms == other.BedRooms
+                       && BathRooms == other.BathRooms
+                       && Area == other.Area
+                       && UnitNumber == other.UnitNumber;
+            }
+            
+            return false;
+        }
     }
     
 }
