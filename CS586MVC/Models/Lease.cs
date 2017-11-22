@@ -14,7 +14,7 @@ namespace CS586MVC.Models
         public DateTime StartDate { get; set; }
         
         [JsonProperty("startDate")]
-        public string Start => StartDate.ToShortDateString();
+        public string __Start => StartDate.ToShortDateString();
 
         public int DurationMonths { get; set; }
         public int RentMonthly { get; set; }
@@ -25,9 +25,9 @@ namespace CS586MVC.Models
         public DateTime EndDate => StartDate.AddMonths(DurationMonths);
 
         [JsonProperty("endDate")]
-        public string End => EndDate.ToShortDateString();
+        public string __End => EndDate.ToShortDateString();
         
-        public ApartmentComplexUnit Unit { get; set; }
+        public ApartmentComplexUnit ApartmentComplexUnit { get; set; }
         public Person Tenant { get; set; }
     }
 }
