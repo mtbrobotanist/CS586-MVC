@@ -82,7 +82,7 @@ namespace CS586MVC.Data
 
                 entity.Property(e => e.StartDate).HasColumnType("date");
 
-                entity.HasOne(d => d.Unit)
+                entity.HasOne(d => d.ApartmentComplexUnit)
                     .WithMany(p => p.Leases)
                     .HasForeignKey(d => d.ApartmentComplexUnitId)
                     .IsRequired()
