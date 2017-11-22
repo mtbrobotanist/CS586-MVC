@@ -18,24 +18,15 @@ CREATE TABLE [Person] (
 
 GO
 
-CREATE TABLE [Unit] (
-    [ID] int NOT NULL IDENTITY,
-    [Area] int NULL,
-    [Bathrooms] int NOT NULL,
-    [BedRooms] int NOT NULL,
-    CONSTRAINT [PK_Unit] PRIMARY KEY ([ID])
-);
-
-GO
-
 CREATE TABLE [ComplexUnit] (
     [ID] int NOT NULL IDENTITY,
     [ComplexID] int NULL,
-    [UnitID] int NULL,
+    [Bedrooms] INT NOT NULL,
+    [Bathrooms] INT NOT NULL,
+    [Area] INT NOT NULL,
     [UnitNumber] int NOT NULL,
     CONSTRAINT [PK_ComplexUnit] PRIMARY KEY ([ID]),
-    CONSTRAINT [ComplexUnit_Complex_ID_fk] FOREIGN KEY ([ComplexID]) REFERENCES [Complex] ([ID]) ON DELETE NO ACTION,
-    CONSTRAINT [ComplexUnit_Unit_ID_fk] FOREIGN KEY ([UnitID]) REFERENCES [Unit] ([ID]) ON DELETE NO ACTION
+    CONSTRAINT [ComplexUnit_Complex_ID_fk] FOREIGN KEY ([ComplexID]) REFERENCES [Complex] ([ID]) ON DELETE NO ACTION
 );
 
 GO

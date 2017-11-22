@@ -15,25 +15,7 @@ namespace CS586MVC.Data
             {
                 return;   // DB has been seeded
             }
-            
-//            Console.WriteLine("*****Seeding Unit");
-//            //add the generic aprartment units
-//            var units = new ApartmentUnit[]
-//            {
-//                //new Student{FirstMidName="Carson",LastName="Alexander",EnrollmentDate=DateTime.Parse("2005-09-01")},
-//                new ApartmentUnit{BedRooms = 0, Bathrooms = 0, Area = 200},
-//                new ApartmentUnit{BedRooms = 0, Bathrooms = 1, Area = 230},
-//                new ApartmentUnit{BedRooms = 1, Bathrooms = 1, Area = 350},
-//                new ApartmentUnit{BedRooms = 2, Bathrooms = 0, Area = 400},
-//                new ApartmentUnit{BedRooms = 2, Bathrooms = 2, Area = 600},
-//                new ApartmentUnit{BedRooms = 3, Bathrooms = 2, Area = 900}
-//            };
-//            foreach (ApartmentUnit u in units)
-//            {
-//                context.ApartmentUnits.Add(u);
-//            }
-//            context.SaveChanges();
-            
+                        
             Console.WriteLine("*****Seeding Complex");
             //add the apartment complex locations
             var complexes = new ApartmentComplex[]
@@ -50,21 +32,7 @@ namespace CS586MVC.Data
             Console.WriteLine("*****Seeding ComplexUnit");
             //add the apartment units that each complex has
             var complexUnits = new ApartmentComplexUnit[]
-            {
-//                new ApartmentComplexUnit{ApartmentUnitId = 1, ApartmentComplexId = 1, UnitNumber = 100},
-//                new ApartmentComplexUnit{ApartmentUnitId = 2, ApartmentComplexId = 1, UnitNumber = 101},
-//                new ApartmentComplexUnit{ApartmentUnitId = 3, ApartmentComplexId = 1, UnitNumber = 102},
-//                new ApartmentComplexUnit{ApartmentUnitId = 4, ApartmentComplexId = 1, UnitNumber = 200},
-//                new ApartmentComplexUnit{ApartmentUnitId = 5, ApartmentComplexId = 1, UnitNumber = 201},
-//                new ApartmentComplexUnit{ApartmentUnitId = 6, ApartmentComplexId = 1, UnitNumber = 203},
-//                
-//                new ApartmentComplexUnit{ApartmentUnitId = 1, ApartmentComplexId = 2, UnitNumber = 100},
-//                new ApartmentComplexUnit{ApartmentUnitId = 2, ApartmentComplexId = 2, UnitNumber = 101},
-//                new ApartmentComplexUnit{ApartmentUnitId = 3, ApartmentComplexId = 2, UnitNumber = 102},
-//                new ApartmentComplexUnit{ApartmentUnitId = 4, ApartmentComplexId = 2, UnitNumber = 200},
-//                new ApartmentComplexUnit{ApartmentUnitId = 5, ApartmentComplexId = 2, UnitNumber = 201},
-//                new ApartmentComplexUnit{ApartmentUnitId = 6, ApartmentComplexId = 2, UnitNumber = 202}
-                
+            {           
                 new ApartmentComplexUnit{ApartmentComplexId = 1, UnitNumber = 100, BedRooms = 1, BathRooms = 1, Area = 600,},
                 new ApartmentComplexUnit{ApartmentComplexId = 1, UnitNumber = 101, BedRooms = 2, BathRooms = 1, Area = 700,},
                 new ApartmentComplexUnit{ApartmentComplexId = 1, UnitNumber = 102, BedRooms = 3, BathRooms = 2, Area = 800,},

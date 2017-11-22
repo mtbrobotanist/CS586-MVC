@@ -115,24 +115,11 @@ namespace CS586MVC.Services
                 throw new Exception("an AptComplexUnit object needs an associated AptComplex object!");
             }
 
-            //bool unit = acu.ApartmentUnit != null;
-            //bool hasUnitId = acu.ApartmentUnitId.HasValue;
-            
-//            if (!unit && !hasUnitId)
-//            {
-//                throw new Exception("an AptComplexUnit object needs an associated AptUnit object!");
-//            }
-
-            if(complexId || complex)
+            if(complex)
             {
                 int id = await InsertApartmentComplex(acu.ApartmentComplex);
                 acu.ApartmentComplexId = id;
             }
-//            if (unit)
-//            {
-//                int id = await InsertApartmentUnit(acu.ApartmentUnit);
-//                acu.ApartmentUnitId = id;
-//            }
             
             _context.ApartmentComplexUnits.Add(acu);
             await _context.SaveChangesAsync();
@@ -144,7 +131,6 @@ namespace CS586MVC.Services
             {
                 return await _context.ApartmentComplexUnits
                     .Include(e => e.ApartmentComplex)
-                    //.Include(e => e.ApartmentUnit)
                     .FirstOrDefaultAsync(e => e.Id == id);
             }
             
@@ -162,57 +148,11 @@ namespace CS586MVC.Services
         {
             
         }
-        
-//        public  async Task UpdateApartmentComplexUnit(int id, ApartmentComplexUnit acu)
-//        {
-//            ApartmentComplexUnit target = await _context.ApartmentComplexUnits
-//                .Include(au => au.ApartmentUnit)
-//                .Include(ac => ac.ApartmentComplex)
-//                .FirstAsync(a => a.Id == id);
-//
-//            bool diff = false;
-//            
-//            if (acu.UnitNumber != target.UnitNumber)
-//            {
-//                diff = true;
-//                target.UnitNumber = acu.UnitNumber;   
-//            }
-//
-//            if(acu.ApartmentUnitId.HasValue && acu.ApartmentUnitId != )
-//            
-//            if (!acu.ApartmentComplex.Equals(target.ApartmentComplex))
-//            {
-//                diff = true;
-//                int newId = await InsertApartmentComplex(acu.ApartmentComplex);
-//                target.ApartmentUnitId = newId;
-//                target.ApartmentComplex = acu.ApartmentComplex;
-//            }
-//
-//            if (!acu.ApartmentUnit.Equals(target.ApartmentUnit))
-//            {
-//                diff = true;
-//                int newId = await InsertApartmentUnit(acu.ApartmentUnit);
-//                target.ApartmentUnitId = newId;
-//                target.ApartmentUnit = acu.ApartmentUnit;
-//            }
-//
-//            if (diff)
-//            {
-//                await _context.SaveChangesAsync();   
-//            }
-//        }
 
         public Task RemoveApartmentComplexUnit(int id)
         {
             throw new NotImplementedException();
         }
-
-//        public  async Task<int> InsertApartmentUnit(ApartmentUnit unit)
-//        {
-//            EntityEntry<ApartmentUnit> entry = _context.ApartmentUnits.Add(unit);
-//            await _context.SaveChangesAsync();
-//            return entry.Entity.Id;
-//        }
     
         public  async Task InsertPerson(Person p)
         {
