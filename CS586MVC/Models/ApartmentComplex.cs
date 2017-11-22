@@ -8,19 +8,31 @@ namespace CS586MVC.Models
     {
         public ApartmentComplex()
         {
-            AptComplexUnits = new HashSet<ApartmentComplexUnit>();
+            ApartmentComplexUnits = new HashSet<ApartmentComplexUnit>();
         }
 
         public int Id { get; set; }
         public string Address { get; set; }
         public int Size { get; set; }
 
-        public int VacancyCount => Size - AptComplexUnits.Count(unit => unit.Occupied);
+        public int VacancyCount => Size - ApartmentComplexUnits.Count(unit => unit.Occupied);
         public int OccupiedCount => Size - VacancyCount;
 
-        public IEnumerable<ApartmentComplexUnit> VacantUnits => AptComplexUnits.Where(unit => !unit.Occupied).ToList();
-        public IEnumerable<ApartmentComplexUnit> OccupiedUnits => AptComplexUnits.Where(unit => unit.Occupied).ToList();
+        public IEnumerable<ApartmentComplexUnit> VacantUnits => ApartmentComplexUnits.Where(unit => !unit.Occupied).ToList();
+        public IEnumerable<ApartmentComplexUnit> OccupiedUnits => ApartmentComplexUnits.Where(unit => unit.Occupied).ToList();
 
-        public ICollection<ApartmentComplexUnit> AptComplexUnits { get; set; }
+        public ICollection<ApartmentComplexUnit> ApartmentComplexUnits { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is ApartmentComplex other)
+            {
+                return Id == other.Id 
+                    && Address == other.Address 
+                    && Size == other.Size;
+            }
+
+            return false;
+        }
     }
 }

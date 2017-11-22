@@ -16,30 +16,30 @@ namespace CS586MVC.Data
                 return;   // DB has been seeded
             }
             
-            Console.WriteLine("*****Seeding Unit");
-            //add the generic aprartment units
-            var units = new ApartmentUnit[]
-            {
-                //new Student{FirstMidName="Carson",LastName="Alexander",EnrollmentDate=DateTime.Parse("2005-09-01")},
-                new ApartmentUnit{BedRooms = 0, Bathrooms = 0, Area = 200},
-                new ApartmentUnit{BedRooms = 0, Bathrooms = 1, Area = 230},
-                new ApartmentUnit{BedRooms = 1, Bathrooms = 1, Area = 350},
-                new ApartmentUnit{BedRooms = 2, Bathrooms = 0, Area = 400},
-                new ApartmentUnit{BedRooms = 2, Bathrooms = 2, Area = 600},
-                new ApartmentUnit{BedRooms = 3, Bathrooms = 2, Area = 900}
-            };
-            foreach (ApartmentUnit u in units)
-            {
-                context.ApartmentUnits.Add(u);
-            }
-            context.SaveChanges();
+//            Console.WriteLine("*****Seeding Unit");
+//            //add the generic aprartment units
+//            var units = new ApartmentUnit[]
+//            {
+//                //new Student{FirstMidName="Carson",LastName="Alexander",EnrollmentDate=DateTime.Parse("2005-09-01")},
+//                new ApartmentUnit{BedRooms = 0, Bathrooms = 0, Area = 200},
+//                new ApartmentUnit{BedRooms = 0, Bathrooms = 1, Area = 230},
+//                new ApartmentUnit{BedRooms = 1, Bathrooms = 1, Area = 350},
+//                new ApartmentUnit{BedRooms = 2, Bathrooms = 0, Area = 400},
+//                new ApartmentUnit{BedRooms = 2, Bathrooms = 2, Area = 600},
+//                new ApartmentUnit{BedRooms = 3, Bathrooms = 2, Area = 900}
+//            };
+//            foreach (ApartmentUnit u in units)
+//            {
+//                context.ApartmentUnits.Add(u);
+//            }
+//            context.SaveChanges();
             
             Console.WriteLine("*****Seeding Complex");
             //add the apartment complex locations
             var complexes = new ApartmentComplex[]
             {
                 new ApartmentComplex{Address="12345 Fake Street, Somewhere, CA, 91302", Size = 30},
-                new ApartmentComplex{Address="420 High Blvd, Somewhere, CA, 91302", Size = 420},
+                new ApartmentComplex{Address="420 Highland Blvd, Somewhere, CA, 91302", Size = 420},
             };
             foreach(ApartmentComplex c in complexes)
             {
@@ -51,19 +51,33 @@ namespace CS586MVC.Data
             //add the apartment units that each complex has
             var complexUnits = new ApartmentComplexUnit[]
             {
-                new ApartmentComplexUnit{AptUnitId = 1, AptComplexId = 1, UnitNumber = 100},
-                new ApartmentComplexUnit{AptUnitId = 2, AptComplexId = 1, UnitNumber = 101},
-                new ApartmentComplexUnit{AptUnitId = 3, AptComplexId = 1, UnitNumber = 102},
-                new ApartmentComplexUnit{AptUnitId = 4, AptComplexId = 1, UnitNumber = 200},
-                new ApartmentComplexUnit{AptUnitId = 5, AptComplexId = 1, UnitNumber = 201},
-                new ApartmentComplexUnit{AptUnitId = 6, AptComplexId = 1, UnitNumber = 203},
+//                new ApartmentComplexUnit{ApartmentUnitId = 1, ApartmentComplexId = 1, UnitNumber = 100},
+//                new ApartmentComplexUnit{ApartmentUnitId = 2, ApartmentComplexId = 1, UnitNumber = 101},
+//                new ApartmentComplexUnit{ApartmentUnitId = 3, ApartmentComplexId = 1, UnitNumber = 102},
+//                new ApartmentComplexUnit{ApartmentUnitId = 4, ApartmentComplexId = 1, UnitNumber = 200},
+//                new ApartmentComplexUnit{ApartmentUnitId = 5, ApartmentComplexId = 1, UnitNumber = 201},
+//                new ApartmentComplexUnit{ApartmentUnitId = 6, ApartmentComplexId = 1, UnitNumber = 203},
+//                
+//                new ApartmentComplexUnit{ApartmentUnitId = 1, ApartmentComplexId = 2, UnitNumber = 100},
+//                new ApartmentComplexUnit{ApartmentUnitId = 2, ApartmentComplexId = 2, UnitNumber = 101},
+//                new ApartmentComplexUnit{ApartmentUnitId = 3, ApartmentComplexId = 2, UnitNumber = 102},
+//                new ApartmentComplexUnit{ApartmentUnitId = 4, ApartmentComplexId = 2, UnitNumber = 200},
+//                new ApartmentComplexUnit{ApartmentUnitId = 5, ApartmentComplexId = 2, UnitNumber = 201},
+//                new ApartmentComplexUnit{ApartmentUnitId = 6, ApartmentComplexId = 2, UnitNumber = 202}
                 
-                new ApartmentComplexUnit{AptUnitId = 1, AptComplexId = 2, UnitNumber = 100},
-                new ApartmentComplexUnit{AptUnitId = 2, AptComplexId = 2, UnitNumber = 101},
-                new ApartmentComplexUnit{AptUnitId = 3, AptComplexId = 2, UnitNumber = 102},
-                new ApartmentComplexUnit{AptUnitId = 4, AptComplexId = 2, UnitNumber = 200},
-                new ApartmentComplexUnit{AptUnitId = 5, AptComplexId = 2, UnitNumber = 201},
-                new ApartmentComplexUnit{AptUnitId = 6, AptComplexId = 2, UnitNumber = 202}
+                new ApartmentComplexUnit{ApartmentComplexId = 1, UnitNumber = 100, BedRooms = 1, BathRooms = 1, Area = 600,},
+                new ApartmentComplexUnit{ApartmentComplexId = 1, UnitNumber = 101, BedRooms = 2, BathRooms = 1, Area = 700,},
+                new ApartmentComplexUnit{ApartmentComplexId = 1, UnitNumber = 102, BedRooms = 3, BathRooms = 2, Area = 800,},
+                new ApartmentComplexUnit{ApartmentComplexId = 1, UnitNumber = 200, BedRooms = 1, BathRooms = 1, Area = 900,},
+                new ApartmentComplexUnit{ApartmentComplexId = 1, UnitNumber = 201, BedRooms = 2, BathRooms = 2, Area = 1000,},
+                new ApartmentComplexUnit{ApartmentComplexId = 1, UnitNumber = 203, BedRooms = 3, BathRooms = 2, Area = 1100,},
+                
+                new ApartmentComplexUnit{ApartmentComplexId = 2, UnitNumber = 100, BedRooms = 3, BathRooms = 2, Area = 1200,},
+                new ApartmentComplexUnit{ApartmentComplexId = 2, UnitNumber = 101, BedRooms = 2, BathRooms = 2, Area = 1500,},
+                new ApartmentComplexUnit{ApartmentComplexId = 2, UnitNumber = 102, BedRooms = 1, BathRooms = 1, Area = 1100,},
+                new ApartmentComplexUnit{ApartmentComplexId = 2, UnitNumber = 200, BedRooms = 3, BathRooms = 2, Area = 1000,},
+                new ApartmentComplexUnit{ApartmentComplexId = 2, UnitNumber = 201, BedRooms = 2, BathRooms = 2, Area = 900,},
+                new ApartmentComplexUnit{ApartmentComplexId = 2, UnitNumber = 202, BedRooms = 2, BathRooms = 1, Area = 800,}
             };
             foreach(ApartmentComplexUnit cu in complexUnits)
             {
@@ -93,12 +107,12 @@ namespace CS586MVC.Data
             //finally, add the leases
             var leases = new Lease[]
             {
-                new Lease {PersonId = 1, AptComplexUnitId = 1, StartDate=DateTime.Now, DurationMonths = 12, RentMonthly = 1000},
-                new Lease {PersonId = 2, AptComplexUnitId = 2, StartDate=DateTime.Now, DurationMonths = 6, RentMonthly = 1300},
-                new Lease {PersonId = 3, AptComplexUnitId = 3, StartDate=DateTime.Now, DurationMonths = 12, RentMonthly = 900},
-                new Lease {PersonId = 4, AptComplexUnitId = 7, StartDate=DateTime.Now, DurationMonths = 6, RentMonthly = 1700},
-                new Lease {PersonId = 5, AptComplexUnitId = 8, StartDate=DateTime.Now, DurationMonths = 12, RentMonthly = 1100},
-                new Lease {PersonId = 6, AptComplexUnitId = 9, StartDate=DateTime.Now, DurationMonths = 6, RentMonthly = 1000}
+                new Lease {PersonId = 1, ApartmentComplexUnitId = 1, StartDate=DateTime.Now, DurationMonths = 12, RentMonthly = 1000},
+                new Lease {PersonId = 2, ApartmentComplexUnitId = 2, StartDate=DateTime.Now, DurationMonths = 6, RentMonthly = 1300},
+                new Lease {PersonId = 3, ApartmentComplexUnitId = 3, StartDate=DateTime.Now, DurationMonths = 12, RentMonthly = 900},
+                new Lease {PersonId = 4, ApartmentComplexUnitId = 7, StartDate=DateTime.Now, DurationMonths = 6, RentMonthly = 1700},
+                new Lease {PersonId = 5, ApartmentComplexUnitId = 8, StartDate=DateTime.Now, DurationMonths = 12, RentMonthly = 1100},
+                new Lease {PersonId = 6, ApartmentComplexUnitId = 9, StartDate=DateTime.Now, DurationMonths = 6, RentMonthly = 1000}
 
             };
             foreach (Lease l in leases)

@@ -20,7 +20,7 @@ namespace CS586MVC.Data
             modelBuilder.Entity<ApartmentComplex>(entity =>
             {
                 entity.HasIndex(e => e.Id)
-                    .HasName("AptComplex_ID_uindex")
+                    .HasName("ApartmentComplex_ID_uindex")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -29,39 +29,43 @@ namespace CS586MVC.Data
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
+                entity.HasIndex(e => e.Address)
+                    .HasName("AparmentComplex_Address_uindex")
+                    .IsUnique();
+                
                 entity.Property(e => e.Size).HasColumnName("Size");
             });
 
-            modelBuilder.Entity<ApartmentUnit>(entity =>
-            {
-                entity.Property(e => e.Id).HasColumnName("ID");
-            });
+//            modelBuilder.Entity<ApartmentUnit>(entity =>
+//            {
+//                entity.Property(e => e.Id).HasColumnName("ID");
+//            });
             
             modelBuilder.Entity<ApartmentComplexUnit>(entity =>
             {
                 entity.HasIndex(e => e.Id)
-                    .HasName("AptComplexUnit_ID_uindex")
+                    .HasName("ApartmentComplexUnit_ID_uindex")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.AptComplexId).HasColumnName("AptComplexID");
+                entity.Property(e => e.ApartmentComplexId).HasColumnName("ApartmentComplexID");
 
-                entity.Property(e => e.AptUnitId).HasColumnName("AptUnitID");
+                //entity.Property(e => e.ApartmentUnitId).HasColumnName("ApartmentUnitID");
 
                 entity.Property(e => e.UnitNumber).HasColumnName("UnitNumber");
 
                 entity.HasOne(d => d.ApartmentComplex)
-                    .WithMany(p => p.AptComplexUnits)
-                    .HasForeignKey(d => d.AptComplexId)
-                    .HasConstraintName("AptComplexUnit_AptComplex_ID_fk")
+                    .WithMany(p => p.ApartmentComplexUnits)
+                    .HasForeignKey(d => d.ApartmentComplexId)
+                    .HasConstraintName("ApartmentComplexUnit_ApartmentComplex_ID_fk")
                     .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasOne(d => d.ApartmentUnit)
-                    .WithMany(p => p.AptComplexUnit)
-                    .HasForeignKey(d => d.AptUnitId)
-                    .HasConstraintName("AptComplexUnit_AptUnit_ID_fk")
-                    .OnDelete(DeleteBehavior.Cascade);
+//                entity.HasOne(d => d.ApartmentUnit)
+//                    .WithMany(p => p.ApartmentComplexUnit)
+//                    .HasForeignKey(d => d.ApartmentUnitId)
+//                    .HasConstraintName("ApartmentComplexUnit_ApartmentUnit_ID_fk")
+//                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Lease>(entity =>
@@ -72,7 +76,7 @@ namespace CS586MVC.Data
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.AptComplexUnitId).HasColumnName("AptComplexUnitID");
+                entity.Property(e => e.ApartmentComplexUnitId).HasColumnName("ApartmentComplexUnitID");
 
                 entity.Property(e => e.PersonId).HasColumnName("PersonID");
 
@@ -80,10 +84,10 @@ namespace CS586MVC.Data
 
                 entity.HasOne(d => d.Unit)
                     .WithMany(p => p.Leases)
-                    .HasForeignKey(d => d.AptComplexUnitId)
+                    .HasForeignKey(d => d.ApartmentComplexUnitId)
                     .IsRequired()
                     .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("Lease_AptComplexUnit_ID_fk");
+                    .HasConstraintName("Lease_ApartmentComplexUnit_ID_fk");
 
                 entity.HasOne(d => d.Tenant)
                     .WithMany(p => p.Leases)

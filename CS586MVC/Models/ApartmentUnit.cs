@@ -7,7 +7,7 @@ namespace CS586MVC.Models
     {
         public ApartmentUnit()
         {
-            AptComplexUnit = new HashSet<ApartmentComplexUnit>();
+            ApartmentComplexUnit = new HashSet<ApartmentComplexUnit>();
         }
 
         public int Id { get; set; }
@@ -15,6 +15,38 @@ namespace CS586MVC.Models
         public int Bathrooms { get; set; }
         public int? Area { get; set; }
 
-        public ICollection<ApartmentComplexUnit> AptComplexUnit { get; set; }
+        public ICollection<ApartmentComplexUnit> ApartmentComplexUnit { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is ApartmentUnit other)
+            {
+                if (Id != other.Id)
+                {
+                    return false;
+                }
+                
+                if(BedRooms != other.BedRooms)
+                {
+                    return false;
+                }
+
+                if (Bathrooms != other.Bathrooms)
+                {
+                    return false;
+                }
+
+                if (!Area.HasValue && !other.Area.HasValue ||
+                    this.Area.HasValue && !other.Area.HasValue ||
+                    !this.Area.HasValue && other.Area.HasValue)
+                {
+                    return false;
+                }
+
+                return this.Area.Value == other.Area.Value;
+            }
+            
+            return false;
+        }
     }
 }

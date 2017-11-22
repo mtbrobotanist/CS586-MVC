@@ -8,7 +8,7 @@ namespace CS586MVC.Models
     {
         public int Id { get; set; }
         public int PersonId { get; set; }
-        public int AptComplexUnitId { get; set; }
+        public int ApartmentComplexUnitId { get; set; }
         
         [JsonIgnore]
         public DateTime StartDate { get; set; }

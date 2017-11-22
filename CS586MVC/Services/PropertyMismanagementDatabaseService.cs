@@ -22,6 +22,14 @@ namespace CS586MVC.Services
 
         public  async Task<int> InsertApartmentComplex(ApartmentComplex ac)
         {
+            var previousEntry = _context.ApartmentComplexes.FirstOrDefaultAsync(
+                    newAc => newAc.Address == ac.Address && newAc.Size == ac.Size);
+
+            if (previousEntry != null)
+            {
+                return previousEntry.Id;
+            }
+            
             EntityEntry<ApartmentComplex> entry = _context.ApartmentComplexes.Add(ac);
             await _context.SaveChangesAsync();
             return entry.Entity.Id;
@@ -32,7 +40,7 @@ namespace CS586MVC.Services
             if (include)
             {
                 return await _context.ApartmentComplexes
-                    .Include(e => e.AptComplexUnits)
+                    .Include(e => e.ApartmentComplexUnits)
                         .ThenInclude(e => e.Leases)
                     .FirstOrDefaultAsync(e => e.Id == id);
             }
@@ -45,7 +53,7 @@ namespace CS586MVC.Services
             if (include)
             {
                 return await _context.ApartmentComplexes
-                    .Include(e => e.AptComplexUnits)
+                    .Include(e => e.ApartmentComplexUnits)
                         .ThenInclude(e => e.Leases)
                     .ToListAsync();
             }
@@ -65,7 +73,7 @@ namespace CS586MVC.Services
         {
             //shameful
             ApartmentComplex target = await _context.ApartmentComplexes
-                .Include(e => e.AptComplexUnits)
+                .Include(e => e.ApartmentComplexUnits)
                     .ThenInclude(e => e.Leases)
                         .ThenInclude(e => e.Tenant)
                 .FirstOrDefaultAsync(a => a.Id == id);
@@ -83,7 +91,7 @@ namespace CS586MVC.Services
              */
 
             // For some reason this needs to be done manually
-            foreach(ApartmentComplexUnit unit in target.AptComplexUnits)
+            foreach(ApartmentComplexUnit unit in target.ApartmentComplexUnits)
             {
                 foreach(Lease lease in unit.Leases)
                 {
@@ -100,32 +108,31 @@ namespace CS586MVC.Services
         public  async Task InsertApartmentComplexUnit(ApartmentComplexUnit acu)
         {
             bool complex = acu.ApartmentComplex != null;
-            bool complexId = acu.AptComplexId.HasValue;
+            bool complexId = acu.ApartmentComplexId.HasValue;
             
             if (!complex && !complexId)
             {
                 throw new Exception("an AptComplexUnit object needs an associated AptComplex object!");
             }
 
-            bool unit = acu.ApartmentUnit != null;
-            bool hasUnitId = acu.AptUnitId.HasValue;
+            //bool unit = acu.ApartmentUnit != null;
+            //bool hasUnitId = acu.ApartmentUnitId.HasValue;
             
-            if (!unit && !hasUnitId)
-            {
-                throw new Exception("an AptComplexUnit object needs an associated AptUnit object!");
-            }
+//            if (!unit && !hasUnitId)
+//            {
+//                throw new Exception("an AptComplexUnit object needs an associated AptUnit object!");
+//            }
 
-            if (complex)
+            if(complexId || complex)
             {
                 int id = await InsertApartmentComplex(acu.ApartmentComplex);
-                acu.AptComplexId = id;
+                acu.ApartmentComplexId = id;
             }
-
-            if (unit)
-            {
-                int id = await InsertApartmentUnit(acu.ApartmentUnit);
-                acu.AptUnitId = id;
-            }
+//            if (unit)
+//            {
+//                int id = await InsertApartmentUnit(acu.ApartmentUnit);
+//                acu.ApartmentUnitId = id;
+//            }
             
             _context.ApartmentComplexUnits.Add(acu);
             await _context.SaveChangesAsync();
@@ -137,7 +144,7 @@ namespace CS586MVC.Services
             {
                 return await _context.ApartmentComplexUnits
                     .Include(e => e.ApartmentComplex)
-                    .Include(e => e.ApartmentUnit)
+                    //.Include(e => e.ApartmentUnit)
                     .FirstOrDefaultAsync(e => e.Id == id);
             }
             
@@ -151,11 +158,49 @@ namespace CS586MVC.Services
                 await _context.ApartmentComplexUnits.ToListAsync();
         }
 
-        public  async Task UpdateApartmentComplexUnit(int id, ApartmentComplexUnit acu)
+        public async Task UpdateApartmentComplexUnit(int id, ApartmentComplexUnit acu)
         {
-            //FirstAsync
-            _context.ApartmentComplexes;
+            
         }
+        
+//        public  async Task UpdateApartmentComplexUnit(int id, ApartmentComplexUnit acu)
+//        {
+//            ApartmentComplexUnit target = await _context.ApartmentComplexUnits
+//                .Include(au => au.ApartmentUnit)
+//                .Include(ac => ac.ApartmentComplex)
+//                .FirstAsync(a => a.Id == id);
+//
+//            bool diff = false;
+//            
+//            if (acu.UnitNumber != target.UnitNumber)
+//            {
+//                diff = true;
+//                target.UnitNumber = acu.UnitNumber;   
+//            }
+//
+//            if(acu.ApartmentUnitId.HasValue && acu.ApartmentUnitId != )
+//            
+//            if (!acu.ApartmentComplex.Equals(target.ApartmentComplex))
+//            {
+//                diff = true;
+//                int newId = await InsertApartmentComplex(acu.ApartmentComplex);
+//                target.ApartmentUnitId = newId;
+//                target.ApartmentComplex = acu.ApartmentComplex;
+//            }
+//
+//            if (!acu.ApartmentUnit.Equals(target.ApartmentUnit))
+//            {
+//                diff = true;
+//                int newId = await InsertApartmentUnit(acu.ApartmentUnit);
+//                target.ApartmentUnitId = newId;
+//                target.ApartmentUnit = acu.ApartmentUnit;
+//            }
+//
+//            if (diff)
+//            {
+//                await _context.SaveChangesAsync();   
+//            }
+//        }
 
         public Task RemoveApartmentComplexUnit(int id)
         {
