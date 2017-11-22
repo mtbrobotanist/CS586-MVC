@@ -18,7 +18,7 @@ namespace CS586MVC.Services
         Task UpdateApartmentComplexUnit(int id, ApartmentComplexUnit acu);
         Task RemoveApartmentComplexUnit(int id);
         
-        Task InsertPerson(Person p);
+        Task<int> InsertPerson(Person p);
         Task<Person> Person(int id, bool include = true);
         Task UpdatePerson(int id, Person p);
         Task<IEnumerable<Person>> AllPersons(bool include = true);
