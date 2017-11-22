@@ -22,5 +22,23 @@ namespace CS586MVC.Models
         public int? CurrentLeaseId => CurrentLease?.Id;
         
         public ICollection<Lease> Leases { get; set; }
+
+        public override bool Equals(object obj)
+        {           
+            if (obj is Person other)
+            {
+                if (other.Id != 0)
+                {
+                    return Id == other.Id;
+                }
+                    
+                return FirstName.Equals(other.FirstName)
+                       && LastName.Equals(other.LastName)
+                       && Phone.Equals(other.Phone)
+                       && Email.Equals(other.Email);
+            }
+
+            return false;
+        }
     }
 }
