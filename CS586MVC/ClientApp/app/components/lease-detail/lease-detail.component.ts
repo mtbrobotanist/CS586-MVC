@@ -1,11 +1,13 @@
 import {Component, OnInit, OnDestroy, Inject} from '@angular/core';
-//import * as angular from 'angular';
+import * as _angular_ from 'angular';
 import { ActivatedRoute } from '@angular/router';
 import { Http, Headers } from "@angular/http";
 import { EditableTableModule } from "ng-editable-table/editable-table/editable-table.module";
 import { ApartmentComplexUnit, Lease} from "../leases/leases.component.interfaces";
 
-declare let angular: any;
+declare global {
+    const angular: typeof _angular_;
+}
 
 @Component({
   selector: 'app-lease-detail',
@@ -56,13 +58,13 @@ export class LeaseDetailComponent implements OnInit, OnDestroy {
         headers.append('Content-Type', 'application/json');
         headers.append('Date', Date.now().toString());
         
-        let url = this.baseUrl + "propertydata/leases/" + this.trialLease.id.toString();
+        let url = this.baseUrl + "propertydata/leases/" + this.id.toString();
         
         return this.http
             .put(url, JSON.stringify(this.trialLease), {headers: headers})
             .subscribe(result => {console.log(result);},
                      error => {console.log(error)});
-    }
+        }
     
     cancel()
     {
