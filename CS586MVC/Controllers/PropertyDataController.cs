@@ -117,9 +117,10 @@ namespace CS586MVC.Controllers
         }
 
         [HttpPut]
-        public async Task Leases(int id, Lease l)
+        public async Task Leases(int id, [FromBody] Lease l)
         {
-            
+            Console.WriteLine($"Updating existing Lease with id:{id}");
+            await _dbService.UpdateLease(id, l);
         }
 
         [HttpDelete]
