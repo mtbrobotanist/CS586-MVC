@@ -291,7 +291,7 @@ namespace CS586MVC.Services
             }
             else if (lease.ApartmentComplexUnit != null)
             {
-                // this could throw an error if we are putting in an apartmentcomplexunit that doesn't already exist in the db
+                // this could throw an error if we are putting in an apartmentcomplexunit that  tdoesn't already exist inhe db
                 target.ApartmentComplexUnit = lease.ApartmentComplexUnit;
             }
 

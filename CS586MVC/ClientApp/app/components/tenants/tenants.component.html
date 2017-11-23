@@ -5,24 +5,28 @@
 <table class='table' *ngIf="tenants">
     <thead>
         <tr>
+            <th>Detail</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Phone Number</th>
             <th>Email</th>
             <th>Is Current</th>
-            <th>View Lease</th>
+            
         </tr>
         </thead>
         <tbody>
             <tr *ngFor="let tenant of tenants">
+                <td *ngIf="tenant.current;then ifTrue else other"> </td>
+                <ng-template #ifTrue>
+                    <a [routerLink]="['/lease-detail', tenant.currentLeaseId]">view lease</a>
+                </ng-template>
+                <ng-template #other>
+                </ng-template>
                 <td>{{ tenant.firstName }}</td>
                 <td>{{ tenant.lastName }}</td>
                 <td>{{ tenant.phone }}</td>
                 <td>{{ tenant.email }}</td>
                 <td>{{ tenant.current }}</td>
-                <td *ngIf="tenant.current">
-                    <a [routerLink]="['/lease-detail', tenant.currentLeaseId]">view lease</a>
-                </td>
             </tr>
     </tbody>
 </table>

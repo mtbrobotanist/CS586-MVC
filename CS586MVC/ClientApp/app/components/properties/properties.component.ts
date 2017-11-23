@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Http } from "@angular/http";
-import { AptComplex} from "./properties.component.interfaces";
+import { ApartmentComplex as AptComplex} from "./properties.component.interfaces";
 
 @Component({
   selector: 'app-properties',

@@ -13,6 +13,7 @@ export class LeaseDetailComponent implements OnInit, OnDestroy {
     private leases:Lease[];
     private sub: any;
     private id:number;
+    private editable:boolean;
     
   constructor(private http: Http, @Inject('BASE_URL') private baseUrl: string, private route: ActivatedRoute) {
       

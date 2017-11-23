@@ -1,5 +1,5 @@
 ﻿
-export interface AptComplex
+export interface ApartmentComplex
 {
     id:number;
     address:string;

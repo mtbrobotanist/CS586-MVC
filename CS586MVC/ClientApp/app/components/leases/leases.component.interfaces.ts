@@ -1,33 +1,28 @@
 ﻿import { Tenant } from "../tenants/tenants.component.interfaces";
-import {AptComplex} from "../properties/properties.component.interfaces";
+import {ApartmentComplex} from "../properties/properties.component.interfaces";
 
 export interface Lease {
     id:number;
+    personId:number;
+    apartmentComplexUnitId:number;
     startDate:string;
-    durationMonths:number;
-    endDate:string;
+    durationMonths:string;
     rentMonthly:number;
     active:boolean;
+    endDate:string;
+    apartmentComplexUnit:ApartmentComplexUnit;
     tenant:Tenant;
-    unit:AptComplexUnit;
 }
 
-export interface AptUnit
+export interface ApartmentComplexUnit
 {
     id:number;
     bedRooms:number;
     bathRooms:number;
     area:number;
-}
-
-export interface AptComplexUnit
-{
-    id:number;
-    aptUnitId:number;
-    aptComplexId:number;
+    apartmentComplexId:number;
     unitNumber:number;
+    occupied:boolean;
     address:string;
-
-    aptUnit:AptUnit;
-    aptComplex:AptComplex;
+    apartmentComplex:ApartmentComplex;
 }

@@ -1,5 +1,6 @@
 <p *ngIf="!leases"><em>Loading...</em></p>
 
+<div>
 <h2>Lease Detail - {{leases[0].tenant.firstName}} {{ leases[0].tenant.lastName }}</h2>
 
 <table class='table' *ngIf="leases">
@@ -18,7 +19,11 @@
         <td>{{ lease.durationMonths }} months</td>
         <td>{{ lease.endDate }}</td>
         <td>${{ lease.rentMonthly }}</td>
-        <td>{{ lease.unit.address }}</td>
+        <td>{{ lease.apartmentComplexUnit.address }}</td>
+        <td> </td>
     </tr>
     </tbody>
 </table>
+
+<button>Edit</button>
+</div>
