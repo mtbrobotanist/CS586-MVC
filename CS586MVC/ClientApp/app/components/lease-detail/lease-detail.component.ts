@@ -1,13 +1,7 @@
 import {Component, OnInit, OnDestroy, Inject} from '@angular/core';
-import * as _angular_ from 'angular';
 import { ActivatedRoute } from '@angular/router';
 import { Http, Headers } from "@angular/http";
-import { EditableTableModule } from "ng-editable-table/editable-table/editable-table.module";
-import { ApartmentComplexUnit, Lease} from "../leases/leases.component.interfaces";
-
-declare global {
-    const angular: typeof _angular_;
-}
+import { Lease} from "../leases/leases.component.interfaces";
 
 @Component({
   selector: 'app-lease-detail',
@@ -74,7 +68,6 @@ export class LeaseDetailComponent implements OnInit, OnDestroy {
     
     private copyToTrialLease() 
     {
-        angular.copy(this.leases[0], this.trialLease);
     }
 }
 
