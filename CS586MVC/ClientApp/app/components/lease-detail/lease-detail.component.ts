@@ -16,6 +16,8 @@ export class LeaseDetailComponent implements OnInit, OnDestroy {
     private id:number;
     private editMode:boolean = false;
     
+    private vmStartDate:string;
+    
     constructor(private http: Http, @Inject('BASE_URL') private baseUrl: string, private route: ActivatedRoute) {
       
     }
@@ -27,7 +29,9 @@ export class LeaseDetailComponent implements OnInit, OnDestroy {
           let url = this.baseUrl + 'propertydata/leases/' + this.id.toString();
           
           this.http.get(url).subscribe(result => {
+              
               this.leases = result.json() as Lease[];
+              this.vmStartDate = new Date(this.leases[0].startDate).toDateString();
               
               this.copyToTrialLease();
               

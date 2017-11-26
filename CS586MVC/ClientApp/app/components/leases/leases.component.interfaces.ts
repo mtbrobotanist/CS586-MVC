@@ -3,13 +3,12 @@ import {ApartmentComplex} from "../properties/properties.component.interfaces";
 
 export interface Lease {
     id:number;
-    personId:number;
+    tenantId:number;
     apartmentComplexUnitId:number;
     startDate:number;
     durationMonths:string;
     rentMonthly:number;
     active:boolean;
-    endDate:string;
     apartmentComplexUnit:ApartmentComplexUnit;
     tenant:Tenant;
 }
