@@ -15,18 +15,21 @@
                 <tr>
                     <th>Start Date</th>
                     <th>Duration</th>
-                    <th>End Date</th>
                     <th>Rent</th>
+                    <th>Unit #</th>
                     <th>Address</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr *ngFor="let lease of leases">
-                    <td>{{ lease.startDate }}</td>
-                    <td>{{ lease.durationMonths }} months</td>
-                    <td>{{ lease.endDate }}</td>
-                    <td>${{ lease.rentMonthly }}</td>
-                    <td>{{ lease.apartmentComplexUnit.address }}</td>
+                    <td>
+                        <!--<input [(ngModel)]="vmStartDate"/>-->
+                        {{ vmStartDate }}
+                    </td>
+                    <td>{{ vmDuration }} months</td>
+                    <td>${{ vmRent }}</td>
+                    <td>{{ vmUnitNumber }}</td>
+                    <td>{{ lease.apartmentComplexUnit.apartmentComplex.address }}</td>
                     <td> </td>
                 </tr>
                 </tbody>
@@ -46,18 +49,18 @@
                 <tr>
                     <th>Start Date</th>
                     <th>Duration</th>
-                    <th>End Date</th>
                     <th>Rent</th>
+                    <th>Unit #</th>
                     <th>Address</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr *ngFor="let lease of leases">
-                    <td>{{ lease.startDate }}</td>
+                    <td>{{ actualStartDate }}</td>
                     <td>{{ lease.durationMonths }} months</td>
-                    <td>{{ lease.endDate }}</td>
                     <td>${{ lease.rentMonthly }}</td>
-                    <td>{{ lease.apartmentComplexUnit.address }}</td>
+                    <td>{{ lease.apartmentComplexUnit.unitNumber }}</td>
+                    <td>{{ lease.apartmentComplexUnit.apartmentComplex.address }}</td>
                     <td> </td>
                 </tr>
                 </tbody>

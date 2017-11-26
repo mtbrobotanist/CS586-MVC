@@ -6,7 +6,7 @@ export interface Lease {
     tenantId:number;
     apartmentComplexUnitId:number;
     startDate:number;
-    durationMonths:string;
+    durationMonths:number;
     rentMonthly:number;
     active:boolean;
     apartmentComplexUnit:ApartmentComplexUnit;
