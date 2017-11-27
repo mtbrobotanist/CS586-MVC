@@ -23,7 +23,9 @@ export class LeaseDetailComponent implements OnInit, OnDestroy {
     private vmRent:number;
     private vmUnitNumber:number;
     
-    constructor(private http: Http, @Inject('BASE_URL') private baseUrl: string, private route: ActivatedRoute) {
+    constructor(private http: Http, 
+                @Inject('BASE_URL') private baseUrl: 
+                    string, private route: ActivatedRoute) {
       
     }
 

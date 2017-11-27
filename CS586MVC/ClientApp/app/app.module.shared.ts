@@ -13,6 +13,7 @@ import { PropertiesComponent } from './components/properties/properties.componen
 import { TenantsComponent } from './components/tenants/tenants.component';
 import { LeasesComponent } from './components/leases/leases.component';
 import { LeaseDetailComponent } from './components/lease-detail/lease-detail.component';
+import { TenantDetailComponent } from './components/tenant-detail/tenant-detail.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { LeaseDetailComponent } from './components/lease-detail/lease-detail.com
         PropertiesComponent,
         TenantsComponent,
         LeasesComponent,
-        LeaseDetailComponent
+        LeaseDetailComponent,
+        TenantDetailComponent
     ],
     imports: [
         CommonModule,
