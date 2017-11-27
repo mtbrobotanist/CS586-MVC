@@ -10,7 +10,6 @@
             <th>Last Name</th>
             <th>StartDate</th>
             <th>Duration</th>
-            <th>End Date</th>
             <th>Rent</th>
             <th>Address</th>
         </tr>
@@ -20,14 +19,14 @@
             <td *ngIf="lease.tenant.current;then ifTrue else other"> </td>
                 <ng-template #ifTrue>
                     <a [routerLink]="['/lease-detail', lease.tenant.currentLeaseId]">view lease</a>
+                    <!--<a onclick="deleteLease(lease.id)">delete</a>-->
                 </ng-template>
                 <ng-template #other>
                 </ng-template>
             <td>{{ lease.tenant.firstName }}</td>
             <td>{{ lease.tenant.lastName }}</td>
-            <td>{{ lease.startDate }}</td>
+            <td>{{ getPrettyDate(lease.startDate) }}</td>
             <td>{{ lease.durationMonths }} months</td>
-            <td>{{ lease.endDate }}</td>
             <td>${{ lease.rentMonthly }}</td>
             <td>{{ lease.apartmentComplexUnit.address }}</td>
         </tr>

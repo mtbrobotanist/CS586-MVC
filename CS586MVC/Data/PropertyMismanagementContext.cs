@@ -36,10 +36,6 @@ namespace CS586MVC.Data
                 entity.Property(e => e.Size).HasColumnName("Size");
             });
 
-//            modelBuilder.Entity<ApartmentUnit>(entity =>
-//            {
-//                entity.Property(e => e.Id).HasColumnName("ID");
-//            });
             
             modelBuilder.Entity<ApartmentComplexUnit>(entity =>
             {
@@ -51,8 +47,6 @@ namespace CS586MVC.Data
 
                 entity.Property(e => e.ApartmentComplexId).HasColumnName("ApartmentComplexID");
 
-                //entity.Property(e => e.ApartmentUnitId).HasColumnName("ApartmentUnitID");
-
                 entity.Property(e => e.UnitNumber).HasColumnName("UnitNumber");
 
                 entity.HasOne(d => d.ApartmentComplex)
@@ -60,12 +54,6 @@ namespace CS586MVC.Data
                     .HasForeignKey(d => d.ApartmentComplexId)
                     .HasConstraintName("ApartmentComplexUnit_ApartmentComplex_ID_fk")
                     .OnDelete(DeleteBehavior.Cascade);
-
-//                entity.HasOne(d => d.ApartmentUnit)
-//                    .WithMany(p => p.ApartmentComplexUnit)
-//                    .HasForeignKey(d => d.ApartmentUnitId)
-//                    .HasConstraintName("ApartmentComplexUnit_ApartmentUnit_ID_fk")
-//                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Lease>(entity =>
@@ -80,7 +68,8 @@ namespace CS586MVC.Data
 
                 entity.Property(e => e.PersonId).HasColumnName("PersonID");
 
-                entity.Property(e => e.StartDate).HasColumnType("date");
+                //entity.Property(e => e.StartDate).HasColumnType("date");
+                entity.Property(e => e.StartDate).HasColumnName("DateMillis");
 
                 entity.HasOne(d => d.ApartmentComplexUnit)
                     .WithMany(p => p.Leases)

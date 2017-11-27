@@ -75,12 +75,12 @@ namespace CS586MVC.Data
             //finally, add the leases
             var leases = new Lease[]
             {
-                new Lease {PersonId = 1, ApartmentComplexUnitId = 1, StartDate=DateTime.Now, DurationMonths = 12, RentMonthly = 1000},
-                new Lease {PersonId = 2, ApartmentComplexUnitId = 2, StartDate=DateTime.Now, DurationMonths = 6, RentMonthly = 1300},
-                new Lease {PersonId = 3, ApartmentComplexUnitId = 3, StartDate=DateTime.Now, DurationMonths = 12, RentMonthly = 900},
-                new Lease {PersonId = 4, ApartmentComplexUnitId = 7, StartDate=DateTime.Now, DurationMonths = 6, RentMonthly = 1700},
-                new Lease {PersonId = 5, ApartmentComplexUnitId = 8, StartDate=DateTime.Now, DurationMonths = 12, RentMonthly = 1100},
-                new Lease {PersonId = 6, ApartmentComplexUnitId = 9, StartDate=DateTime.Now, DurationMonths = 6, RentMonthly = 1000}
+                new Lease {PersonId = 1, ApartmentComplexUnitId = 1, StartDate=DateTimeHelper(), DurationMonths = 12, RentMonthly = 1000},
+                new Lease {PersonId = 2, ApartmentComplexUnitId = 2, StartDate=DateTimeHelper(), DurationMonths = 6, RentMonthly = 1300},
+                new Lease {PersonId = 3, ApartmentComplexUnitId = 3, StartDate=DateTimeHelper(), DurationMonths = 12, RentMonthly = 900},
+                new Lease {PersonId = 4, ApartmentComplexUnitId = 7, StartDate=DateTimeHelper(), DurationMonths = 6, RentMonthly = 1700},
+                new Lease {PersonId = 5, ApartmentComplexUnitId = 8, StartDate=DateTimeHelper(), DurationMonths = 12, RentMonthly = 1100},
+                new Lease {PersonId = 6, ApartmentComplexUnitId = 9, StartDate=DateTimeHelper(), DurationMonths = 6, RentMonthly = 1000}
 
             };
             foreach (Lease l in leases)
@@ -88,6 +88,11 @@ namespace CS586MVC.Data
                 context.Leases.Add(l);
             }
             context.SaveChanges();
+        }
+
+        private static long DateTimeHelper()
+        {
+            return (long) (DateTime.Now - Lease.UnixEpoch).TotalMilliseconds;
         }
     }
 }

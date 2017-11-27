@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 using CS586MVC.Data;
 using CS586MVC.Models;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace CS586MVC.Services
@@ -281,6 +282,7 @@ namespace CS586MVC.Services
 
             target.StartDate = lease.StartDate;
             target.DurationMonths = lease.DurationMonths;
+            target.RentMonthly = lease.RentMonthly;
 
             if (lease.ApartmentComplexUnitId != 0 
                 && lease.ApartmentComplexUnitId != target.ApartmentComplexUnitId)
@@ -291,8 +293,8 @@ namespace CS586MVC.Services
             }
             else if (lease.ApartmentComplexUnit != null)
             {
-                // this could throw an error if we are putting in an apartmentcomplexunit that  tdoesn't already exist inhe db
-                target.ApartmentComplexUnit = lease.ApartmentComplexUnit;
+                // this could throw an error if we are putting in an apartmentcomplexunit that doesn't already exist in the db
+                target.ApartmentComplexUnit.UnitNumber = lease.ApartmentComplexUnit.UnitNumber;
             }
 
             await _context.SaveChangesAsync();

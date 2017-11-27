@@ -11,10 +11,21 @@ export class LeasesComponent {
 
     public leases:Lease[];
 
-    constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
+    constructor(private http: Http, @Inject('BASE_URL') private baseUrl: string) {
         http.get(baseUrl + 'propertydata/leases').subscribe(result => {
             this.leases = result.json() as Lease[];
         }, error => console.error(error));
+    }
+    
+    public getPrettyDate(startDate:number)
+    {
+        return new Date(startDate).toDateString();
+    }
+    
+    public deleteLease(id:number)
+    {
+        let url = this.baseUrl + 'propertydate/leases/' + id.toString();
+        this.http.delete(url).subscribe(result => console.log(result), error => console.error(error));
     }
   
 }

@@ -23,12 +23,11 @@
                 <tbody>
                 <tr *ngFor="let lease of leases">
                     <td>
-                        <!--<input [(ngModel)]="vmStartDate"/>-->
-                        {{ vmStartDate }}
+                        <input [(ngModel)]="vmStartDate"/>
                     </td>
-                    <td>{{ vmDuration }} months</td>
-                    <td>${{ vmRent }}</td>
-                    <td>{{ vmUnitNumber }}</td>
+                    <td> <input [(ngModel)]="vmDuration"/> months</td>
+                    <td>$ <input [(ngModel)]="vmRent"/></td>
+                    <td><input [(ngModel)]="vmUnitNumber"/></td>
                     <td>{{ lease.apartmentComplexUnit.apartmentComplex.address }}</td>
                     <td> </td>
                 </tr>

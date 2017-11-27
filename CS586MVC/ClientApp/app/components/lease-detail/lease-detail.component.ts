@@ -86,6 +86,7 @@ export class LeaseDetailComponent implements OnInit, OnDestroy {
     private copytoLease()
     {
         this.leases[0].startDate = Date.parse(this.vmStartDate);
+        this.actualStartDate = this.vmStartDate;
         this.leases[0].durationMonths = this.vmDuration;
         this.leases[0].rentMonthly = this.vmRent;
         this.leases[0].apartmentComplexUnit.unitNumber = this.vmUnitNumber;
