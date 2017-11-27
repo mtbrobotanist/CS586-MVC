@@ -8,15 +8,13 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 using CS586MVC.Data;
 using CS586MVC.Models;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace CS586MVC.Services
 {
     public class PropertyMismanagementDatabaseService : IDatabaseService
     {
         private PropertyMismanagementContext _context;
-        
+
         public PropertyMismanagementDatabaseService(PropertyMismanagementContext context)
         {
             this._context = context;
@@ -25,13 +23,13 @@ namespace CS586MVC.Services
         public async Task<int> InsertApartmentComplex(ApartmentComplex ac)
         {
             var previousEntry = _context.ApartmentComplexes.FirstOrDefaultAsync(
-                    newAc => newAc.Address == ac.Address && newAc.Size == ac.Size);
+                newAc => newAc.Address == ac.Address && newAc.Size == ac.Size);
 
             if (previousEntry != null)
             {
                 return previousEntry.Id;
             }
-            
+
             EntityEntry<ApartmentComplex> entry = _context.ApartmentComplexes.Add(ac);
             await _context.SaveChangesAsync();
             return entry.Entity.Id;
@@ -43,29 +41,30 @@ namespace CS586MVC.Services
             {
                 return await _context.ApartmentComplexes
                     .Include(e => e.ApartmentComplexUnits)
-                        .ThenInclude(e => e.Leases)
+                    .ThenInclude(e => e.Leases)
                     .FirstOrDefaultAsync(e => e.Id == id);
             }
-            
+
             return await _context.ApartmentComplexes.FirstOrDefaultAsync();
         }
-        
+
         public async Task<IEnumerable<ApartmentComplex>> AllApartmentComplexes(bool include = true)
         {
             if (include)
             {
                 return await _context.ApartmentComplexes
                     .Include(e => e.ApartmentComplexUnits)
-                        .ThenInclude(e => e.Leases)
+                    .ThenInclude(e => e.Leases)
                     .ToListAsync();
             }
-                        
+
             return await _context.ApartmentComplexes.ToListAsync();
         }
 
         public async Task UpdateApartmentComplex(int id, ApartmentComplex ac)
         {
             ApartmentComplex target = await _context.ApartmentComplexes.FirstAsync(a => a.Id == id);
+            target.Name = ac.Name;
             target.Address = ac.Address;
             target.Size = ac.Size;
             await _context.SaveChangesAsync();

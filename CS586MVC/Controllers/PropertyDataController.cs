@@ -35,7 +35,7 @@ namespace CS586MVC.Controllers
         [HttpPut]
         public async Task Properties(int id, [FromBody] ApartmentComplex ac)
         {
-            Console.WriteLine($"Updating Existing AptComplex: {ac.Address}, {ac.Size}");
+            Console.WriteLine($"Updating Existing AptComplex: {ac.Name}");
             await _dbService.UpdateApartmentComplex(id, ac);
         }
 

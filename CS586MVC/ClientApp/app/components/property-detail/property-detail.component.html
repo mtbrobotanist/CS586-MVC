@@ -1,3 +1,63 @@
-<p>
-  property-detail works!
-</p>
+<p *ngIf="!complexes"><em>Loading...</em></p>
+<h2>Property Detail - {{complexes[0].name}} </h2>
+<h4 *ngIf="deleted"><b>Deleted</b></h4>
+<div *ngIf="editMode;then editable else readOnly"></div>
+    <ng-template #editable>
+        <table class='table' *ngIf="complexes">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Total Units</th>
+                <th>Occupied Units</th>
+                <th>Available Units</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let complex of complexes">
+                <td><input [(ngModel)]="vmName"/></td>
+                <td><input [(ngModel)]="vmAddress"/></td>
+                <td><input [(ngModel)]="vmTotalUnits"/></td>
+                <td>{{ complex.occupiedCount }}</td>
+                <td>{{ complex.size - complex.occupiedCount }}</td>
+            </tr>
+            </tbody>
+        </table>
+        
+        <div>
+            <button md-raised-button (click)="cancel()">cancel</button>
+            <div class="divider"></div>
+            <button md-raised-button (click)="submit()">submit</button>
+        </div>
+    </ng-template>
+    <ng-template #readOnly>
+
+
+        <table class='table' *ngIf="complexes">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Total Units</th>
+                <th>Occupied Units</th>
+                <th>Available Units</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let complex of complexes">
+                <td>{{ complex.name }}</td>
+                <td>{{ complex.address }}</td>
+                <td>{{ complex.size }}</td>
+                <td>{{ complex.occupiedCount }}</td>
+                <td>{{ complex.size - complex.occupiedCount }}</td>
+            </tr>
+            </tbody>
+        </table>
+        
+        <button *ngIf="!deleted" (click)="toggleEditMode()">
+            edit
+        </button>
+        <button *ngIf="!deleted" (click)="deleteLease()">
+            delete
+        </button>
+    </ng-template>

@@ -15,14 +15,16 @@
         </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let tenant of tenants" style="height:50px;" >
+            <tr *ngFor="let tenant of tenants" style="height:70px;" >
                 <td *ngIf="tenant.current;then ifTrue else other"> </td>
                 <ng-template #ifTrue>
-                    <a [routerLink]="['/lease-detail', tenant.currentLeaseId]">view lease</a> <br/>
+                    <a [routerLink]="['/lease-detail', tenant.currentLeaseId]">view lease</a> 
+                    <div class="divider"></div>
+                    <button (click)="deleteTenant(tenant)">delete</button><br/>
                     <a [routerLink]="['/tenant-detail', tenant.id]">view tenant</a>
                 </ng-template>
                 <ng-template #other>
-                    <a [routerLink]="['/tenant-detail', tenant.id]">view tenant</a>
+                    none
                 </ng-template>
                 <td>{{ tenant.firstName }}</td>
                 <td>{{ tenant.lastName }}</td>

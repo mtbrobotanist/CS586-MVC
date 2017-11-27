@@ -20,8 +20,8 @@ namespace CS586MVC.Data
             //add the apartment complex locations
             var complexes = new ApartmentComplex[]
             {
-                new ApartmentComplex{Address="12345 Fake Street, Somewhere, CA, 91302", Size = 30},
-                new ApartmentComplex{Address="420 Highland Blvd, Somewhere, CA, 91302", Size = 420},
+                new ApartmentComplex{Address="12345 Fake Street, Somewhere, CA, 90210", Size = 30, Name="The Plastic Terrace"},
+                new ApartmentComplex{Address="420 Highland Blvd, Somewhere, CA, 91302", Size = 420, Name="The Smokey Chimney"},
             };
             foreach(ApartmentComplex c in complexes)
             {

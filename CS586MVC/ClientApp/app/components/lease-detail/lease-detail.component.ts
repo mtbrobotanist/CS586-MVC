@@ -56,6 +56,7 @@ export class LeaseDetailComponent implements OnInit, OnDestroy {
     submit()
     {
         this.toggleEditMode();
+        this.copytoLease();
         
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -63,13 +64,11 @@ export class LeaseDetailComponent implements OnInit, OnDestroy {
         
         let url = this.baseUrl + "propertydata/leases/" + this.id.toString();
         
-        this.copytoLease();
-        
         return this.http
             .put(url, JSON.stringify(this.leases[0]), {headers: headers})
             .subscribe(result => {console.log(result);},
                      error => {console.log(error)});
-        }
+    }
     
     cancel()
     {

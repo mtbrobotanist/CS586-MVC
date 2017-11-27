@@ -11,10 +11,19 @@ export class TenantsComponent {
 
     public tenants:Tenant[];
     
-    constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
+    constructor(private http: Http, 
+                @Inject('BASE_URL') private baseUrl: string) {
         http.get(baseUrl + 'propertydata/tenants').subscribe(result => {
             this.tenants = result.json() as Tenant[];
         }, error => console.error(error));
+    }
+    
+    public deleteTenant(tenant:Tenant)
+    {
+        tenant.current = false;
+        
+        let url = this.baseUrl + 'propertydata/tenants/' + tenant.id.toString();
+        this.http.delete(url).subscribe();
     }
 
 }

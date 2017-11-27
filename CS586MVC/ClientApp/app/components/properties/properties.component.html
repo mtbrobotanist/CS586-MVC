@@ -6,6 +6,7 @@
   <thead>
       <tr>
           <th>Actions</th>
+          <th>Name</th>
           <th>Address</th>
           <th>Total Units</th>
           <th>Occupied Units</th>
@@ -14,9 +15,16 @@
   </thead>
   <tbody>
       <tr *ngFor="let complex of complexes">
-          <td>
-              <a [routerLink]="['/property-detail', complex.id]">view property</a>
-          </td>
+          <td *ngIf="!complex.deleted;then ifTrue else other"> </td>
+              <ng-template #ifTrue>
+                  <a [routerLink]="['/property-detail', complex.id]">view property</a>
+                  <div class ="divider"></div>
+                  <button (click)="deleteComplex(complex)">delete</button>
+              </ng-template>
+              <ng-template #other>
+                  none
+              </ng-template>
+          <td>{{ complex.name }}</td>
           <td>{{ complex.address }}</td>
           <td>{{ complex.size }}</td>
           <td>{{ complex.occupiedCount }}</td>

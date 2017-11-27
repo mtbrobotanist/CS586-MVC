@@ -25,6 +25,10 @@ namespace CS586MVC.Data
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
+                entity.Property(e => e.Name).HasColumnName("Name")
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
+                
                 entity.Property(e => e.Address)
                     .HasMaxLength(256)
                     .IsUnicode(false);

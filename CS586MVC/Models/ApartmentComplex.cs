@@ -14,6 +14,7 @@ namespace CS586MVC.Models
         public int Id { get; set; }
         public string Address { get; set; }
         public int Size { get; set; }
+        public string Name { get; set; }
 
         public int VacancyCount => Size - ApartmentComplexUnits.Count(unit => unit.Occupied);
         public int OccupiedCount => Size - VacancyCount;
