@@ -77,7 +77,7 @@ namespace CS586MVC.Services
             ApartmentComplex target = await _context.ApartmentComplexes
                 .Include(e => e.ApartmentComplexUnits)
                     .ThenInclude(e => e.Leases)
-                        .ThenInclude(e => e.Tenant)
+                        .ThenInclude(e => e.Person)
                 .FirstOrDefaultAsync(a => a.Id == id);
 
             if(target == null)
@@ -97,7 +97,7 @@ namespace CS586MVC.Services
             {
                 foreach(Lease lease in unit.Leases)
                 {
-                    _context.Entry(lease.Tenant).State = EntityState.Deleted;
+                    _context.Entry(lease.Person).State = EntityState.Deleted;
                     _context.Entry(lease).State = EntityState.Deleted;
                 }
                 _context.Entry(unit).State = EntityState.Deleted;
@@ -248,7 +248,7 @@ namespace CS586MVC.Services
             if (include)
             {
                 return await _context.Leases
-                    .Include(p => p.Tenant)
+                    .Include(p => p.Person)
                     .Include(a => a.ApartmentComplexUnit)
                         .ThenInclude(a => a.ApartmentComplex)
                     .FirstOrDefaultAsync(e => e.Id == id);
@@ -262,10 +262,10 @@ namespace CS586MVC.Services
             if(include)
             {
                 return await _context.Leases
-                    .Include(p => p.Tenant)
+                    .Include(p => p.Person)
                     .Include(a => a.ApartmentComplexUnit)
                         .ThenInclude(e => e.ApartmentComplex)
-                    .OrderBy(l => l.Tenant.LastName)
+                    .OrderBy(l => l.Person.LastName)
                     .ToListAsync();
             }
             

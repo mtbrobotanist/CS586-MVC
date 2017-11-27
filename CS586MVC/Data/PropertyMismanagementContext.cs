@@ -68,7 +68,6 @@ namespace CS586MVC.Data
 
                 entity.Property(e => e.PersonId).HasColumnName("PersonID");
 
-                //entity.Property(e => e.StartDate).HasColumnType("date");
                 entity.Property(e => e.StartDate).HasColumnName("DateMillis");
 
                 entity.HasOne(d => d.ApartmentComplexUnit)
@@ -78,7 +77,7 @@ namespace CS586MVC.Data
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("Lease_ApartmentComplexUnit_ID_fk");
 
-                entity.HasOne(d => d.Tenant)
+                entity.HasOne(d => d.Person)
                     .WithMany(p => p.Leases)
                     .HasForeignKey(d => d.PersonId)
                     .IsRequired()

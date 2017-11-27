@@ -28,6 +28,8 @@ namespace CS586MVC.Models
         private DateTime __startDateTime => UnixEpoch.AddMilliseconds(StartDate).ToLocalTime();
         
         public ApartmentComplexUnit ApartmentComplexUnit { get; set; }
-        public Person Tenant { get; set; }
+
+        [JsonProperty("tenant")]
+        public Person Person { get; set; }
     }
 }

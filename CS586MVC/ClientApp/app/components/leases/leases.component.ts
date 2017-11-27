@@ -24,8 +24,9 @@ export class LeasesComponent {
     
     public deleteLease(id:number)
     {
-        let url = this.baseUrl + 'propertydate/leases/' + id.toString();
-        this.http.delete(url).subscribe(result => console.log(result), error => console.error(error));
+        alert(id);
+        let url = this.baseUrl + 'propertydata/leases/' + id.toString();
+        this.http.delete(url).subscribe();
     }
   
 }

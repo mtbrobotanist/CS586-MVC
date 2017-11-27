@@ -5,7 +5,7 @@
 <table class='table' *ngIf="leases">
     <thead>
         <tr>
-            <th>Detail</th>
+            <th>Actions</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>StartDate</th>
@@ -19,7 +19,8 @@
             <td *ngIf="lease.tenant.current;then ifTrue else other"> </td>
                 <ng-template #ifTrue>
                     <a [routerLink]="['/lease-detail', lease.tenant.currentLeaseId]">view lease</a>
-                    <!--<a onclick="deleteLease(lease.id)">delete</a>-->
+                    <div class="divider"></div>
+                    <button (click)="deleteLease(lease.id)">delete</button>
                 </ng-template>
                 <ng-template #other>
                 </ng-template>
