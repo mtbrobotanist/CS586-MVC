@@ -39,6 +39,7 @@ import { TenantDetailComponent } from './components/tenant-detail/tenant-detail.
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'properties', component: PropertiesComponent },
             { path: 'tenants', component: TenantsComponent },
+            { path: 'tenant-detail/:id', component: TenantDetailComponent},
             { path: 'leases', component: LeasesComponent },
             { path: 'lease-detail/:id', component: LeaseDetailComponent },
             { path: '**', redirectTo: 'home' }

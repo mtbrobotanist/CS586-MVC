@@ -3,6 +3,7 @@ import {ActivatedRoute, Params} from '@angular/router';
 import { Http, Headers } from "@angular/http";
 import { Tenant } from "../tenants/tenants.component.interfaces";
 import {getUrlScheme} from "@angular/compiler";
+import Result = jasmine.Result;
 
 @Component({
   selector: 'app-tenant-detail',
@@ -78,12 +79,21 @@ export class TenantDetailComponent implements OnInit, OnDestroy {
 
     
     public cancel() {
-        alert("canceled");
+        this.toggleEditMode();
         this.copyToViewModel();
     }
     
     public submit() {
-      alert("submitted");
-      this.copyToTenant();
+        this.toggleEditMode();
+        this.copyToTenant();
+        
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Date', Date.now().toString());
+        
+        this.http
+          .put(this.getUrl(), JSON.stringify(this.tenants[0]), {headers:headers})
+          .subscribe(result => console.log(result),
+              error => console.error(error));
     }
 }

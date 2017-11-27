@@ -13,6 +13,7 @@
             <table class='table' *ngIf="leases">
                 <thead>
                 <tr>
+                    <th>Actions</th>
                     <th>Start Date</th>
                     <th>Duration</th>
                     <th>Rent</th>
@@ -22,9 +23,14 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let lease of leases">
-                    <td>
-                        <input [(ngModel)]="vmStartDate"/>
-                    </td>
+                    <td *ngIf="lease.tenant.current;then ifTrue else other"> </td>
+                    <ng-template #ifTrue>
+                        <a [routerLink]="['/tenant-detail', lease.tenant.id]">view tenant</a>
+                    </ng-template>
+                    <ng-template #other>
+                        none
+                    </ng-template>
+                    <td><input [(ngModel)]="vmStartDate"/></td>
                     <td> <input [(ngModel)]="vmDuration"/> months</td>
                     <td>$ <input [(ngModel)]="vmRent"/></td>
                     <td><input [(ngModel)]="vmUnitNumber"/></td>
@@ -45,6 +51,7 @@
             <table class='table' *ngIf="leases">
                 <thead>
                 <tr>
+                    <th>Actions</th>
                     <th>Start Date</th>
                     <th>Duration</th>
                     <th>Rent</th>
@@ -54,6 +61,13 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let lease of leases">
+                    <td *ngIf="lease.tenant.current;then ifTrue else other"> </td>
+                    <ng-template #ifTrue>
+                        <a [routerLink]="['/tenant-detail', lease.tenant.id]">view tenant</a>
+                    </ng-template>
+                    <ng-template #other>
+                        none
+                    </ng-template>
                     <td>{{ actualStartDate }}</td>
                     <td>{{ lease.durationMonths }} months</td>
                     <td>${{ lease.rentMonthly }}</td>
