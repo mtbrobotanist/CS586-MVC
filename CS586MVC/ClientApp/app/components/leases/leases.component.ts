@@ -22,28 +22,11 @@ export class LeasesComponent {
         return new Date(startDate).toDateString();
     }
     
-    public deleteLease(id:number)
+    public deleteLease(lease:Lease)
     {
-        let url = this.baseUrl + 'propertydata/leases/' + id.toString();
+        lease.tenant.current = false;
+        let url = this.baseUrl + 'propertydata/leases/' + lease.id.toString();
         this.http.delete(url).subscribe();
-        let deletedLease = this.getLease(id);
-        
-        if (deletedLease != null)
-        {
-            deletedLease.tenant.current = false;
-        }
-    }
-    
-    private getLease(id:number)
-    {
-        for (var i = 0; i < this.leases.length; ++i)
-        {
-            if (this.leases[i].id === id)
-            {
-                return this.leases[i];
-            }
-            return null;
-        }
     }
   
 }
