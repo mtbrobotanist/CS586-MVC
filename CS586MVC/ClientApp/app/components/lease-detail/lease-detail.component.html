@@ -5,11 +5,11 @@
         
         <p *ngIf="!leases"><em>Loading...</em></p>
         
+        <h2>Lease Detail - {{leases[0].tenant.firstName}} {{ leases[0].tenant.lastName }}</h2>
+        <h4 *ngIf="deleted"><b>Deleted</b></h4>
+        
         <div *ngIf="editMode;then editable else readOnly"></div>
         <ng-template #editable>
-            <h2>Lease Detail - {{leases[0].tenant.firstName}} {{ leases[0].tenant.lastName }}</h2>
-            <h4>Click on any field to change its value</h4>
-            
             <table class='table' *ngIf="leases">
                 <thead>
                 <tr>
@@ -35,13 +35,12 @@
             </table>
             
             <div>
-                <button md-raised-button (click)="cancel()">Cancel</button>
+                <button md-raised-button (click)="cancel()">cancel</button>
                 <div class="divider"></div>
-                <button md-raised-button (click)="submit()">Submit</button>
+                <button md-raised-button (click)="submit()">submit</button>
             </div>
         </ng-template>
         <ng-template #readOnly>
-            <h2>Lease Detail - {{leases[0].tenant.firstName}} {{ leases[0].tenant.lastName }}</h2>
         
             <table class='table' *ngIf="leases">
                 <thead>
@@ -65,9 +64,13 @@
                 </tbody>
             </table>
         
-            <button (click)="toggleEditMode()">
-                Edit
+            <button *ngIf="!deleted" (click)="toggleEditMode()">
+                edit
             </button>
+            <button *ngIf="!deleted" (click)="deleteLease()">
+                delete
+            </button>
+
         </ng-template>
     </body>
 </html>

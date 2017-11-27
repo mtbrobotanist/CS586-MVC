@@ -24,9 +24,26 @@ export class LeasesComponent {
     
     public deleteLease(id:number)
     {
-        alert(id);
         let url = this.baseUrl + 'propertydata/leases/' + id.toString();
         this.http.delete(url).subscribe();
+        let deletedLease = this.getLease(id);
+        
+        if (deletedLease != null)
+        {
+            deletedLease.tenant.current = false;
+        }
+    }
+    
+    private getLease(id:number)
+    {
+        for (var i = 0; i < this.leases.length; ++i)
+        {
+            if (this.leases[i].id === id)
+            {
+                return this.leases[i];
+            }
+            return null;
+        }
     }
   
 }

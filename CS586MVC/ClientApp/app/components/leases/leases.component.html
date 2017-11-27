@@ -18,11 +18,12 @@
         <tr *ngFor="let lease of leases">
             <td *ngIf="lease.tenant.current;then ifTrue else other"> </td>
                 <ng-template #ifTrue>
-                    <a [routerLink]="['/lease-detail', lease.tenant.currentLeaseId]">view lease</a>
-                    <div class="divider"></div>
-                    <button (click)="deleteLease(lease.id)">delete</button>
+                <a [routerLink]="['/lease-detail', lease.tenant.currentLeaseId]">view lease</a>
+                <div class="divider"></div>
+                <button (click)="deleteLease(lease.id)">delete</button>
                 </ng-template>
                 <ng-template #other>
+                    deleted
                 </ng-template>
             <td>{{ lease.tenant.firstName }}</td>
             <td>{{ lease.tenant.lastName }}</td>

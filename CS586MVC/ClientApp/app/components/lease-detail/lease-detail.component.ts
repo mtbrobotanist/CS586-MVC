@@ -14,6 +14,7 @@ export class LeaseDetailComponent implements OnInit, OnDestroy {
     private sub: any;
     private id:number;
     private editMode:boolean = false;
+    private deleted:boolean = false;
     
     private actualStartDate:string;
     
@@ -90,6 +91,13 @@ export class LeaseDetailComponent implements OnInit, OnDestroy {
         this.leases[0].durationMonths = this.vmDuration;
         this.leases[0].rentMonthly = this.vmRent;
         this.leases[0].apartmentComplexUnit.unitNumber = this.vmUnitNumber;
+    }
+    
+    public deleteLease()
+    {
+        let url = this.baseUrl + 'propertydata/leases/' + this.id.toString();
+        this.http.delete(url).subscribe();
+        this.deleted = true;
     }
 }
 
