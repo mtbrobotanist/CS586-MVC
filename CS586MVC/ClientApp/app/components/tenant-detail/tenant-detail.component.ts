@@ -2,8 +2,6 @@ import {Component, OnInit, OnDestroy, Inject} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import { Http, Headers } from "@angular/http";
 import { Tenant } from "../tenants/tenants.component.interfaces";
-import {getUrlScheme} from "@angular/compiler";
-import Result = jasmine.Result;
 
 @Component({
   selector: 'app-tenant-detail',
