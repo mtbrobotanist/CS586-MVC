@@ -1,5 +1,5 @@
 {
-  "name": "CS586MVC",
+  "name": "cs586mvc",
   "version": "0.0.0",
   "dependencies": {
     "@angular-devkit/build-optimizer": {
@@ -377,9 +377,8 @@
     },
     "@types/jasmine": {
       "version": "2.5.53",
-      "from": "@types/jasmine@https://registry.npmjs.org/@types/jasmine/-/jasmine-2.5.53.tgz",
-      "resolved": "https://registry.npmjs.org/@types/jasmine/-/jasmine-2.5.53.tgz",
-      "dev": true
+      "from": "https://registry.npmjs.org/@types/jasmine/-/jasmine-2.5.53.tgz",
+      "resolved": "https://registry.npmjs.org/@types/jasmine/-/jasmine-2.5.53.tgz"
     },
     "@types/webpack-env": {
       "version": "1.13.0",
