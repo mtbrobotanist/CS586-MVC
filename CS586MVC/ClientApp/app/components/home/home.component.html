@@ -1,16 +1,85 @@
-<h1>Hello, world!</h1>
-<p>Welcome to your new single-page application, built with:</p>
+<h1>Property Mismanagement</h1>
+<h3>There's no better way to get your tenants to hate you</h3>
+
+<br/>
+
+<h2>README.md</h2>
+
+<h4>Welcome to Nate Wilson's MVC project for COMP586, Object Oriented Design.</h4>
+
+<br/>
+
+<h4>The Purpose</h4>
+<p>
+    To simulate a Property management system. Thanks to Karen Wilson for the idea.
+</p>
+<p>
+    There are Tenants, Properties, and Leases. I started out with more but it got really complicated and I'm just a student with other classes. <br/>
+    You can view all Properties, Tenants, or Leases by clicking the links to the left. <br/> 
+    Once there you can view details for an individual component by clicking on "view". <br/>
+    In the Details view for an individual Property, Lease, or Tenant, you can update their respective fields by clicking "edit" or just delete the entry. Whatever.
+</p>
+<p>
+    The REST operations for CRUD can be found inside of <b>PropertyDataController.cs</b> inside of the "Controllers" folder.
+</p>
+<p>
+    The front end consists of the following Angular components: tenants, tenant-detail, properties, property-detail, leases, lease-detail. <br/> 
+    These implement the Read, Update, and Delete operations.
+</p>
+
+<br/>
+
+<h4>Database Tables</h4>
 <ul>
-    <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-    <li><a href='https://angular.io/'>Angular</a> and <a href='http://www.typescriptlang.org/'>TypeScript</a> for client-side code</li>
-    <li><a href='https://webpack.github.io/'>Webpack</a> for building and bundling client-side resources</li>
-    <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
+    <li><strong>ApartmentComplex</strong>: represents an Apartment Complex</li>
+    <li><strong>ApartmentComplexUnit</strong>: represents an Apartment Complex Unit. Has a foreign key to ApartmentComplex.</li>
+    <li><strong>Person</strong>: represents a person. This is not the same as a tenant. A person is not a tenant until a Lease entry is created that references them.</li>
+    <li><strong>Lease</strong>: a person becomes a Tenant when they have a lease created and put into the Lease table. The Lease table has a foreign key to the Person table and to the ApartmentComplexUnit table</li>
 </ul>
-<p>To help you get started, we've also set up:</p>
+<p>See PropertyMismagementContext.cs</p>
+
+<br/>
+<br/>
+
+<h3>Checklist</h3>
+<h4><strong>Done</strong></h4>
 <ul>
-    <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-    <li><strong>Server-side prerendering</strong>. For faster initial loading and improved SEO, your Angular app is prerendered on the server. The resulting HTML is then transferred to the browser where a client-side copy of the app takes over.</li>
-    <li><strong>Webpack dev middleware</strong>. In development mode, there's no need to run the <code>webpack</code> build tool. Your client-side resources are dynamically built on demand. Updates are available as soon as you modify any file.</li>
-    <li><strong>Hot module replacement</strong>. In development mode, you don't even need to reload the page after making most changes. Within seconds of saving changes to files, your Angular app will be rebuilt and a new instance injected is into the page.</li>
-    <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and the <code>webpack</code> build tool produces minified static CSS and JavaScript files.</li>
+    <li><strong>SPA</strong>. Angular 4 front end made this "kind of" easy. I say "kind of" because I had a lot of inexplicable errors that only a fresh repository clone would solve.</li>
+    <li><strong>ORM</strong>. ASP.NetCore 2 back end with EFCore2 made database implementation pretty easy. See Data.PropertyManagementContext.cs and Data.DBInitializer.cs</li>
+    <li><strong>Dependency Injection:</strong>
+        <ul>
+            <li>Startup.ConfigureServices() makes dependency injection insanely simple.</li>
+            <li>On the front end, Angular4 DI is even easier. All I did was create some component constructors with parameters. It's magic and I don't understand it.</li>
+            <li>Anyway back to ASP.NET DI. <strong>Startup.ConfigureServices():</strong>
+                <ul>
+                    <li>Specifies MVC serialization options.</li>
+                    <li>Instantiates <b>PropertyMismanagementContext</b> for injection into <b>IDatabaseService</b></li>
+                    <li>Instantiates <b>PropertyMismanagementDataBaseService</b>, which implements <b>IDatabaseService</b> interface via AddTransient().</li>
+                    <li>PropertyDataController in turn requires IDatabase service as a depency. ASP.NET took care of intantiation and injection.</li>
+                </ul>
+            </li>
+            <li><strong>RUD</strong>: that is, CRUD without the C. Read, Update and Delete all work.</li>
+        </ul>
+    </li>
 </ul>
+
+<br/>
+
+<h4><strong>Todo</strong> (in priority order)</h4>
+<ul>
+    <li><strong>C</strong>: that is, CRUD without the RUD. Creating database entries has not been implementd on the front end, but the backend supports it (theoretically). Thanks Postman.</li>
+    <li><strong>Authentication</strong> There is none. I plan on having this done by the end of the semester. </li>
+    <li><strong>Return the standard web codes:</strong>
+        <ul>
+            <li>All of PropertyDataController's functions are just "void" or "async Task<>". </li>
+            <li>Also Database errors just barf all over console output. Luckily this doesn't really affect the webpage. Still totally uncool.</li>
+        </ul>
+    </li>
+    <li><strong>Add a paragraph talking about SOLID principles?</strong></li>
+</ul>
+
+<br/>
+
+<h4>Disclaimer</h4>
+<p>This app doesn't look good. In fact it looks like it's from the 90's. I have very little web experience, and even less Angular experience.</p>
+<br/>
