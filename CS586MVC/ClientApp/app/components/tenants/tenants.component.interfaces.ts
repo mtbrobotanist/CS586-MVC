@@ -1,4 +1,4 @@
-﻿export interface Tenant
+﻿export class Tenant
 {
     id:number;
     firstName:string;
