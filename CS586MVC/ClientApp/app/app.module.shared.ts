@@ -14,6 +14,8 @@ import { LeaseDetailComponent } from './components/lease-detail/lease-detail.com
 import { TenantDetailComponent } from './components/tenant-detail/tenant-detail.component';
 import { PropertyDetailComponent } from './components/property-detail/property-detail.component';
 import { TenantCreateComponent } from './components/tenant-create/tenant-create.component';
+import { PropertyCreateComponent } from './components/property-create/property-create.component';
+import { LeaseCreateComponent } from './components/lease-create/lease-create.component';
 
 @NgModule({
     declarations: [
@@ -25,8 +27,10 @@ import { TenantCreateComponent } from './components/tenant-create/tenant-create.
         LeasesComponent,
         LeaseDetailComponent,
         TenantDetailComponent,
-        PropertyDetailComponent
+        PropertyDetailComponent,
         TenantCreateComponent,
+        PropertyCreateComponent,
+        LeaseCreateComponent
     ],
     imports: [
         CommonModule,
@@ -37,10 +41,12 @@ import { TenantCreateComponent } from './components/tenant-create/tenant-create.
             { path: 'home', component: HomeComponent },
             { path: 'properties', component: PropertiesComponent },
             { path: 'property-detail/:id', component: PropertyDetailComponent },
+            { path: 'property-create', component: PropertyCreateComponent },
             { path: 'tenants', component: TenantsComponent },
-            { path: 'tenant-detail/:id', component: TenantDetailComponent},
             { path: 'tenant-create', component: TenantCreateComponent },
+            { path: 'tenant-detail/:id', component: TenantDetailComponent },
             { path: 'leases', component: LeasesComponent },
+            { path: 'lease-create', component: LeaseCreateComponent },
             { path: 'lease-detail/:id', component: LeaseDetailComponent },
             { path: '**', redirectTo: 'home' }
         ])
