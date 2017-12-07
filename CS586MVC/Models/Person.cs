@@ -27,7 +27,7 @@ namespace CS586MVC.Models
         {           
             if (obj is Person other)
             {
-                if (other.Id != 0)
+                if (Id != 0 && other.Id != 0)
                 {
                     return Id == other.Id;
                 }

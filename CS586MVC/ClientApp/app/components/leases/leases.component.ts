@@ -24,7 +24,8 @@ export class LeasesComponent {
     
     public deleteLease(lease:Lease)
     {
-        lease.tenant.current = false;
+        //lease.tenant.current = false;
+        lease.deleted = true;
         let url = this.baseUrl + 'propertydata/leases/' + lease.id.toString();
         this.http.delete(url).subscribe();
     }

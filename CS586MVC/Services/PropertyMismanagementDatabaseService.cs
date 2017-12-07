@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-
+using System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -20,18 +20,18 @@ namespace CS586MVC.Services
             this._context = context;
         }
 
-        public async Task<int> InsertApartmentComplex(ApartmentComplex ac)
+        public async Task<ApartmentComplex> InsertApartmentComplex(ApartmentComplex ac)
         {
             var previousEntry = await _context.ApartmentComplexes.FirstOrDefaultAsync(a => a.Equals(ac));
 
             if (previousEntry != null)
             {
-                return previousEntry.Id;
+                return previousEntry;
             }
 
             EntityEntry<ApartmentComplex> entry = _context.ApartmentComplexes.Add(ac);
             await _context.SaveChangesAsync();
-            return entry.Entity.Id;
+            return entry.Entity;
         }
 
         public async Task<ApartmentComplex> ApartmentComplex(int id, bool include = true)
@@ -105,7 +105,7 @@ namespace CS586MVC.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task InsertApartmentComplexUnit(ApartmentComplexUnit acu)
+        public async Task<ApartmentComplexUnit> InsertApartmentComplexUnit(ApartmentComplexUnit acu)
         {
             bool complex = acu.ApartmentComplex != null;
             bool complexId = acu.ApartmentComplexId.HasValue;
@@ -115,14 +115,25 @@ namespace CS586MVC.Services
                 throw new Exception("an AptComplexUnit object needs an associated AptComplex object!");
             }
 
-            if(complex)
+            if(complex && !complexId)
             {
-                int id = await InsertApartmentComplex(acu.ApartmentComplex);
-                acu.ApartmentComplexId = id;
+                var newComplex = await InsertApartmentComplex(acu.ApartmentComplex);
+                _context.Entry(newComplex).State = EntityState.Modified;
+                acu.ApartmentComplexId = newComplex.Id;
+                acu.ApartmentComplex = null;
             }
-            
-            _context.ApartmentComplexUnits.Add(acu);
+
+            var previousEntry = await _context.ApartmentComplexUnits.FirstOrDefaultAsync(u => u.Equals(acu));
+
+            if (previousEntry != null)
+            {
+                return previousEntry;
+            }
+
+            EntityEntry<ApartmentComplexUnit> entry = _context.ApartmentComplexUnits.Add(acu);
             await _context.SaveChangesAsync();
+
+            return entry.Entity;
         }
         
         public async Task <ApartmentComplexUnit> ApartmentComplexUnit(int id, bool include = true)
@@ -172,19 +183,19 @@ namespace CS586MVC.Services
             await _context.SaveChangesAsync();
         }
     
-        public async Task<int> InsertPerson(Person p)
+        public async Task<Person> InsertPerson(Person p)
         {
             Person previous = await _context.People.FirstOrDefaultAsync(person => person.Equals(p));
 
             if (previous != null)
             {
-                return previous.Id;
+                return previous;
             }
             
             EntityEntry<Person> entry = _context.People.Add(p);
             await _context.SaveChangesAsync();
 
-            return entry.Entity.Id;
+            return entry.Entity;
         }
 
         public async Task<Person> Person(int id, bool include = true)
@@ -235,10 +246,20 @@ namespace CS586MVC.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task InsertLease(Lease l)
+        public async Task<Lease> InsertLease(Lease l)
         {
-            _context.Leases.Add(l);
+            var unit = await InsertApartmentComplexUnit(l.ApartmentComplexUnit);
+            l.ApartmentComplexUnitId = unit.Id;
+            l.ApartmentComplexUnit = null;
+
+            var person = await InsertPerson(l.Person);
+            l.PersonId = person.Id;
+            l.Person = null;
+            
+            EntityEntry<Lease> entry = _context.Leases.Add(l);
             await _context.SaveChangesAsync();
+            
+            return entry.Entity;
         }
         
         public async Task<Lease> Lease(int id, bool include = true)
@@ -291,7 +312,8 @@ namespace CS586MVC.Services
             }
             else if (lease.ApartmentComplexUnit != null)
             {
-                // this could throw an error if we are putting in an apartmentcomplexunit that doesn't already exist in the db
+                // this could throw an error if we are putting in 
+                // an apartmentcomplexunit that doesn't already exist in the db
                 target.ApartmentComplexUnit.UnitNumber = lease.ApartmentComplexUnit.UnitNumber;
             }
 

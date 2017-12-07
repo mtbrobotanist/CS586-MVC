@@ -29,16 +29,12 @@ namespace CS586MVC.Models
         {
             if (obj is ApartmentComplexUnit other)
             {
-                if (other.Id != 0)
+                if (Id != 0 && other.Id != 0)
                 {
                     return Id == other.Id;
                 }
 
-                bool aptComplexIdSame = ApartmentComplexId.HasValue
-                                        && other.ApartmentComplexId.HasValue
-                                        && ApartmentComplexId.Value == other.ApartmentComplexId.Value;
-                
-                return aptComplexIdSame 
+                return ApartmentComplex.Equals(other.ApartmentComplex)
                        && BedRooms == other.BedRooms
                        && BathRooms == other.BathRooms
                        && Area == other.Area

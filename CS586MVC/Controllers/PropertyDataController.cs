@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using CS586MVC.Models;
 using CS586MVC.Services;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace CS586MVC.Controllers
 {
@@ -18,11 +19,13 @@ namespace CS586MVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ApartmentComplex>> Properties(int? id)
+        public async Task<IEnumerable<ApartmentComplex>> Properties(int? id, bool? include)
         {
+            bool includeReferences = include.HasValue ? include.Value : true;
+
             return id.HasValue
-                ? new List<ApartmentComplex> {await _dbService.ApartmentComplex((int) id)}
-                : await _dbService.AllApartmentComplexes();
+                ? new List<ApartmentComplex> {await _dbService.ApartmentComplex((int) id, includeReferences)}
+                : await _dbService.AllApartmentComplexes(includeReferences);
         }
 
         [HttpPost]
@@ -31,7 +34,7 @@ namespace CS586MVC.Controllers
             Console.WriteLine($"Received new AptComplex:{ac.Address}, {ac.Size}");
             await _dbService.InsertApartmentComplex(ac);
         }
-        
+
         [HttpPut]
         public async Task Properties(int id, [FromBody] ApartmentComplex ac)
         {
@@ -49,11 +52,11 @@ namespace CS586MVC.Controllers
         [HttpGet]
         public async Task<IEnumerable<ApartmentComplexUnit>> PropertyUnits(int? id)
         {
-            return id.HasValue ?
-                new List<ApartmentComplexUnit> { await _dbService.ApartmentComplexUnit((int)id) } :
-                await _dbService.AllApartmentComplexUnits();
+            return id.HasValue
+                ? new List<ApartmentComplexUnit> {await _dbService.ApartmentComplexUnit((int) id)}
+                : await _dbService.AllApartmentComplexUnits();
         }
-        
+
         [HttpPost]
         public async Task PropertyUnits([FromBody] ApartmentComplexUnit acu)
         {
@@ -66,7 +69,7 @@ namespace CS586MVC.Controllers
         {
             await _dbService.UpdateApartmentComplexUnit(id, acu);
         }
-        
+
         [HttpDelete]
         public async Task PropertyUnits(int id)
         {
@@ -74,22 +77,24 @@ namespace CS586MVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Person>> Tenants(int? id)
+        public async Task<IEnumerable<Person>> Tenants(int? id, bool? include)
         {
-            return id.HasValue ? 
-                new List<Person> { await _dbService.Person((int)id) } : 
-                await _dbService.AllPersons();
+            bool includeReferences = include.HasValue ? include.Value : true;
+
+            return id.HasValue
+                ? new List<Person> {await _dbService.Person((int) id, includeReferences)}
+                : await _dbService.AllPersons(includeReferences);
         }
-        
+
         [HttpPost]
-        public async Task Tenants([FromBody]Person p)
+        public async Task Tenants([FromBody] Person p)
         {
             Console.WriteLine($"Received new Person: {p.FirstName} {p.LastName}");
             await _dbService.InsertPerson(p);
         }
-        
+
         [HttpPut]
-        public async Task Tenants(int id, [FromBody]Person p)
+        public async Task Tenants(int id, [FromBody] Person p)
         {
             Console.WriteLine($"Updating existing person with id:{id}");
             await _dbService.UpdatePerson(id, p);
@@ -104,13 +109,11 @@ namespace CS586MVC.Controllers
         [HttpGet]
         public async Task<IEnumerable<Lease>> Leases(int? id)
         {
-            return id.HasValue ? 
-                new List<Lease> { await _dbService.Lease((int) id) } : 
-                await _dbService.AllLeases();
+            return id.HasValue ? new List<Lease> {await _dbService.Lease((int) id)} : await _dbService.AllLeases();
         }
-        
+
         [HttpPost]
-        public async Task Leases(Lease l)
+        public async Task Leases([FromBody] Lease l)
         {
             Console.WriteLine($"Received new Lease: {l}");
             await _dbService.InsertLease(l);

@@ -1,7 +1,7 @@
 ﻿import { Tenant } from "../tenants/tenants.component.interfaces";
 import {ApartmentComplex} from "../properties/properties.component.interfaces";
 
-export interface Lease {
+export class Lease {
     id:number;
     tenantId:number;
     apartmentComplexUnitId:number;
@@ -11,9 +11,10 @@ export interface Lease {
     active:boolean;
     apartmentComplexUnit:ApartmentComplexUnit;
     tenant:Tenant;
+    deleted:boolean = false;
 }
 
-export interface ApartmentComplexUnit
+export class ApartmentComplexUnit
 {
     id:number;
     bedRooms:number;

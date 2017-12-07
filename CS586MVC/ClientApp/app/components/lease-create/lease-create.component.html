@@ -1,1 +1,60 @@
-<p>Lease create works</p>
+<p *ngIf="!complexes && !tenants"><em>Loading...</em></p>
+
+<h2>Create a new Lease</h2>
+
+<table class='table' *ngIf="complexes && tenants">
+    <thead>
+        <tr>
+            <th>Start Date (mm/dd/yyyy)</th>
+            <th>Duration</th>
+            <th>Rent</th>
+            <th>Unit #</th>
+            <th>Property</th>
+            <th>Tenant</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input [(ngModel)]="vmStartDate"/></td>
+            <td> <input [(ngModel)]="vmDuration"/> months</td>
+            <td>$ <input [(ngModel)]="vmRent"/></td>
+            <td><input [(ngModel)]="vmUnitNumber"/></td>
+            <td>
+                <select [(ngModel)]="vmComplex">
+                    <option *ngFor="let c of complexes" [ngValue]="c">{{c.name}}</option>
+                </select>
+            </td>
+            <td>
+                <select [(ngModel)]="vmTenant">
+                    <option *ngFor="let t of tenants" [ngValue]="t">{{t.firstName + ' ' + t.lastName}}</option>
+                </select>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h4>Provide details about the apartment unit:</h4>
+<table>
+    <thead>
+        <tr>
+            <th>Bedrooms</th>
+            <th>Bathrooms</th>
+            <th>Square Footage</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input [(ngModel)]="vmComplexUnit.bedrooms"/></td>
+            <td><input [(ngModel)]="vmComplexUnit.bathrooms"/></td>
+            <td><input [(ngModel)]="vmComplexUnit.area"/></td>
+        </tr>
+    </tbody>
+</table>
+
+<br/>
+
+<div>
+    <button md-raised-button (click)="cancel()">cancel</button>
+    <div class="divider"></div>
+    <button md-raised-button (click)="submit()">submit</button>
+</div>

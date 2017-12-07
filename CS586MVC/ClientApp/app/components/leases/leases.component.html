@@ -2,6 +2,10 @@
 
 <h2>Mismanaged Leases</h2>
 
+<div *ngIf="leases">
+    <a [routerLink]="['/lease-create']">add lease</a>
+</div>
+
 <table class='table' *ngIf="leases">
     <thead>
         <tr>
@@ -16,9 +20,9 @@
     </thead>
     <tbody>
         <tr *ngFor="let lease of leases" style="height: 70px;">
-            <td *ngIf="lease.tenant.current;then ifTrue else other"> </td>
+            <td *ngIf="!lease.deleted;then ifTrue else other"> </td>
                 <ng-template #ifTrue>
-                <a [routerLink]="['/lease-detail', lease.tenant.currentLeaseId]">view lease</a>
+                <a [routerLink]="['/lease-detail', lease.id]">view lease</a>
                 <div class="divider"></div>
                 <button (click)="deleteLease(lease)">delete</button> <br/>
                     <a [routerLink]="['/tenant-detail', lease.tenant.id]">view tenant</a>

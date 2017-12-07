@@ -1,6 +1,8 @@
 <h2>Mismanaged Tenants</h2>
-
 <p *ngIf="!tenants"><em>Loading...</em></p>
+<div *ngIf="tenants">
+    <a [routerLink]="['/tenant-create']">add tenant</a>
+</div>
 
 <table class='table' *ngIf="tenants">
     <thead>
@@ -11,7 +13,6 @@
             <th>Phone Number</th>
             <th>Email</th>
             <th>Is Current</th>
-            
         </tr>
         </thead>
         <tbody>

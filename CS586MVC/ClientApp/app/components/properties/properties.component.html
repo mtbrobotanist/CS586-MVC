@@ -1,5 +1,9 @@
 <h2>Mismanaged Properties</h2>
 
+<div *ngIf="complexes">
+    <a [routerLink]="['/property-create']">add property</a>
+</div>
+
 <p *ngIf="!complexes"><em>Loading...</em></p>
 
 <table class='table' *ngIf="complexes">
