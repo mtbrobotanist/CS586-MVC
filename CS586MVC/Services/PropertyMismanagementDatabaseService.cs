@@ -22,8 +22,7 @@ namespace CS586MVC.Services
 
         public async Task<int> InsertApartmentComplex(ApartmentComplex ac)
         {
-            var previousEntry = _context.ApartmentComplexes.FirstOrDefaultAsync(
-                newAc => newAc.Address == ac.Address && newAc.Size == ac.Size);
+            var previousEntry = await _context.ApartmentComplexes.FirstOrDefaultAsync(a => a.Equals(ac));
 
             if (previousEntry != null)
             {

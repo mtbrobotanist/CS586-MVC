@@ -28,8 +28,13 @@ namespace CS586MVC.Models
         {
             if (obj is ApartmentComplex other)
             {
-                return Id == other.Id
-                    && Address == other.Address 
+                if (Id != 0 && other.Id != 0)
+                {
+                    return Id == other.Id;
+                }
+                
+                return Name.Equals(other.Name)
+                    && Address.Equals(other.Address) 
                     && Size == other.Size;
             }
 

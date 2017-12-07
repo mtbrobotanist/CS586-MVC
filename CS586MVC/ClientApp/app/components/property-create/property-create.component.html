@@ -1,3 +1,23 @@
-<p>
-  property-create works!
-</p>
+<h2>Create a new Property </h2>
+<table class='table'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Total Units</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><input [(ngModel)]="vmName"/></td>
+        <td><input [(ngModel)]="vmAddress"/></td>
+        <td><input [(ngModel)]="vmTotalUnits"/></td>
+      </tr>
+    </tbody>
+</table>
+
+<div>
+  <button md-raised-button (click)="cancel()">cancel</button>
+  <div class="divider"></div>
+  <button md-raised-button (click)="submit()">create</button>
+</div>

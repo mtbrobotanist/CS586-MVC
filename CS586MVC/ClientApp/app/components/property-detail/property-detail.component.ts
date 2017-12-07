@@ -2,6 +2,7 @@ import {Component, OnInit, OnDestroy, Inject} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Http, Headers } from "@angular/http";
 import {ApartmentComplex} from "../properties/properties.component.interfaces";
+
 @Component({
   selector: 'app-property-detail',
   templateUrl: './property-detail.component.html',

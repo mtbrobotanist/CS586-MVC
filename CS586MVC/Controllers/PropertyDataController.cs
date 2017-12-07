@@ -11,22 +11,22 @@ namespace CS586MVC.Controllers
     public partial class PropertyDataController : Controller
     {
         private IDatabaseService _dbService;
-        
+
         public PropertyDataController(IDatabaseService databaseService)
         {
             this._dbService = databaseService;
         }
-        
+
         [HttpGet]
         public async Task<IEnumerable<ApartmentComplex>> Properties(int? id)
         {
-            return id.HasValue ?
-                new List<ApartmentComplex> { await _dbService.ApartmentComplex((int)id) } :
-                await _dbService.AllApartmentComplexes();
+            return id.HasValue
+                ? new List<ApartmentComplex> {await _dbService.ApartmentComplex((int) id)}
+                : await _dbService.AllApartmentComplexes();
         }
-        
+
         [HttpPost]
-        public async Task Properties(ApartmentComplex ac)
+        public async Task Properties([FromBody] ApartmentComplex ac)
         {
             Console.WriteLine($"Received new AptComplex:{ac.Address}, {ac.Size}");
             await _dbService.InsertApartmentComplex(ac);
