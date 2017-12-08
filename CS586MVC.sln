@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.0.0
-MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS586MVC", "CS586MVC/CS586MVC.csproj", "{89697482-D8F1-448F-8754-FEFABC4617D4}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CS586MVC", "CS586MVC\CS586MVC.csproj", "{89697482-D8F1-448F-8754-FEFABC4617D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS586MVC.Tests", "Uni\CS586MVC.Tests.csproj", "{B7AB2B96-86FA-4AE5-83E7-1FAB24D0446E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{89697482-D8F1-448F-8754-FEFABC4617D4} = {89697482-D8F1-448F-8754-FEFABC4617D4}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +20,15 @@ Global
 		{89697482-D8F1-448F-8754-FEFABC4617D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89697482-D8F1-448F-8754-FEFABC4617D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89697482-D8F1-448F-8754-FEFABC4617D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7AB2B96-86FA-4AE5-83E7-1FAB24D0446E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7AB2B96-86FA-4AE5-83E7-1FAB24D0446E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7AB2B96-86FA-4AE5-83E7-1FAB24D0446E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7AB2B96-86FA-4AE5-83E7-1FAB24D0446E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {56BD13FC-0232-4959-8DA7-95A7E14ACB2C}
 	EndGlobalSection
 EndGlobal

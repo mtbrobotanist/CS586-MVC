@@ -58,9 +58,9 @@
     <li><strong>ApartmentComplexUnit</strong>: represents an Apartment Complex Unit. Has a foreign key to ApartmentComplex.</li>
     <li><strong>Person</strong>: represents a person. This is not the same as a tenant. A person is not a tenant until a Lease entry is created that references them.</li>
     <li><strong>Lease</strong>: a person becomes a Tenant when they have a lease created and put into the Lease table. The Lease table has a foreign key to the Person table and to the ApartmentComplexUnit table</li>
-</ul>
-<p>See PropertyMismagementContext.cs</p>
-
+</>
+<p>See PropertyMismagementContext.cs.</p>
+    
 <br/>
 
 <h5>Controllers</h5>
@@ -69,7 +69,11 @@
     <li>HomeController</li>
         <ul><li>the default controller delivering the SPA compliant index page</li></ul>
     <li>PropertyDataController</li>
-        <ul><li>the controller responsible for communication between a given View and Model</li></ul>
+    <ul>
+        <li>the controller responsible for communication between a given View and Model</li>
+        <li><strong>NOTE:</strong>The class name "ApartmentComplex" is used somewhat interchangeably with the word "Property"...</li>
+        <li>...See PropertyDataController.Properties() and you will see what I mean.</li>
+    </ul>
 </ul>
 
 <h3>Checklist</h3>
