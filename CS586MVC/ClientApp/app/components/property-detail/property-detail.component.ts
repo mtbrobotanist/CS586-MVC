@@ -11,15 +11,15 @@ import {ApartmentComplex} from "../properties/properties.component.interfaces";
 
 export class PropertyDetailComponent implements OnInit {
 
-    private complexes:ApartmentComplex[];
+    public complexes:ApartmentComplex[];
     private sub: any;
     private id:number;
-    private editMode:boolean = false;
-    private deleted:boolean = false;
+    public editMode:boolean = false;
+    public deleted:boolean = false;
     
-    private vmName:string;
-    private vmAddress:string;
-    private vmTotalUnits:number;
+    public vmName:string;
+    public vmAddress:string;
+    public vmTotalUnits:number;
     
     constructor(private http: Http,
                 @Inject('BASE_URL') private baseUrl:

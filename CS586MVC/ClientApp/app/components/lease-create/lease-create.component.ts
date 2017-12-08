@@ -13,18 +13,18 @@ import {ApartmentComplex} from "../properties/properties.component.interfaces";
 
 export class LeaseCreateComponent implements OnInit, OnDestroy {
 
-    private lease: Lease;
-    private tenants: Tenant[];
-    private complexes: ApartmentComplex[];
+    public lease: Lease;
+    public tenants: Tenant[];
+    public complexes: ApartmentComplex[];
 
-    private vmTenant: Tenant;
-    private vmComplexUnit: ApartmentComplexUnit;
-    private vmComplex: ApartmentComplex;
+    public vmTenant: Tenant;
+    public vmComplexUnit: ApartmentComplexUnit;
+    public vmComplex: ApartmentComplex;
 
-    private vmStartDate: string;
-    private vmDuration: string;
-    private vmRent: string;
-    private vmUnitNumber: string;
+    public vmStartDate: string;
+    public vmDuration: string;
+    public vmRent: string;
+    public vmUnitNumber: string;
     
     constructor(private http: Http,
                 @Inject('BASE_URL') private baseUrl: string,

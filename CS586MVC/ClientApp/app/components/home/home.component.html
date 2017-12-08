@@ -22,14 +22,37 @@
 <p>
     The REST operations for CRUD can be found inside of <b>PropertyDataController.cs</b> inside of the "Controllers" folder.
 </p>
-<p>
-    The front end consists of the following Angular components: tenants, tenant-detail, properties, property-detail, leases, lease-detail. <br/> 
-    These implement the Read, Update, and Delete operations.
-</p>
 
 <br/>
 
-<h4>Database Tables</h4>
+<h4>Front End</h4>
+<p>
+    The front end consists of the following Angula components that implement the <strong>V</strong> in MVC:
+</p>
+<h5>Views</h5>
+<ul>
+    <li><strong>tenants:</strong> for viewing all tenants</li>
+    <li><strong>tenant-detail:</strong> for viewing and updating detailed info about an individual tenant</li>
+    <li><strong>tenant-create:</strong >for creating a new tenant</li>
+    <li><strong>properties:</strong> for viewing all properties</li>
+    <li><strong>property-detail:</strong> for viewing and updating detailed info about an individual property</li>
+    <li><strong>property-create:</strong >for creating a new property</li>
+    <li><strong>leases:</strong> for viewing all leases</li>
+    <li><strong>lease-detail:</strong> for viewing and updating detailed info about an individual lease</li>
+    <li><strong>lease-create:</strong> for creating a new lease, linking against an existing poperty and tenant, as well as specifying details about the apartment unit</li>
+    <ul>
+        <li>
+            The apartment unit detail info could have been designed better. see Disclaimer section below.
+        </li>
+    </ul>
+</ul>
+
+
+<br/>
+
+<h4>Back End</h4>
+<h5>Models</h5>
+<p>these <strong>models</strong> have corresponding database tables. Together, they ipmplement the <strong>M</strong> part of MVC.</p>
 <ul>
     <li><strong>ApartmentComplex</strong>: represents an Apartment Complex</li>
     <li><strong>ApartmentComplexUnit</strong>: represents an Apartment Complex Unit. Has a foreign key to ApartmentComplex.</li>
@@ -39,6 +62,15 @@
 <p>See PropertyMismagementContext.cs</p>
 
 <br/>
+
+<h5>Controllers</h5>
+<p>There are two controllers:</p>
+<ul>
+    <li>HomeController</li>
+        <ul><li>the default controller delivering the SPA compliant index page</li></ul>
+    <li>PropertyDataController</li>
+        <ul><li>the controller responsible for communication between a given View and Model</li></ul>
+</ul>
 
 <h3>Checklist</h3>
 <h4><strong>Done</strong></h4>
@@ -57,7 +89,7 @@
                     <li>PropertyDataController in turn requires IDatabase service as a depency. ASP.NET took care of intantiation and injection.</li>
                 </ul>
             </li>
-            <li><strong>RUD</strong>: that is, CRUD without the C. Read, Update and Delete all work.</li>
+            <li><strong>CRUD</strong>: Create, Read, Update, and Delete operations work. Thanks Postman.</li>
         </ul>
     </li>
 </ul>
@@ -66,12 +98,19 @@
 
 <h4><strong>Todo</strong> (in priority order)</h4>
 <ul>
-    <li><strong>C</strong>: that is, CRUD without the RUD. Creating database entries has not been implementd on the front end, but the backend supports it (theoretically). Thanks Postman.</li>
-    <li><strong>Authentication</strong> There is none. I plan on having this done by the end of the semester. </li>
+    <li><strong>Unit Testing:</strong> this is probably the only thing i will be able to get done in the time that i have left.</li>
+    <li><strong>Authentication</strong> There is none. I made the mistake of choosing the Angular template over the Authentication template and waiting to long to explore this option. I will not be getting anything on the rest of this todo list done :(. </li>
+    <li><strong>Input validation:</strong> There is nonse. DON'T put non-number strings into fields that expext numbers. I don't know what will happen.</li>
     <li><strong>Return the standard web codes:</strong>
         <ul>
             <li>All of PropertyDataController's functions are just "void" or "async Task<>". </li>
             <li>Also Database errors just barf all over console output. Luckily this doesn't really affect the webpage. Still totally uncool.</li>
+        </ul>
+    </li>
+    <li><strong>Persinstent Databse:</strong> this app uses an in memory database to illustrate its concepts. probably won't get top this, BUT it was originally created with a  SQL database. you can view:
+        <ul>
+            <li>Connection string stored inside of appsettings.json, under "DefaultConnection"</li>
+            <li>"//options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));", visible inside of Startup.ConfigureServices.</li>
         </ul>
     </li>
     <li><strong>Add a paragraph talking about SOLID principles?</strong></li>

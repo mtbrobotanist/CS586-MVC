@@ -10,11 +10,11 @@ import { Lease } from "../leases/leases.component.interfaces";
 })
 export class LeaseDetailComponent implements OnInit, OnDestroy {
 
-    private leases:Lease[];
+    public leases:Lease[];
     private sub: any;
     private id:number;
-    private editMode:boolean = false;
-    private deleted:boolean = false;
+    public editMode:boolean = false;
+    public deleted:boolean = false;
     
     private actualStartDate:string;
     

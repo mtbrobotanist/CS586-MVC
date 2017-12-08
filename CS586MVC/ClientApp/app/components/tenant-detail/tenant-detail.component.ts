@@ -10,15 +10,15 @@ import { Tenant } from "../tenants/tenants.component.interfaces";
 })
 export class TenantDetailComponent implements OnInit, OnDestroy {
 
-    private tenants:Tenant[];
+    public tenants:Tenant[];
     private id:number;
-    private editMode:boolean;
-    private deleted:boolean;
+    public editMode:boolean;
+    public deleted:boolean;
     
-    private vmFirstName:string;
-    private vmLastName:string;
-    private vmPhone:string;
-    private vmEmail:string;
+    public vmFirstName:string;
+    public vmLastName:string;
+    public vmPhone:string;
+    public vmEmail:string;
     
     private sub:any;
     

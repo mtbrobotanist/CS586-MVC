@@ -10,12 +10,12 @@ import { Tenant } from "../tenants/tenants.component.interfaces";
 })
 export class TenantCreateComponent implements OnInit, OnDestroy {
 
-    private vmFirstName:string;
-    private vmLastName:string;
-    private vmPhone:string;
-    private vmEmail:string;
+    public vmFirstName:string;
+    public vmLastName:string;
+    public vmPhone:string;
+    public vmEmail:string;
 
-    private tenant:Tenant;
+    public tenant:Tenant;
     
     constructor(private http: Http,
                 @Inject('BASE_URL') private baseUrl:

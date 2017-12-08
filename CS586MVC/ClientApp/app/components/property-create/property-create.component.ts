@@ -11,11 +11,11 @@ import {ApartmentComplex} from "../properties/properties.component.interfaces";
 
 export class PropertyCreateComponent implements OnInit, OnDestroy {
 
-    private vmName: string;
-    private vmAddress: string;
-    private vmTotalUnits: string;
+    public vmName: string;
+    public vmAddress: string;
+    public vmTotalUnits: string;
 
-    private complex: ApartmentComplex;
+    public complex: ApartmentComplex;
 
     constructor(private http: Http,
                 @Inject('BASE_URL') private baseUrl: string, 
