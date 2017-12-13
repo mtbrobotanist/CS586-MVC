@@ -90,10 +90,16 @@
                     <li>Specifies MVC serialization options.</li>
                     <li>Instantiates <b>PropertyMismanagementContext</b> for injection into <b>IDatabaseService</b></li>
                     <li>Instantiates <b>PropertyMismanagementDataBaseService</b>, which implements <b>IDatabaseService</b> interface via AddTransient().</li>
-                    <li>PropertyDataController in turn requires IDatabase service as a depency. ASP.NET took care of intantiation and injection.</li>
+                    <li>PropertyDataController in turn requires IDatabase service as a depency. ASP.NET took care of instantiation and injection.</li>
                 </ul>
             </li>
             <li><strong>CRUD</strong>: Create, Read, Update, and Delete operations work. Thanks Postman.</li>
+        </ul>
+    </li>
+    <li><strong>Persistent Database:</strong> this app uses a dedicated Azure SQL server to illustrate its concepts. you can view:
+        <ul>
+            <li>Connection string stored inside of appsettings.json, under "DefaultConnection" <strong> (totally unencrypted, visible to everyone. Sorry)</strong></li>
+            <li>"options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));", visible inside of Startup.ConfigureServices.</li>
         </ul>
     </li>
 </ul>
@@ -102,19 +108,13 @@
 
 <h4><strong>Todo</strong> (in priority order)</h4>
 <ul>
-    <li><strong>Unit Testing:</strong> this is probably the only thing i will be able to get done in the time that i have left.</li>
+    <li><strong>Unit Testing:</strong> There was an attempt. see the UnitTesting subproject under the root project folder. </li>
     <li><strong>Authentication</strong> There is none. I made the mistake of choosing the Angular template over the Authentication template and waiting to long to explore this option. I will not be getting anything on the rest of this todo list done :(. </li>
     <li><strong>Input validation:</strong> There is nonse. DON'T put non-number strings into fields that expext numbers. I don't know what will happen.</li>
     <li><strong>Return the standard web codes:</strong>
         <ul>
             <li>All of PropertyDataController's functions are just "void" or "async Task<>". </li>
             <li>Also Database errors just barf all over console output. Luckily this doesn't really affect the webpage. Still totally uncool.</li>
-        </ul>
-    </li>
-    <li><strong>Persinstent Databse:</strong> this app uses an in memory database to illustrate its concepts. probably won't get top this, BUT it was originally created with a  SQL database. you can view:
-        <ul>
-            <li>Connection string stored inside of appsettings.json, under "DefaultConnection"</li>
-            <li>"//options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));", visible inside of Startup.ConfigureServices.</li>
         </ul>
     </li>
     <li><strong>Add a paragraph talking about SOLID principles?</strong></li>
