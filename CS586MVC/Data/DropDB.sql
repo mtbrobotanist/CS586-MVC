@@ -1,8 +1,27 @@
-ALTER TABLE PropertyMismanagement.dbo.Lease DROP CONSTRAINT Lease_Person_ID_fk
-ALTER TABLE PropertyMismanagement.dbo.Lease DROP CONSTRAINT Lease_ComplexUnit_ID_fk
-ALTER TABLE PropertyMismanagement.dbo.ComplexUnit DROP CONSTRAINT ComplexUnit_Unit_ID_fk
-ALTER TABLE PropertyMismanagement.dbo.ComplexUnit DROP CONSTRAINT ComplexUnit_Complex_ID_fk
-DROP TABLE PropertyMismanagement.dbo.Lease
-DROP TABLE PropertyMismanagement.dbo.ComplexUnit
-DROP TABLE PropertyMismanagement.dbo.Person
-DROP TABLE PropertyMismanagement.dbo.Complex
+ALTER TABLE PropertyMismanagement.dbo.Leases DROP CONSTRAINT Lease_Person_ID_fk
+
+GO
+
+ALTER TABLE PropertyMismanagement.dbo.Leases DROP CONSTRAINT Lease_ApartmentComplexUnit_ID_fk
+
+GO
+
+ALTER TABLE PropertyMismanagement.dbo.ApartmentComplexUnits DROP CONSTRAINT ApartmentComplexUnit_ApartmentComplex_ID_fk
+
+GO
+
+DROP TABLE PropertyMismanagement.dbo.Leases
+
+GO
+
+DROP TABLE PropertyMismanagement.dbo.ApartmentComplexUnits
+
+GO
+
+DROP TABLE PropertyMismanagement.dbo.People
+
+GO
+
+DROP TABLE PropertyMismanagement.dbo.ApartmentComplexes
+
+GO

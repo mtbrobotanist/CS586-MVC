@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace CS586MVC.Models
@@ -16,10 +17,16 @@ namespace CS586MVC.Models
         public int Size { get; set; }
         public string Name { get; set; }
 
+        [NotMapped]
         public int VacancyCount => Size - ApartmentComplexUnits.Count(unit => unit.Occupied);
+
+        [NotMapped]
         public int OccupiedCount => Size - VacancyCount;
 
+        [NotMapped]
         public IEnumerable<ApartmentComplexUnit> VacantUnits => ApartmentComplexUnits.Where(unit => !unit.Occupied).ToList();
+
+        [NotMapped]
         public IEnumerable<ApartmentComplexUnit> OccupiedUnits => ApartmentComplexUnits.Where(unit => unit.Occupied).ToList();
 
         public ICollection<ApartmentComplexUnit> ApartmentComplexUnits { get; set; }

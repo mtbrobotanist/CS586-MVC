@@ -108,7 +108,7 @@ namespace CS586MVC.Services
         public async Task<ApartmentComplexUnit> InsertApartmentComplexUnit(ApartmentComplexUnit acu)
         {
             bool complex = acu.ApartmentComplex != null;
-            bool complexId = acu.ApartmentComplexId.HasValue;
+            bool complexId = acu.ApartmentComplexId != 0;
             
             if (!complex && !complexId)
             {
@@ -168,9 +168,9 @@ namespace CS586MVC.Services
             {
                 target.ApartmentComplex = acu.ApartmentComplex;
             }
-            else if (acu.ApartmentComplexId.HasValue)
+            else if(target.ApartmentComplexId != 0)
             {
-                target.ApartmentComplexId = acu.ApartmentComplexId.Value;
+                target.ApartmentComplexId = acu.ApartmentComplexId;
             }
 
             await _context.SaveChangesAsync();
@@ -231,8 +231,7 @@ namespace CS586MVC.Services
                     .Include(p => p.Leases)
                         .ThenInclude(apt => apt.ApartmentComplexUnit)
                             .ThenInclude(unit => unit.ApartmentComplex)
-                    .OrderBy(p => p.Current)
-                        //.ThenBy(p => p.LastName)
+                    .OrderBy(p => p.LastName)
                     .ToListAsync();
             }
             

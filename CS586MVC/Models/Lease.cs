@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
+using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 
 
@@ -7,7 +7,10 @@ namespace CS586MVC.Models
 {
     public partial class Lease
     {
-        [JsonIgnore] public static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+        [JsonIgnore]
+        [NotMapped]
+        public static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         public int Id { get; set; }
 
@@ -19,12 +22,14 @@ namespace CS586MVC.Models
         [JsonProperty("startDate")]
         public long StartDate { get; set; }
 
-    public int DurationMonths { get; set; }
+        public int DurationMonths { get; set; }
         public int RentMonthly { get; set; }
 
+        [NotMapped]
         public bool Active => __startDateTime.AddMonths(DurationMonths) > DateTime.Now;
 
         [JsonIgnore]
+        [NotMapped]
         private DateTime __startDateTime => UnixEpoch.AddMilliseconds(StartDate).ToLocalTime();
         
         public ApartmentComplexUnit ApartmentComplexUnit { get; set; }

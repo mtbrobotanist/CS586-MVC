@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace CS586MVC.Models
 {
-    public partial class ApartmentComplexUnit
+    public /*partial*/ class ApartmentComplexUnit
     {
         public ApartmentComplexUnit()
         {
@@ -15,11 +16,13 @@ namespace CS586MVC.Models
         public int BedRooms { get; set; }
         public int BathRooms { get; set; }
         public int Area { get; set; }
-        public int? ApartmentComplexId { get; set; }
+        public int ApartmentComplexId { get; set; }
         public int UnitNumber { get; set; }
 
+        [NotMapped]
         public bool Occupied => Leases.Any(l => l.Active);
 
+        [NotMapped]
         public string Address => $"#{UnitNumber}, {ApartmentComplex?.Address}";
         
         public ApartmentComplex ApartmentComplex { get; set; }

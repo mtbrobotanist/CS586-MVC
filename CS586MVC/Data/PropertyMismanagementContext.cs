@@ -9,7 +9,6 @@ namespace CS586MVC.Data
         public virtual DbSet<ApartmentComplexUnit> ApartmentComplexUnits { get; set; }
         public virtual DbSet<Lease> Leases { get; set; }
         public virtual DbSet<Person> People { get; set; }
-        //public virtual DbSet<ApartmentUnit> ApartmentUnits { get; set; }
 
         public PropertyMismanagementContext(DbContextOptions<PropertyMismanagementContext> options) : base(options) { }
 
@@ -34,7 +33,7 @@ namespace CS586MVC.Data
                     .IsUnicode(false);
 
                 entity.HasIndex(e => e.Address)
-                    .HasName("AparmentComplex_Address_uindex")
+                    .HasName("ApartmentComplex_Address_uindex")
                     .IsUnique();
                 
                 entity.Property(e => e.Size).HasColumnName("Size");
@@ -56,8 +55,9 @@ namespace CS586MVC.Data
                 entity.HasOne(d => d.ApartmentComplex)
                     .WithMany(p => p.ApartmentComplexUnits)
                     .HasForeignKey(d => d.ApartmentComplexId)
-                    .HasConstraintName("ApartmentComplexUnit_ApartmentComplex_ID_fk")
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .IsRequired()
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("ApartmentComplexUnit_ApartmentComplex_ID_fk");
             });
 
             modelBuilder.Entity<Lease>(entity =>

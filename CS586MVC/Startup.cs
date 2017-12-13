@@ -29,8 +29,8 @@ namespace CS586MVC
             });
             
             services.AddDbContext<PropertyMismanagementContext>(options =>
-                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-                options.UseInMemoryDatabase("PropertyMismanagement"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                //options.UseInMemoryDatabase("PropertyMismanagement"));
 
 
             var serviceProvider = services.BuildServiceProvider();

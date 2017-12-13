@@ -1,78 +1,77 @@
-CREATE TABLE [Complex] (
+﻿CREATE TABLE [ApartmentComplexes] (
     [ID] int NOT NULL IDENTITY,
-    [Address] varchar(256) NULL,
+    [Address] varchar(256) NOT NULL,
+    [Name] varchar(256) NOT NULL,
     [Size] int NOT NULL,
-    CONSTRAINT [PK_Complex] PRIMARY KEY ([ID])
+    CONSTRAINT [PK_ApartmentComplexes] PRIMARY KEY ([ID])
 );
 
 GO
 
-CREATE TABLE [Person] (
+CREATE TABLE [People] (
     [ID] int NOT NULL IDENTITY,
     [Email] varchar(256) NOT NULL,
     [FirstName] varchar(64) NOT NULL,
     [LastName] varchar(64) NOT NULL,
     [Phone] varchar(10) NOT NULL,
-    CONSTRAINT [PK_Person] PRIMARY KEY ([ID])
+    CONSTRAINT [PK_People] PRIMARY KEY ([ID])
 );
 
 GO
 
-CREATE TABLE [ComplexUnit] (
+CREATE TABLE [ApartmentComplexUnits] (
     [ID] int NOT NULL IDENTITY,
-    [ComplexID] int NULL,
-    [Bedrooms] INT NOT NULL,
-    [Bathrooms] INT NOT NULL,
-    [Area] INT NOT NULL,
+    [ApartmentComplexID] int NOT NULL,
+    [Area] int NOT NULL,
+    [BathRooms] int NOT NULL,
+    [BedRooms] int NOT NULL,
     [UnitNumber] int NOT NULL,
-    CONSTRAINT [PK_ComplexUnit] PRIMARY KEY ([ID]),
-    CONSTRAINT [ComplexUnit_Complex_ID_fk] FOREIGN KEY ([ComplexID]) REFERENCES [Complex] ([ID]) ON DELETE NO ACTION
+    CONSTRAINT [PK_ApartmentComplexUnits] PRIMARY KEY ([ID]),
+    CONSTRAINT [ApartmentComplexUnit_ApartmentComplex_ID_fk] FOREIGN KEY ([ApartmentComplexID]) REFERENCES [ApartmentComplexes] ([ID]) ON DELETE CASCADE
 );
 
 GO
 
-CREATE TABLE [Lease] (
+CREATE TABLE [Leases] (
     [ID] int NOT NULL IDENTITY,
-    [ComplexUnitID] int NOT NULL,
+    [ApartmentComplexUnitID] int NOT NULL,
     [DurationMonths] int NOT NULL,
     [PersonID] int NOT NULL,
     [RentMonthly] int NOT NULL,
-    [StartDate] date NOT NULL,
-    CONSTRAINT [PK_Lease] PRIMARY KEY ([ID]),
-    CONSTRAINT [Lease_ComplexUnit_ID_fk] FOREIGN KEY ([ComplexUnitID]) REFERENCES [ComplexUnit] ([ID]) ON DELETE NO ACTION,
-    CONSTRAINT [Lease_Person_ID_fk] FOREIGN KEY ([PersonID]) REFERENCES [Person] ([ID]) ON DELETE NO ACTION
+    [DateMillis] bigint NOT NULL,
+    CONSTRAINT [PK_Leases] PRIMARY KEY ([ID]),
+    CONSTRAINT [Lease_ApartmentComplexUnit_ID_fk] FOREIGN KEY ([ApartmentComplexUnitID]) REFERENCES [ApartmentComplexUnits] ([ID]) ON DELETE CASCADE,
+    CONSTRAINT [Lease_Person_ID_fk] FOREIGN KEY ([PersonID]) REFERENCES [People] ([ID]) ON DELETE CASCADE
 );
 
 GO
 
-CREATE UNIQUE INDEX [Complex_ID_uindex] ON [Complex] ([ID]);
+CREATE UNIQUE INDEX [ApartmentComplex_ID_uindex] ON [ApartmentComplexes] ([ID]);
 
 GO
 
-CREATE INDEX [IX_ComplexUnit_ComplexID] ON [ComplexUnit] ([ComplexID]);
+CREATE INDEX [IX_ApartmentComplexUnits_ApartmentComplexID] ON [ApartmentComplexUnits] ([ApartmentComplexID]);
 
 GO
 
-CREATE UNIQUE INDEX [ComplexUnit_ID_uindex] ON [ComplexUnit] ([ID]);
+CREATE UNIQUE INDEX [ApartmentComplexUnit_ID_uindex] ON [ApartmentComplexUnits] ([ID]);
 
 GO
 
-CREATE INDEX [IX_ComplexUnit_UnitID] ON [ComplexUnit] ([UnitID]);
+CREATE INDEX [IX_Leases_ApartmentComplexUnitID] ON [Leases] ([ApartmentComplexUnitID]);
 
 GO
 
-CREATE INDEX [IX_Lease_ComplexUnitID] ON [Lease] ([ComplexUnitID]);
+CREATE UNIQUE INDEX [Lease_ID_uindex] ON [Leases] ([ID]);
 
 GO
 
-CREATE UNIQUE INDEX [Lease_ID_uindex] ON [Lease] ([ID]);
+CREATE INDEX [IX_Leases_PersonID] ON [Leases] ([PersonID]);
 
 GO
 
-CREATE INDEX [IX_Lease_PersonID] ON [Lease] ([PersonID]);
+CREATE UNIQUE INDEX [Person_ID_uindex] ON [People] ([ID]);
 
 GO
 
-CREATE UNIQUE INDEX [Person_ID_uindex] ON [Person] ([ID]);
 
-GO

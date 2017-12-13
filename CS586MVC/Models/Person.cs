@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace CS586MVC.Models
@@ -17,8 +18,13 @@ namespace CS586MVC.Models
         public string Phone { get; set; }
         public string Email { get; set; }
 
+        [NotMapped]
         public bool Current => Leases.Any(l => l.Active);
+
+        [NotMapped]
         public Lease CurrentLease => Leases.FirstOrDefault(l => l.Active);
+
+        [NotMapped]
         public int? CurrentLeaseId => CurrentLease?.Id;
         
         public ICollection<Lease> Leases { get; set; }
